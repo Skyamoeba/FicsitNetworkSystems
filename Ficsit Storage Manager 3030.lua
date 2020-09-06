@@ -168,7 +168,7 @@ if e[1] == 200 then x = 4799 y = 1600 z = 1000 end
 if e[1] == 500 then x = 11999 y = 8000 z = 2000 end
 end
 
-if ConSize == 1 then
+if ConSize == 1 then -- Data for this is not correct as I need to wait for my machines to fill them first
 if e[1] == 50 then x = 1199 y = 450 z = 200 end
 if e[1] == 100 then x = 2409 y = 1600 z = 800 end
 if e[1] == 200 then x = 4799 y = 1600 z = 1000 end
