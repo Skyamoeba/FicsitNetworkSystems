@@ -37,7 +37,7 @@ EnableScreen = false
                 RawQuartz = {100 ,"Raw Quartz                  ",0}
                    Sulfur = {100 ,"Sulfur                      ",0}
                   Bauxite = {100 ,"Bauxite                     ",0}
-                  Uranium = {100 ,"Uranium                     ",1}
+                  Uranium = {100 ,"Uranium                     ",0}
 ---- Ingots ################################################################################################## 5
                 IronIngot = {100 ,"Iron Ingot                  ",0}
               CopperIngot = {100 ,"Copper Ingot                ",0}
