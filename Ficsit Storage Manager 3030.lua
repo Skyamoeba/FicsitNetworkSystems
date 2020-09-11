@@ -1,31 +1,33 @@
--- CON = Container Id's
+TOP = "1.0.4" -- Remove this when done programming the system
+
+-- Display Ver : 1.0.1 
+-- CON = Containers
 -- LIG = Light Poles ID's
 -- PWR = Power Poles ID's
 -- PAN = Panel ID's
 -- PLL = Panel Light Locations
 -- PLI = Panel Brightness
 -- STA = Status Light Pole
--- Values for Items (can add more values to this or name them like Iron so long they are defined in the function request in the main loop.
+        
+CON = {"8A69E001416F137A4F040380E73C84DF","CC0B5C3349393F440947DFACDB9F54FD","32E2E58B4190F7E572E58698D1C53D68","42C3AA1042FA648016DC55945F9FB1A7","02DE15BA4586113075386F8C689D4F0F","47A55D8244C9675F6976B4B3AA98CF88","168C07D1405F72DDF88C6C95A7906F99","1C96441A442C298094A722A8C69ABDEF"} 
+LIG = {"1B5F97B14FB3BD317E13999FACA548DF","4FAB99474CE2BE34CA3DF58E46709B0F","D44A812F412292AADCF58195B8E28301","54980B3C4CD9C230F911AE9D8871C274","70B11ABC41132ADE161B739147DAEE9A","262913B1487883395B8396BE2B2F5469","8B88BCF3488F475814E5AF90516BCA7D","0F9A8CCC493CC3B199A48F8270406620"}
+PWR = {"38C4C67E47229A5BCFAD788D88D0F45C","E0F1170A479B79CB463B42BB4658479B","1ADF8E6A45F9FF600C08B49E96FF7AEC","92F62B974F8D80D687156795A0F86EDC","13342D2D49BE97D49186BEAE33A4F1B1","B7D570B04002188BFFFD11A77E30C5AA","22269C6942583C14911186AC316F102C","323266684F55E821CFC569A7B532E114"}
+PAN = {""}
+PLL = {10,10,10,10}
+PLI = {0.5} -- Panel Light Brightness
+STA = {"7010CBE84AA84C599CD2C3A2616FDEEC"}
+PPL = 10
+ConSize = 0 -- 0 = Small 1 = Large
+VAL = {100 ,"Default",0,0,0}
+ConSize = 0 -- 0 = Small 1 = Large
+NUM = 9 -- Number of containers connected
 
-CON = {--[[ Place Container ID's in here! ]]}
-LIG = {--[[ Place Container status light pole id's in here! ]]}
-PWR = {--[[ Place Power Pole ID's in here for power poles to machines that will fill your containers back up]]}
-PAN = {--[[ Panel Id (note: in my test causes lag but I am using a 10 year old system)]]}
-PLL = {10,10,10,10} -- default top row x= nothing L= light ( XLLLXXXXXXXXXX )
-PLI = {0.5} -- Panel Light Brightness 
-STA = {--[[ Status Pole light id ]]}
-PPL = 10 -- Panels light brightness
-ConSize = 0 -- 0 = Small 1 = Large (there are variables below lines 159 -> 169 which you can customize to suit your factory.)
-VAL = {100 ,"Default",0} -- Default Variable
-ConSize = 0 -- 0 = Small 1 = Large - Small (0) or Large (1) container
-NUM = 2 -- Number of containers connected (important to change)
 
---Defaults : false
-EnableLights = false
-EnableStausLight = false
-EnablePwrPol = false
-EnableCPanel = false -- Enable Control Panel Status Lights
-EnableScreen = false
+EnableLights     = true
+EnableStausLight = true
+EnablePwrPol     = true
+EnableCPanel     = false -- Enable Control Panel Status Lights
+EnableScreen     = true
 
 -- ITEM LIST ###############################################################################################
 ---- Ores --------------------------------------------------------------------------------------------------9
@@ -40,7 +42,7 @@ EnableScreen = false
                   Uranium = {100 ,"Uranium                     ",0,0,0}
 ---- Ingots --------------------------------------------------------------------------------------------------5
                 IronIngot = {100 ,"Iron Ingot                  ",1,0,0}
-              CopperIngot = {100 ,"Copper Ingot                ",0,0,0}
+              CopperIngot = {100 ,"Copper Ingot                ",8,0,0}
             CateriumIngot = {100 ,"Caterium Ingot              ",0,0,0}
                SteelIngot = {100 ,"Steel Ingot                 ",0,0,0}
             AluminumIngot = {100 ,"Aluminum Ingot              ",0,0,0}
@@ -124,7 +126,7 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0}
              NuclearWaste = {500 ,"Nuclear Waste               ",5,0,1,1}
 --##########################################################################################################
 
-LastLineA = 8 -- This has to be +1 above the last Container on you list in group A
+LastLineA = 9 -- This has to be +1 above the last Container on you list in group A
 LastLineB = 2 -- This has to be +1 above the last Container on you list in group B
 
 
@@ -138,13 +140,13 @@ function CONTAIN4() ConStatus(CON[4],LIG[4],4,4,AdaptiveControlUnit,0)end
 function CONTAIN5() ConStatus(CON[5],LIG[5],5,5,NuclearWaste,1)end
 function CONTAIN6() ConStatus(CON[6],LIG[6],6,6,Nobelisk,1)end
 function CONTAIN7() ConStatus(CON[7],LIG[7],7,7,GasFilter,2)end
+function CONTAIN8() ConStatus(CON[8],LIG[8],8,8,CopperIngot,1)end
+
 
 --##########################################################################################################
   function MainLoop() if EnableScreen == true then clearScreen() end 
 --##########################################################################################################
 -- ** Add your containers to the erro check incase of accedential disconnection so the program can keep on *
-
---CONTAIN(1,IronIngot)
 
 
   if fCont[1] == 0 then CONTAIN1() end
@@ -152,8 +154,10 @@ function CONTAIN7() ConStatus(CON[7],LIG[7],7,7,GasFilter,2)end
   if fCont[3] == 0 then CONTAIN3() end
   if fCont[4] == 0 then CONTAIN4() end
   if fCont[5] == 0 then CONTAIN5() end
-if fCont[6] == 0 then CONTAIN6() end
-if fCont[7] == 0 then CONTAIN7() end
+  if fCont[6] == 0 then CONTAIN6() end
+  if fCont[7] == 0 then CONTAIN7() end
+  if fCont[8] == 0 then CONTAIN8() end
+
 
 --##########################################################################################################
 end
@@ -167,10 +171,10 @@ function selfTest()
   if pcall (CONTAIN3) then fCont[3]= 0 else fCont[3] = 1 print(ERR[3].."3")end
   if pcall (CONTAIN4) then fCont[4]= 0 else fCont[4] = 1 print(ERR[3].."4")end
   if pcall (CONTAIN5) then fCont[5]= 0 else fCont[5] = 1 print(ERR[3].."5")end
-if pcall (CONTAIN6) then fCont[6]= 0 else fCont[6] = 1 print(ERR[3].."6")end
-if pcall (CONTAIN7) then fCont[7]= 0 else fCont[7] = 1 print(ERR[3].."7")end
-
-
+  if pcall (CONTAIN6) then fCont[6]= 0 else fCont[6] = 1 print(ERR[3].."6")end
+  if pcall (CONTAIN7) then fCont[7]= 0 else fCont[7] = 1 print(ERR[3].."7")end
+  if pcall (CONTAIN8) then fCont[8]= 0 else fCont[8] = 1 print(ERR[3].."8")end
+  
 end
 
 
@@ -213,7 +217,8 @@ ChkDis = false
 progstat = component.proxy(STA[1])
 local ProgName = ("Ficsit Production Manager 3030")
 local By = ("Skyamoeba")
-local Ver = ("1.0.2")
+local Ver = (TOP)
+local MVer = ("0.0.8")
 local BFlag = 0
 fCont = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
 
@@ -231,7 +236,7 @@ if Item[1] == 200 then x = 4799 y = 1600 z = 1000 end
 if Item[1] == 500 then x = 11999 y = 8000 z = 2000 end
 end
 
-if ConSize == 1 then -- Data for this is not correct as I need to wait for my machines to fill them first
+if ConSize == 1 then
 if Item[1] == 50 then x = 2399 y = 1199 z = 200 end
 if Item[1] == 100 then x = 2409 y = 1600 z = 800 end
 if Item[1] == 200 then x = 4799 y = 1600 z = 1000 end
@@ -245,6 +250,13 @@ if Item[1] == 200 then x = 4799 y = 1600 z = 1000 end
 if Item[1] == 500 then x = 11999 y = 8000 z = 2000 end
 end
 
+if ConSize == 3 then -- Added Train
+if Item[1] == 50 then x = 2399 y = 1199 z = 200 end
+if Item[1] == 100 then x = 2409 y = 1600 z = 800 end
+if Item[1] == 200 then x = 4799 y = 1600 z = 1000 end
+if Item[1] == 500 then x = 23999 y = 11999 z = 1000 end
+end
+
 -- Screen List Start
 if EnableScreen == true then
 textCol(1,1,1,1)
@@ -253,8 +265,7 @@ if Item[4] == 0 then
 write(0,0,"#-Container----#-Contents-----------------------#-Amount---#-Status----#")
 write(0,Item[3],"|") write(15,Item[3],"|") write(48,Item[3],"|") write(59,Item[3],"|") write(71,Item[3],"|")
 write(2,Item[3], ConNumber) write(17,Item[3],Item[2]) write(50,Item[3],conSum.."    ")
---ConStatus(a,b,c,d,e,f)
---function CONTAIN1() ConStatus(Container,Light,ConNumber,TableNum,IronIngot) end
+
 if conSum > x then 
  textCol(0,1,0,1) 
   write(61,Item[3],"Full     ") 
@@ -280,8 +291,9 @@ textCol(1,1,1,1)
 write(83,0,"#================================#")
 write(83,1,"# "..ProgName.." #")
 write(83,2,"# By : "..By.."                 #")
-write(83,3,"# Version : "..Ver.."                #")
-write(83,4,"#================================#")
+write(83,3,"# Prg Ver : "..Ver.."                #")
+write(83,4,"# Mod Ver : "..MVer.."               #")
+write(83,5,"#================================#")
 textCol(1,1,1,1)
 
 if Item[4] == 1 then
@@ -326,32 +338,32 @@ end
 if conSum > x then
   if Item[6] == 1 then 
      if IND == 1 then 
-       LightSP(Light,10.0, 0.0, 0.0,10.0)
+       LightSPL(TableNum,10.0, 0.0, 0.0,10.0)
         IND = 0
          computer.millis(1000)
           else
-           LightSP(Light,10.0, 10.0, 10.0,0)
+           LightSPL(TableNum,10.0, 10.0, 10.0,0)
             IND = 1
              computer.millis(1000)
               end
 event.pull(1)
 
 
-     if EnableLights == true then LightSP(Light,10.0, 0.0, 0.0,10.0) end
+     if EnableLights == true then LightSPL(TableNum,10.0, 0.0, 0.0,10.0) end
     else
-  if EnableLights == true then LightSP(Light,0.0,10.0, 0.0,10.0) end
+  if EnableLights == true then LightSPL(TableNum,0.0,10.0, 0.0,10.0) end
 end
   if EnableCPanel == true then ChangePanelLight(1,1,TableNum,10,PLI[1])end
   if EnablePwrPol == true then Connection(TableNum,false) end
   if EnableCPanel == true then ChangePanelLight(1,0,TableNum,9,PLI[1])end
 elseif conSum > y then
-  if EnableLights == true then LightSP(Light,10.0,10.0, 0.0,10.0) end
+  if EnableLights == true then LightSPL(TableNum,10.0,10.0, 0.0,10.0) end
   if EnableCPanel == true then ChangePanelLight(1,2,TableNum,10,PLI[1])end
 elseif conSum < z then
 if Item[6] == 1 then
-  if EnableLights == true then LightSP(Light,0.0, 10.0, 0.0,10.0) end
+  if EnableLights == true then LightSPL(TableNum,0.0, 10.0, 0.0,10.0) end
  else
-  if EnableLights == true then LightSP(Light,10.0, 0.0, 0.0,10.0) end
+  if EnableLights == true then LightSPL(TableNum,10.0, 0.0, 0.0,10.0) end
 end
   if EnableCPanel == true then ChangePanelLight(1,0,TableNum,10,PLI[1])end
   if EnablePwrPol == true then Connection(TableNum,true) end
@@ -388,19 +400,18 @@ gpu:setText(x,y,z)
 end
 -- Screen System Main  P2/3 End --
 
-
---- LightStatus Pole ---
-function LightSP(a,x,y,z,i)
+--- LightStatus Pole V2 ---
+function LightSPL(LightNumber,RED,GREEN,BLUE,INTENSITY)
+PLight = component.proxy(LIG[LightNumber])
 if EnableLights == true then
-  ContLight:setColor(x,y,z,i)
+  ContLight:setColor(RED,GREEN,BLUE,INTENSITY)
 else
  if EnableScreen == true then
  -- Status Code for Screen here
  end
 end
 end
---- LightStatus Pole End ---
-
+--- LightStatus Pole V2 End ---
 
 
 --- Power Conections ---
@@ -419,6 +430,7 @@ end
 function Blink(r,g,b)
 if IND == 1 then 
   progstat:setcolor(1,0,0,5)
+  computer.beep()
   IND = 0
   computer.millis(1000)
 else
@@ -452,7 +464,8 @@ if BFlag == 0 then
 print("#================================#")
 print("#",ProgName,"#")
 print("# By : "..By,"                #")
-print("# Version : "..Ver,"               #")
+print("# Prg Ver : "..Ver,"               #")
+print("# Mod Ver : "..MVer,"               #")
 print("#================================#")
 
 if EnableLights == false then print(SYS[1]) end
@@ -476,14 +489,19 @@ Boot()
 if pcall (MainLoop) then
  if EnableStausLight == true then
  if FLAG == 0 then progstat:setColor(0.0, 10.0, 0.0,10.0) end
- if FLAG == 1 then Blink() end
+ if FLAG == 1 then Blink() selfTest() end
  end
  else
 FLAG = 1
 print(ERR[1])
 selfTest()
+OSVer = _VERSION
+
+
+
 end
 -- Screen System Main P3/3 ##############################################################################--
 if EnableScreen == true then gpu:flush() end
 -- Screen System Main P3/3 End--
 end
+
