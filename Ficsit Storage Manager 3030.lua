@@ -1,6 +1,4 @@
-TOP = "1.0.4" -- Remove this when done programming the system
-
--- Display Ver : 1.0.1 
+TOP = "1.0.6" -- Remove this when done programming the system
 -- CON = Containers
 -- LIG = Light Poles ID's
 -- PWR = Power Poles ID's
@@ -8,8 +6,10 @@ TOP = "1.0.4" -- Remove this when done programming the system
 -- PLL = Panel Light Locations
 -- PLI = Panel Brightness
 -- STA = Status Light Pole
+
+
         
-CON = {"8A69E001416F137A4F040380E73C84DF","CC0B5C3349393F440947DFACDB9F54FD","32E2E58B4190F7E572E58698D1C53D68","42C3AA1042FA648016DC55945F9FB1A7","02DE15BA4586113075386F8C689D4F0F","47A55D8244C9675F6976B4B3AA98CF88","168C07D1405F72DDF88C6C95A7906F99","1C96441A442C298094A722A8C69ABDEF"} 
+CON = {"8A69E001416F137A4F040380E73C84DF","CC0B5C3349393F440947DFACDB9F54FD","32E2E58B4190F7E572E58698D1C53D68","42C3AA1042FA648016DC55945F9FB1A7","180E47244D0D22523043EAAB98F2C20D","47A55D8244C9675F6976B4B3AA98CF88","168C07D1405F72DDF88C6C95A7906F99","1C96441A442C298094A722A8C69ABDEF"} 
 LIG = {"1B5F97B14FB3BD317E13999FACA548DF","4FAB99474CE2BE34CA3DF58E46709B0F","D44A812F412292AADCF58195B8E28301","54980B3C4CD9C230F911AE9D8871C274","70B11ABC41132ADE161B739147DAEE9A","262913B1487883395B8396BE2B2F5469","8B88BCF3488F475814E5AF90516BCA7D","0F9A8CCC493CC3B199A48F8270406620"}
 PWR = {"38C4C67E47229A5BCFAD788D88D0F45C","E0F1170A479B79CB463B42BB4658479B","1ADF8E6A45F9FF600C08B49E96FF7AEC","92F62B974F8D80D687156795A0F86EDC","13342D2D49BE97D49186BEAE33A4F1B1","B7D570B04002188BFFFD11A77E30C5AA","22269C6942583C14911186AC316F102C","323266684F55E821CFC569A7B532E114"}
 PAN = {""}
@@ -22,7 +22,7 @@ VAL = {100 ,"Default",0,0,0}
 ConSize = 0 -- 0 = Small 1 = Large
 NUM = 9 -- Number of containers connected
 
-
+CBeep            = true
 EnableLights     = true
 EnableStausLight = true
 EnablePwrPol     = true
@@ -133,6 +133,8 @@ LastLineB = 2 -- This has to be +1 above the last Container on you list in group
 -- add below what each container is in the format below:
 -- function CONTAINx() ConStatus(CON[x],LIG[x],PWR[x],x,ItemName) end
 
+--function CONTAIN1() ConStatus("IronIngots",LIG[1],1,1,IronIngot,0) end
+
 function CONTAIN1() ConStatus(CON[1],LIG[1],1,1,IronIngot,0) end
 function CONTAIN2() ConStatus(CON[2],LIG[2],2,2,Concrete,0) end
 function CONTAIN3() ConStatus(CON[3],LIG[3],3,3,UraniumPellet,0)end
@@ -198,7 +200,7 @@ end
 
 -- System Screen Sys P1/3 ###############################################################################--
 if EnableScreen == true then 
-SystemScreenSys = {"System Screen Sys Ver: ","1.0.0"}
+SystemScreenSys = {"System Screen Ver: ","1.0.0"}
 gpu = computer.getGPUs()[1]
 screen = computer.getScreens()[1]
 gpu:bindScreen(screen)
@@ -223,7 +225,8 @@ local BFlag = 0
 fCont = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
 
 function ConStatus(Container,Light,ConNumber,TableNum,Item,ConSize)
-ContStore = component.proxy(Container)
+--ContStore = component.proxy(component.findComponent(Container)[1])
+ContStore = component.proxy(Container) 
 ContLight = component.proxy(Light)
 conInv = ContStore:getInventories()[1]
 conSum = conInv.itemCount
@@ -292,7 +295,7 @@ write(83,0,"#================================#")
 write(83,1,"# "..ProgName.." #")
 write(83,2,"# By : "..By.."                 #")
 write(83,3,"# Prg Ver : "..Ver.."                #")
-write(83,4,"# Mod Ver : "..MVer.."               #")
+write(83,4,"# Mod Ver : "..MVer.."                #")
 write(83,5,"#================================#")
 textCol(1,1,1,1)
 
@@ -430,7 +433,7 @@ end
 function Blink(r,g,b)
 if IND == 1 then 
   progstat:setcolor(1,0,0,5)
-  computer.beep()
+  if CBeep == true then computer.beep() end
   IND = 0
   computer.millis(1000)
 else
@@ -489,13 +492,15 @@ Boot()
 if pcall (MainLoop) then
  if EnableStausLight == true then
  if FLAG == 0 then progstat:setColor(0.0, 10.0, 0.0,10.0) end
- if FLAG == 1 then Blink() selfTest() end
+ if FLAG == 1 then 
+Blink() 
+--selfTest() 
+end
  end
  else
 FLAG = 1
 print(ERR[1])
 selfTest()
-OSVer = _VERSION
 
 
 
@@ -504,4 +509,5 @@ end
 if EnableScreen == true then gpu:flush() end
 -- Screen System Main P3/3 End--
 end
+
 
