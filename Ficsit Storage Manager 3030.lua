@@ -1,4 +1,4 @@
-TOP = "1.0.6" -- Remove this when done programming the system
+TOP = "1.0.7" -- Remove this when done programming the system
 -- CON = Containers
 -- LIG = Light Poles ID's
 -- PWR = Power Poles ID's
@@ -8,11 +8,13 @@ TOP = "1.0.6" -- Remove this when done programming the system
 -- STA = Status Light Pole
 
 
-        
+-- Will be transfered to Nicks in next update       
 CON = {"8A69E001416F137A4F040380E73C84DF","CC0B5C3349393F440947DFACDB9F54FD","32E2E58B4190F7E572E58698D1C53D68","42C3AA1042FA648016DC55945F9FB1A7","180E47244D0D22523043EAAB98F2C20D","47A55D8244C9675F6976B4B3AA98CF88","168C07D1405F72DDF88C6C95A7906F99","1C96441A442C298094A722A8C69ABDEF"} 
 LIG = {"1B5F97B14FB3BD317E13999FACA548DF","4FAB99474CE2BE34CA3DF58E46709B0F","D44A812F412292AADCF58195B8E28301","54980B3C4CD9C230F911AE9D8871C274","70B11ABC41132ADE161B739147DAEE9A","262913B1487883395B8396BE2B2F5469","8B88BCF3488F475814E5AF90516BCA7D","0F9A8CCC493CC3B199A48F8270406620"}
 PWR = {"38C4C67E47229A5BCFAD788D88D0F45C","E0F1170A479B79CB463B42BB4658479B","1ADF8E6A45F9FF600C08B49E96FF7AEC","92F62B974F8D80D687156795A0F86EDC","13342D2D49BE97D49186BEAE33A4F1B1","B7D570B04002188BFFFD11A77E30C5AA","22269C6942583C14911186AC316F102C","323266684F55E821CFC569A7B532E114"}
-PAN = {""}
+--###########################################
+
+PAN = {""} -- Still in Alpha and causes lag so disabled for now
 PLL = {10,10,10,10}
 PLI = {0.5} -- Panel Light Brightness
 STA = {"7010CBE84AA84C599CD2C3A2616FDEEC"}
@@ -30,119 +32,148 @@ EnableCPanel     = false -- Enable Control Panel Status Lights
 EnableScreen     = true
 
 -- ITEM LIST ###############################################################################################
+                  ListVer = {"1.0.0"}
 ---- Ores --------------------------------------------------------------------------------------------------9
-                Limestone = {100 ,"Limestone                   ",0,0,0} 
-                  IronOre = {100 ,"Iron Ore                    ",0,0,0}
-                CopperOre = {100 ,"Copper Ore                  ",0,0,0}
-              CateriumOre = {100 ,"Caterium Ore                ",0,0,0}
-                     Coal = {100 ,"Coal                        ",0,0,0}
-                RawQuartz = {100 ,"Raw Quartz                  ",0,0,0}
-                   Sulfur = {100 ,"Sulfur                      ",0,0,0}
-                  Bauxite = {100 ,"Bauxite                     ",0,0,0}
-                  Uranium = {100 ,"Uranium                     ",0,0,0}
+                Limestone = {100 ,"Limestone                   ",0,0,0,0} 
+                  IronOre = {100 ,"Iron Ore                    ",0,0,0,0}
+                CopperOre = {100 ,"Copper Ore                  ",0,0,0,0}
+              CateriumOre = {100 ,"Caterium Ore                ",0,0,0,0}
+                     Coal = {100 ,"Coal                        ",0,0,0,0}
+                RawQuartz = {100 ,"Raw Quartz                  ",0,0,0,0}
+                   Sulfur = {100 ,"Sulfur                      ",0,0,0,0}
+                  Bauxite = {100 ,"Bauxite                     ",0,0,0,0}
+                  Uranium = {100 ,"Uranium                     ",0,0,0,0}
 ---- Ingots --------------------------------------------------------------------------------------------------5
-                IronIngot = {100 ,"Iron Ingot                  ",1,0,0}
-              CopperIngot = {100 ,"Copper Ingot                ",8,0,0}
-            CateriumIngot = {100 ,"Caterium Ingot              ",0,0,0}
-               SteelIngot = {100 ,"Steel Ingot                 ",0,0,0}
-            AluminumIngot = {100 ,"Aluminum Ingot              ",0,0,0}
+                IronIngot = {100 ,"Iron Ingot                  ",1,0,0,0}
+              CopperIngot = {100 ,"Copper Ingot                ",8,0,0,0}
+            CateriumIngot = {100 ,"Caterium Ingot              ",0,0,0,0}
+               SteelIngot = {100 ,"Steel Ingot                 ",0,0,0,0}
+            AluminumIngot = {100 ,"Aluminum Ingot              ",0,0,0,0}
 ---- Materials ------------------------------------------------------------------------------------------------25
-                 Concrete = {100 ,"Concrete                    ",2,0,0}
-            QuartzCrystal = {100 ,"Quartz Crystal              ",0,0,0}
-             PolymerResin = {200 ,"PolymerResin                ",0,0,0}
-            PetroleumCoke = {200 ,"PetroleumCoke               ",0,0,0} 
-            AluminumScrap = {500 ,"Aluminum Scrap              ",0,0,0}
-                   Silica = {100 ,"Silica                      ",0,0,0}
-              BlackPowder = {100 ,"Black Powder                ",0,0,0}
-                     Wire = {500 ,"Wire                        ",0,0,0}
-                    Cable = {100 ,"Cable                       ",0,0,0}
-                 IronRods = {100 ,"Iron Rods                   ",0,0,0}
-                   Screws = {500 ,"Screws                      ",0,0,0}
-               IronPlates = {100 ,"Iron Plates                 ",0,0,0}
-      ReinforcedIronPlate = {100 ,"Reinforced Iron Plate       ",0,0,0}
-              CopperSheet = {100 ,"Copper Sheet                ",0,0,0}
-      AlcladAluminumSheet = {100 ,"Alclad Aluminum Sheet       ",0,0,0}   
-                  Plastic = {100 ,"Plastic                     ",0,0,0}                 
-                   Rubber = {100 ,"Rubber                      ",0,0,0}
-            PackagedWater = {100 ,"Packaged Water              ",0,0,0}
-                SteelPipe = {100 ,"Steel Pipe                  ",0,0,0}
-                SteelBeam = {100 ,"Steel Beam                  ",0,0,0}
-    EncasedIndustrialBeam = {100 ,"Encased Industrial Beam     ",0,0,0}
-           GreenPowerSlug = {50  ,"Green Power Slug            ",0,0,0}
-          YellowPowerSlug = {50  ,"Yellow Power Slug           ",0,0,0}
-          PurplePowerSlug = {50  ,"Purple Power Slug           ",0,0,0}
-             FlowerPetals = {200 ,"FlowerPetals                ",0,0,0}
+                 Concrete = {100 ,"Concrete                    ",2,0,0,0}
+            QuartzCrystal = {100 ,"Quartz Crystal              ",0,0,0,0}
+             PolymerResin = {200 ,"PolymerResin                ",0,0,0,0}
+            PetroleumCoke = {200 ,"PetroleumCoke               ",0,0,0,0} 
+            AluminumScrap = {500 ,"Aluminum Scrap              ",0,0,0,0}
+                   Silica = {100 ,"Silica                      ",0,0,0,0}
+              BlackPowder = {100 ,"Black Powder                ",0,0,0,0}
+                     Wire = {500 ,"Wire                        ",0,0,0,0}
+                    Cable = {100 ,"Cable                       ",0,0,0,0}
+                 IronRods = {100 ,"Iron Rods                   ",0,0,0,0}
+                   Screws = {500 ,"Screws                      ",0,0,0,0}
+               IronPlates = {100 ,"Iron Plates                 ",0,0,0,0}
+      ReinforcedIronPlate = {100 ,"Reinforced Iron Plate       ",0,0,0,0}
+              CopperSheet = {100 ,"Copper Sheet                ",0,0,0,0}
+      AlcladAluminumSheet = {100 ,"Alclad Aluminum Sheet       ",0,0,0,0}   
+                  Plastic = {100 ,"Plastic                     ",0,0,0,0}                 
+                   Rubber = {100 ,"Rubber                      ",0,0,0,0}
+            PackagedWater = {100 ,"Packaged Water              ",0,0,0,0}
+                SteelPipe = {100 ,"Steel Pipe                  ",0,0,0,0}
+                SteelBeam = {100 ,"Steel Beam                  ",0,0,0,0}
+    EncasedIndustrialBeam = {100 ,"Encased Industrial Beam     ",0,0,0,0}
+           GreenPowerSlug = {50  ,"Green Power Slug            ",0,0,0,0}
+          YellowPowerSlug = {50  ,"Yellow Power Slug           ",0,0,0,0}
+          PurplePowerSlug = {50  ,"Purple Power Slug           ",0,0,0,0}
+             FlowerPetals = {200 ,"FlowerPetals                ",0,0,0,0}
 -- Components -----------------------------------------------------------------------------------------------22
-        CrystalOscillator = {100 ,"Crystal Oscillator          ",0,0,0}
-            EmptyCanister = {100 ,"Empty Canister              ",0,0,0}
-                   Fabric = {100 ,"Fabric                      ",0,0,0}
-             ModularFrame = {50  ,"Modular Frame               ",0,0,0}
-        HeavyModularFrame = {50  ,"Heavy Modular Frame         ",0,0,0}
-                    Rotor = {100 ,"Rotor                       ",0,0,0}
-                   Stator = {100 ,"Stator                      ",0,0,0}
-                    Motor = {50  ,"Motor                       ",0,0,0}
-                Quickwire = {500 ,"Quickwire                   ",0,0,0}
-             CircuitBoard = {200 ,"CircuitBoard                ",0,0,0}
-                 Computer = {50  ,"Computer                    ",0,0,0}
-                AILimiter = {100 ,"A.I. Limiter                ",0,0,0}
-       HighSpeedConnector = {100 ,"High Speed Connector        ",0,0,0}
-            Supercomputer = {50  ,"Supercomputer               ",0,0,0}
-                  Battery = {100 ,"Battery                     ",0,0,0}
-                 HeatSink = {100 ,"HeatSink                    ",0,0,0}
-         RadioControlUnit = {50  ,"Radio Control Unit          ",0,0,0}
-               TurboMotor = {50  ,"Turbo Motor                 ",0,0,0}
-ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0}
-            UraniumPellet = {200 ,"Uranium Pellet              ",3,0,0}
-       EncasedUraniumCell = {200 ,"Encased Uranium Cell        ",0,0,0}
-                   Beacon = {100 ,"Beacon                      ",0,0,0}
+        CrystalOscillator = {100 ,"Crystal Oscillator          ",0,0,0,0}
+            EmptyCanister = {100 ,"Empty Canister              ",0,0,0,0}
+                   Fabric = {100 ,"Fabric                      ",0,0,0,0}
+             ModularFrame = {50  ,"Modular Frame               ",0,0,0,0}
+        HeavyModularFrame = {50  ,"Heavy Modular Frame         ",0,0,0,0}
+                    Rotor = {100 ,"Rotor                       ",0,0,0,0}
+                   Stator = {100 ,"Stator                      ",0,0,0,0}
+                    Motor = {50  ,"Motor                       ",0,0,0,0}
+                Quickwire = {500 ,"Quickwire                   ",0,0,0,0}
+             CircuitBoard = {200 ,"CircuitBoard                ",0,0,0,0}
+                 Computer = {50  ,"Computer                    ",0,0,0,0}
+                AILimiter = {100 ,"A.I. Limiter                ",0,0,0,0}
+       HighSpeedConnector = {100 ,"High Speed Connector        ",0,0,0,0}
+            Supercomputer = {50  ,"Supercomputer               ",0,0,0,0}
+                  Battery = {100 ,"Battery                     ",0,0,0,0}
+                 HeatSink = {100 ,"HeatSink                    ",0,0,0,0}
+         RadioControlUnit = {50  ,"Radio Control Unit          ",0,0,0,0}
+               TurboMotor = {50  ,"Turbo Motor                 ",0,0,0,0}
+ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0}
+            UraniumPellet = {200 ,"Uranium Pellet              ",3,0,0,0}
+       EncasedUraniumCell = {200 ,"Encased Uranium Cell        ",0,0,0,0}
+                   Beacon = {100 ,"Beacon                      ",0,0,0,0}
 -- Fuels ----------------------------------------------------------------------------------------------------12
-            CompactedCoal = {100 ,"Compacted Coal              ",0,0,0}
-                   Leaves = {500 ,"Leaves                      ",0,0,0}
-                  Mycelia = {200 ,"Mycelia                     ",0,0,0}
-                     Wood = {100 ,"Wood                        ",0,0,0}
-                  Biomass = {200 ,"Biomass                     ",0,0,0}
-              PackagedOil = {100 ,"PackagedOil                 ",0,0,0}
-  PackagedHeavyOilResidue = {100 ,"Packaged Heavy Oil Residue  ",0,0,0}
-             SolidBiofuel = {200 ,"SolidBiofuel                ",0,0,0}
-             PackagedFuel = {100 ,"PackagedFuel                ",0,0,0}
-    PackagedLiquidBiofuel = {100 ,"PackagedLiquidBiofuel       ",0,0,0}
-        PackagedTurbofuel = {100 ,"PackagedTurbofuel           ",0,0,0}
-           NuclearFuelRod = {50  ,"Nuclear Fuel Rod            ",0,0,0}
--- Ammos ---------------------------------------------------------------------------------------------------6
-                 Nobelisk = {50  ,"Nobelisk                    ",6,0,0}
-                GasFilter = {50  ,"Gas Filter                  ",7,0,0}
-           ColorCartridge = {200 ,"Color Cartridge             ",0,0,0}
-           RifleCartridge = {100 ,"Rifle Cartridge             ",0,0,0}
-              SpikedRebar = {50  ,"Spiked Rebar                ",0,0,0} 
-      IodineInfusedFilter = {50  ,"Iodine Infused Filter       ",0,0,0} 
+            CompactedCoal = {100 ,"Compacted Coal              ",0,0,0,0}
+                   Leaves = {500 ,"Leaves                      ",0,0,0,0}
+                  Mycelia = {200 ,"Mycelia                     ",0,0,0,0}
+                     Wood = {100 ,"Wood                        ",0,0,0,0}
+                  Biomass = {200 ,"Biomass                     ",0,0,0,0}
+              PackagedOil = {100 ,"PackagedOil                 ",0,0,0,0}
+  PackagedHeavyOilResidue = {100 ,"Packaged Heavy Oil Residue  ",0,0,0,0}
+             SolidBiofuel = {200 ,"SolidBiofuel                ",0,0,0,0}
+             PackagedFuel = {100 ,"PackagedFuel                ",0,0,0,0}
+    PackagedLiquidBiofuel = {100 ,"PackagedLiquidBiofuel       ",0,0,0,0}
+        PackagedTurbofuel = {100 ,"PackagedTurbofuel           ",0,0,0,0}
+           NuclearFuelRod = {50  ,"Nuclear Fuel Rod            ",0,0,0,0}
+-- Ammo ---------------------------------------------------------------------------------------------------6
+                 Nobelisk = {50  ,"Nobelisk                    ",6,0,0,0}
+                GasFilter = {50  ,"Gas Filter                  ",7,0,0,0}
+           ColorCartridge = {200 ,"Color Cartridge             ",0,0,0,0}
+           RifleCartridge = {100 ,"Rifle Cartridge             ",0,0,0,0}
+              SpikedRebar = {50  ,"Spiked Rebar                ",0,0,0,0} 
+      IodineInfusedFilter = {50  ,"Iodine Infused Filter       ",0,0,0,0} 
 -- Special--------------------------------------------------------------------------------------------------8
-               PowerShard = {100 ,"Power Shard                 ",0,0,0}
-             FICSITCoupon = {500 ,"FICSIT Coupon               ",0,0,0}
-             SmartPlating = {50  ,"Smart Plating               ",0,0,0}
-       VersatileFrameWork = {50  ,"Versatile FrameWork         ",0,0,0}
-          AutomatedWiring = {50  ,"Automated Wiring            ",0,0,0}
-            ModularEngine = {50  ,"Modular Engine              ",0,0,0}
-      AdaptiveControlUnit = {50  ,"Adaptive Control Unit       ",4,0,0} 
+               PowerShard = {100 ,"Power Shard                 ",0,0,0,0}
+             FICSITCoupon = {500 ,"FICSIT Coupon               ",0,0,0,0}
+             SmartPlating = {50  ,"Smart Plating               ",0,0,0,0}
+       VersatileFrameWork = {50  ,"Versatile FrameWork         ",0,0,0,0}
+          AutomatedWiring = {50  ,"Automated Wiring            ",0,0,0,0}
+            ModularEngine = {50  ,"Modular Engine              ",0,0,0,0}
+      AdaptiveControlUnit = {50  ,"Adaptive Control Unit       ",4,0,0,0} 
              NuclearWaste = {500 ,"Nuclear Waste               ",5,0,1,1}
 --##########################################################################################################
+
 
 LastLineA = 9 -- This has to be +1 above the last Container on you list in group A
 LastLineB = 2 -- This has to be +1 above the last Container on you list in group B
 
 
 -- add below what each container is in the format below:
--- function CONTAINx() ConStatus(CON[x],LIG[x],PWR[x],x,ItemName) end
 
---function CONTAIN1() ConStatus("IronIngots",LIG[1],1,1,IronIngot,0) end
+--ConStatus("IronIngots",LIG[1],1,1,IronIngot,0)
 
-function CONTAIN1() ConStatus(CON[1],LIG[1],1,1,IronIngot,0) end
-function CONTAIN2() ConStatus(CON[2],LIG[2],2,2,Concrete,0) end
-function CONTAIN3() ConStatus(CON[3],LIG[3],3,3,UraniumPellet,0)end
-function CONTAIN4() ConStatus(CON[4],LIG[4],4,4,AdaptiveControlUnit,0)end
-function CONTAIN5() ConStatus(CON[5],LIG[5],5,5,NuclearWaste,1)end
-function CONTAIN6() ConStatus(CON[6],LIG[6],6,6,Nobelisk,1)end
-function CONTAIN7() ConStatus(CON[7],LIG[7],7,7,GasFilter,2)end
-function CONTAIN8() ConStatus(CON[8],LIG[8],8,8,CopperIngot,1)end
+function ORE()
+
+end
+
+function INGOTS()
+ConStatus(CON[1],LIG[1],1,1,IronIngot,0)
+ConStatus(CON[8],LIG[8],2,8,CopperIngot,0)
+
+end
+
+function MATERIALS()
+ConStatus(CON[2],LIG[2],3,2,Concrete,0)
+end
+
+function COMPONENTS()
+
+end
+
+
+function FUELS()
+ConStatus(CON[3],LIG[3],4,3,UraniumPellet,0)
+end
+
+function AMMO()
+ConStatus(CON[6],LIG[6],5,6,Nobelisk,1)
+ConStatus(CON[7],LIG[7],6,7,GasFilter,2)
+end
+
+function SPECIAL()
+ConStatus(CON[5],LIG[5],7,5,NuclearWaste,1)
+ConStatus(CON[4],LIG[4],8,4,AdaptiveControlUnit,0)
+end
+
+function OTHER()
+
+end
 
 
 --##########################################################################################################
@@ -151,14 +182,14 @@ function CONTAIN8() ConStatus(CON[8],LIG[8],8,8,CopperIngot,1)end
 -- ** Add your containers to the erro check incase of accedential disconnection so the program can keep on *
 
 
-  if fCont[1] == 0 then CONTAIN1() end
-  if fCont[2] == 0 then CONTAIN2() end
-  if fCont[3] == 0 then CONTAIN3() end
-  if fCont[4] == 0 then CONTAIN4() end
-  if fCont[5] == 0 then CONTAIN5() end
-  if fCont[6] == 0 then CONTAIN6() end
-  if fCont[7] == 0 then CONTAIN7() end
-  if fCont[8] == 0 then CONTAIN8() end
+  if fCont[1] == 0 then ORE() end
+  if fCont[2] == 0 then INGOTS() end
+  if fCont[3] == 0 then MATERIALS() end
+  if fCont[4] == 0 then COMPONENTS() end
+  if fCont[5] == 0 then FUELS() end
+  if fCont[6] == 0 then AMMO() end
+  if fCont[7] == 0 then SPECIAL() end
+  if fCont[8] == 0 then OTHER() end
 
 
 --##########################################################################################################
@@ -168,14 +199,14 @@ end
 function selfTest()
   if EnableStausLight == true then progstat:setColor(10.0, 0.0, 0.0,10.0) end
   print(ERR[2])
-  if pcall (CONTAIN1) then fCont[1]= 0 else fCont[1] = 1 print(ERR[3].."1")end
-  if pcall (CONTAIN2) then fCont[2]= 0 else fCont[2] = 1 print(ERR[3].."2")end
-  if pcall (CONTAIN3) then fCont[3]= 0 else fCont[3] = 1 print(ERR[3].."3")end
-  if pcall (CONTAIN4) then fCont[4]= 0 else fCont[4] = 1 print(ERR[3].."4")end
-  if pcall (CONTAIN5) then fCont[5]= 0 else fCont[5] = 1 print(ERR[3].."5")end
-  if pcall (CONTAIN6) then fCont[6]= 0 else fCont[6] = 1 print(ERR[3].."6")end
-  if pcall (CONTAIN7) then fCont[7]= 0 else fCont[7] = 1 print(ERR[3].."7")end
-  if pcall (CONTAIN8) then fCont[8]= 0 else fCont[8] = 1 print(ERR[3].."8")end
+  if pcall (ORE) then fCont[1]= 0 else fCont[1] = 1 print(ERR[3].."Ore")end
+  if pcall (INGOTS) then fCont[2]= 0 else fCont[2] = 1 print(ERR[3].."Ingots")end
+  if pcall (MATERIALS) then fCont[3]= 0 else fCont[3] = 1 print(ERR[3].."Materials")end
+  if pcall (COMPONENTS) then fCont[4]= 0 else fCont[4] = 1 print(ERR[3].."Components")end
+  if pcall (FUELS) then fCont[5]= 0 else fCont[5] = 1 print(ERR[3].."Fuels")end
+  if pcall (AMMO) then fCont[6]= 0 else fCont[6] = 1 print(ERR[3].."Ammo")end
+  if pcall (SPECIAL) then fCont[7]= 0 else fCont[7] = 1 print(ERR[3].."Special")end
+  if pcall (OTHER) then fCont[8]= 0 else fCont[8] = 1 print(ERR[3].."Other")end
   
 end
 
@@ -211,7 +242,7 @@ end
 -- System Screen System P1/3 End --
 
 SAT = {true, false}
-ERR = {"[System] : Error Detected Starting Self Check ", "[System] : Starting ", "[ERROR] : Connection Error For: "}
+ERR = {"[System] : Error Detected Starting Self Check ", "[System] : Starting ", "[ERROR] : Connection Error For Group: "}
 SYS = {"[System] : Light Poles Disabled","[System] : Power Poles Disabled","[System] : Control Panel Lights Disabled", "[System] : Computer Screen Disabled"}
 FLAG = 0
 IND = 0
@@ -227,7 +258,7 @@ fCont = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 function ConStatus(Container,Light,ConNumber,TableNum,Item,ConSize)
 --ContStore = component.proxy(component.findComponent(Container)[1])
 ContStore = component.proxy(Container) 
-ContLight = component.proxy(Light)
+--ContLight = component.proxy(Light)
 conInv = ContStore:getInventories()[1]
 conSum = conInv.itemCount
 
@@ -265,6 +296,7 @@ if EnableScreen == true then
 textCol(1,1,1,1)
 
 if Item[4] == 0 then
+--write(0,0,"#------------------#             Ingots             #------------------#")
 write(0,0,"#-Container----#-Contents-----------------------#-Amount---#-Status----#")
 write(0,Item[3],"|") write(15,Item[3],"|") write(48,Item[3],"|") write(59,Item[3],"|") write(71,Item[3],"|")
 write(2,Item[3], ConNumber) write(17,Item[3],Item[2]) write(50,Item[3],conSum.."    ")
@@ -300,6 +332,7 @@ write(83,5,"#================================#")
 textCol(1,1,1,1)
 
 if Item[4] == 1 then
+--write(0,1,"")
 write(127,0,"#-Container----#-Contents-----------------------#-Amount---#-Status----#")
 write(127,Item[3],"|") write(142,Item[3],"|") write(175,Item[3],"|") write(186,Item[3],"|") write(198,Item[3],"|")
 write(129,Item[3], ConNumber) write(144,Item[3],Item[2]) write(177,Item[3],conSum.."    ")
@@ -377,6 +410,43 @@ end
 -- Container Status Main End--
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -- Screen System Main P2/3 ##############################################################################-- 
 function clearScreen()
   w,h=gpu:getSize()
@@ -404,8 +474,9 @@ end
 -- Screen System Main  P2/3 End --
 
 --- LightStatus Pole V2 ---
+LightSys = {"Light System Ver : ","2.0.0"}
 function LightSPL(LightNumber,RED,GREEN,BLUE,INTENSITY)
-PLight = component.proxy(LIG[LightNumber])
+ContLight = component.proxy(LIG[LightNumber])
 if EnableLights == true then
   ContLight:setColor(RED,GREEN,BLUE,INTENSITY)
 else
@@ -414,21 +485,6 @@ else
  end
 end
 end
---- LightStatus Pole V2 End ---
-
-
---- Power Conections ---
-
-function Connection(x,y)
-Comp = component.proxy(PWR[x])
-Comp:setConnected(y)
-end
-
-function CheckConnected(x,y)
-Comp = component.proxy(PWR[x])
-ChkDis = Comp:isConnected()
-end
---- Power Connections End ---
 
 function Blink(r,g,b)
 if IND == 1 then 
@@ -444,9 +500,26 @@ end
 event.pull(1)
 end
 
---- Panel Lights ---
-function ChangePanelLight(a,s,x,y,i)
+--- LightStatus Pole V2 End ---
 
+
+--- Power Conections ---
+PowerSys = {"Power System Ver : ","1.0.0"}
+function Connection(x,y)
+Comp = component.proxy(PWR[x])
+Comp:setConnected(y)
+end
+
+function CheckConnected(x,y)
+Comp = component.proxy(PWR[x])
+ChkDis = Comp:isConnected()
+end
+--- Power Connections End ---
+
+
+--- Panel Lights ---
+PanelSys = {"Panel System Ver : ","Alpha"}
+function ChangePanelLight(a,s,x,y,i)
 Panel = component.proxy(PAN[a])
 if s == 2 then
 Panel:getModule(x,y):setColor(10.0,10.0,0.0,i)
@@ -471,9 +544,10 @@ print("# Prg Ver : "..Ver,"               #")
 print("# Mod Ver : "..MVer,"               #")
 print("#================================#")
 
-if EnableLights == false then print(SYS[1]) end
-if EnablePwrPol == false then print(SYS[2]) end
-if EnableCPanel == false then end
+print("Item List Ver    : ".. ListVer[1])
+if EnableLights == false then print(SYS[1]) else print(LightSys[1]..LightSys[2]) end
+if EnablePwrPol == false then print(SYS[2]) else print(PowerSys[1]..PowerSys[2]) end
+if EnableCPanel == false then print(PanelSys[1]..PanelSys[2].." [Disabled]") end
 if EnableScreen == false then print(SYS[4]) else print(SystemScreenSys[1]..SystemScreenSys[2]) end
 BFlag = 1
 end
@@ -509,5 +583,3 @@ end
 if EnableScreen == true then gpu:flush() end
 -- Screen System Main P3/3 End--
 end
-
-
