@@ -20,7 +20,7 @@ PLI = {0.5} -- Panel Light Brightness
 STA = {"7010CBE84AA84C599CD2C3A2616FDEEC"}
 PPL = 10
 ConSize = 0 -- 0 = Small 1 = Large
-VAL = {100 ,"Default",0,0,0}
+
 ConSize = 0 -- 0 = Small 1 = Large
 NUM = 9 -- Number of containers connected
 
@@ -33,6 +33,7 @@ EnableScreen     = true
 
 -- ITEM LIST ###############################################################################################
                   ListVer = {"1.0.0"}
+                      VAL = {100 ,"Default",0,0,0,0}
 ---- Ores --------------------------------------------------------------------------------------------------9
                 Limestone = {100 ,"Limestone                   ",0,0,0,0} 
                   IronOre = {100 ,"Iron Ore                    ",0,0,0,0}
