@@ -252,7 +252,7 @@ progstat = component.proxy(STA[1])
 local ProgName = ("Ficsit Production Manager 3030")
 local By = ("Skyamoeba")
 local Ver = (TOP)
-local MVer = ("0.0.8")
+local MVer = ("0.0.9")
 local BFlag = 0
 fCont = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
 
