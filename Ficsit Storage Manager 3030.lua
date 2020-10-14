@@ -1,27 +1,11 @@
-TOP = "1.0.8" -- Remove this when done programming the system
--- PAN = Panel ID's
--- PLL = Panel Light Locations
--- PLI = Panel Brightness
--- STA = Status Light Pole
-
--- Control Panel ############################
-PAN = {""} -- Still in Alpha and causes lag so disabled for now
-PLL = {10,10,10,10}
-PLI = {0.5} -- Panel Light Brightness
--- ##########################################
-
 -- Status Light #############################
 STA = "StatusLight"
 -- ##########################################
-PPL = 10
-
-ConSize = 0 -- 0 = Small 1 = Large
 
 CBeep            = false
 EnableLights     = true
 EnableStausLight = true
 EnablePwrPol     = true
-EnableCPanel     = false -- Enable Control Panel Status Lights
 EnableScreen     = true
 
 -- ITEM LIST ###############################################################################################
@@ -29,15 +13,15 @@ EnableScreen     = true
 -- Stacks,Display Name, Con number, Line, Group, RadioActive 1Y 0N, System Name 
                       VAL = {100 ,"Default",0,0,0,0,"Default"}
 ---- Ores --------------------------------------------------------------------------------------------------9
-                LimeStone = {100 ,"LimeStone                   ",2,0,0,0,"LimeStone"} 
-                  IronOre = {100 ,"Iron Ore                    ",3,0,0,0,"IronOre"}
-                CopperOre = {100 ,"Copper Ore                  ",4,0,0,0,"CopperOre"}
-              CateriumOre = {100 ,"Caterium Ore                ",5,0,0,0,"CateriumOre"}
-                     Coal = {100 ,"Coal                        ",6,0,0,0,"Coal"}
-                RawQuartz = {100 ,"Raw Quartz                  ",7,0,0,0,"RawQuartz"}
-                   Sulfur = {100 ,"Sulfur                      ",8,0,0,0,"Sulfur"}
-                  Bauxite = {100 ,"Bauxite                     ",9,0,0,0,"Bauxite"}
-                  Uranium = {100 ,"Uranium                     ",10,0,0,0,"Uranium"}
+                LimeStone = {100 ,"LimeStone                   ",0,0,0,0,"LimeStone"} 
+                  IronOre = {100 ,"Iron Ore                    ",0,0,0,0,"IronOre"}
+                CopperOre = {100 ,"Copper Ore                  ",0,0,0,0,"CopperOre"}
+              CateriumOre = {100 ,"Caterium Ore                ",0,0,0,0,"CateriumOre"}
+                     Coal = {100 ,"Coal                        ",0,0,0,0,"Coal"}
+                RawQuartz = {100 ,"Raw Quartz                  ",0,0,0,0,"RawQuartz"}
+                   Sulfur = {100 ,"Sulfur                      ",0,0,0,0,"Sulfur"}
+                  Bauxite = {100 ,"Bauxite                     ",0,0,0,0,"Bauxite"}
+                  Uranium = {100 ,"Uranium                     ",0,0,0,0,"Uranium"}
 ---- Ingots --------------------------------------------------------------------------------------------------5
                 IronIngot = {100 ,"Iron Ingot                  ",0,0,0,0,"IronIngot"}
               CopperIngot = {100 ,"Copper Ingot                ",0,0,0,0,"CopperIngot"}
@@ -123,32 +107,41 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
       AdaptiveControlUnit = {50  ,"Adaptive Control Unit       ",0,0,0,0,"AdaptiveControlUnit"} 
              NuclearWaste = {500 ,"Nuclear Waste               ",0,0,1,1,"NuclearWaste"}
 -- Liquids -------------------------------------------------------------------------------------------------
-                     Fuel = {400 ,"Fuel                        ",14,0,0,0,"Fuel"}
-                  BioFuel = {0   ,"Bio Fuel                    ",0,0,0,0,"BioFuel"}
-                TurboFuel = {0   ,"Turbo Fuel                  ",0,0,0,0,"TurboFuel"}
-                    Water = {0   ,"Water                       ",0,0,0,0,"Water"}
-                      Oil = {0   ,"Oil                         ",0,0,0,0,"Oil"}
-          HeavyOilResidue = {0   ,"Heavy Oil Residue           ",0,0,0,0,"HeavyOilResidue"}
-          AluminaSolution = {0   ,"Alumina Solution            ",0,0,0,0,"AluminaSolution"}
-             SulfuricAcid = {0   ,"SulfuricAcid                ",0,0,0,0,"SulfuricAcid"}
+                     Fuel = {400 ,"Fuel                        ",0,0,0,0,"Fuel"}
+                  BioFuel = {400 ,"Bio Fuel                    ",0,0,0,0,"BioFuel"}
+                TurboFuel = {400 ,"Turbo Fuel                  ",0,0,0,0,"TurboFuel"}
+                    Water = {400 ,"Water                       ",0,0,0,0,"Water"}
+                      Oil = {400 ,"Oil                         ",0,0,0,0,"Oil"}
+          HeavyOilResidue = {400 ,"Heavy Oil Residue           ",0,0,0,0,"HeavyOilResidue"}
+          AluminaSolution = {400 ,"Alumina Solution            ",0,0,0,0,"AluminaSolution"}
+             SulfuricAcid = {400 ,"SulfuricAcid                ",0,0,0,0,"SulfuricAcid"}
 --##########################################################################################################
 
 -- add below what each container is in the format below:
 
+-- Examples -- ###################################################################
+-- Containers = ConStatus(DisX,DisY,Contents,ConNumber,ConType,ELight,EPower)
+-- Tanks      = FluidCon(DisX,DisY,Contents,TankNumber,ELight,EPower)
+-- Power      = PowerStatus(DisX,DisY,NetworkName,Title)
+-- Boarders   = DisBoarder(DisX,DisY,LinesToDraw,Title,TitleText)
+-- ###############################################################################
+
 function ORE()
+
 -- Display
 DisBoarder(0,0,9,true,"ORE")
 
 -- Storage Items
-ConStatus(LimeStone,1,1,0,true,true)
-ConStatus(IronOre,2,2,0,true,true)
-ConStatus(CopperOre,3,3,0,true,true)
-ConStatus(CateriumOre,4,4,0,true,true)
-ConStatus(Coal,5,5,0,true,true)
-ConStatus(RawQuartz,6,6,0,true,true)
-ConStatus(Sulfur,7,7,0,true,true)
-ConStatus(Bauxite,8,8,0,true,true)
-ConStatus(Uranium,9,9,0,true,true)
+ConStatus(2,2,LimeStone,1,0,true,true)
+ConStatus(2,3,IronOre,2,0,true,true)
+ConStatus(2,4,CopperOre,3,0,true,true)
+ConStatus(2,5,CateriumOre,4,0,true,true)
+ConStatus(2,6,Coal,5,0,true,true)
+ConStatus(2,7,RawQuartz,6,0,true,true)
+ConStatus(2,8,Sulfur,7,0,true,true)
+ConStatus(2,9,Bauxite,8,0,true,true)
+ConStatus(2,10,Uranium,9,0,true,true)
+
 end --## ORE ############################################
 
 function INGOTS()
@@ -177,16 +170,21 @@ function SPECIAL()
 end --## SPECIAL ############################################
 
 function LIQUIDS()
+
 -- Display
 DisBoarder(0,14,1,true,"TANKS")
 
 -- Storage Items
-FluidCon(2,16,Fuel,1,true,false)
+FluidCon(2,16,Fuel,1,true,true)
 
 end --## LIQUIDS ############################################
 
 function OTHER()
-PowerStatus(83,8,"StatusPwr") -- 83,8
+
+PowerStatus(83,7,"StatusPwr",     "Power Monitoring") -- 83,8
+PowerStatus(83,13,"StatusWaterPwr","Coal Power      ")
+SystemInfo(83,0)
+
 
 end --## OTHER ############################################
 
@@ -218,9 +216,10 @@ ChkDis = false
 progstat = component.proxy(component.findComponent(STA)[1])
 local ProgName = ("Ficsit Production Manager 3030")
 local By = ("Skyamoeba")
-local Ver = (TOP)
+local Ver = ("1.0.10")
 local MVer = ("0.0.10")
 local BFlag = 0
+Page = 0
 fCont = {0,0,0,0,0,0,0,0,0}
 Tick = 0
 Loop = 0
@@ -229,7 +228,7 @@ Mins = 0
 Sec = 0
 
 
-function ConStatus(Contents,ConNumber,TableNum,ConSize,ELight,EPower)
+function ConStatus(DisX,DisY,Contents,ConNumber,ConType,ELight,EPower)
 prefix = {"CON","LIG","PWR"}
 local setupcon = {prefixcon= prefix[1], condata=Contents[7]}
 local setuppwr = {prefixpwr= prefix[3], pwrdata=Contents[7]}
@@ -245,21 +244,21 @@ conInv = ContStore:getInventories()[1]
 conSum = conInv.itemCount
 
 
-if ConSize == 0 then -- "Small"
+if ConType == 0 then -- "Small"
 if Contents[1] == 50 then x = 1199 y = 450 z = 200 end
 if Contents[1] == 100 then x = 2399 y = 1600 z = 800 end
 if Contents[1] == 200 then x = 4799 y = 1600 z = 1000 end
 if Contents[1] == 500 then x = 11999 y = 8000 z = 2000 end
 end
 
-if ConSize == 1 then -- "Large / Train"
+if ConType == 1 then -- "Large / Train"
 if Contents[1] == 50 then x = 2399 y = 1199 z = 200 end
 if Contents[1] == 100 then x = 2409 y = 1600 z = 800 end
 if Contents[1] == 200 then x = 4799 y = 1600 z = 1000 end
 if Contents[1] == 500 then x = 23999 y = 11999 z = 1000 end
 end
 
-if ConSize == 2 then -- "Hopper"
+if ConType == 2 then -- "Hopper"
 if Contents[1] == 50 then x = 799 y = 400 z = 100 end
 if Contents[1] == 100 then x = 2409 y = 1600 z = 800 end
 if Contents[1] == 200 then x = 4799 y = 1600 z = 1000 end
@@ -271,63 +270,35 @@ if EnableScreen == true then
 textCol(1,1,1,1)
 
 if Contents[4] == 0 then
-write(2,Contents[3], ConNumber) write(17,Contents[3],Contents[2]) write(50,Contents[3],conSum.."    ")
+write(DisX,DisY, ConNumber)
+DisX = DisX + 16
+write(DisX,DisY,Contents[2])
+DisX = DisX + 32
+write(DisX,DisY,conSum.."    ")
+DisX = DisX + 11
 
 if conSum > x then 
  textCol(0,1,0,1) 
-  write(61,Contents[3],"Full     ") 
-elseif
- conSum < z then 
-  textCol(1,1,0,1) 
-   if EnablePwrPol == true then write(61,Contents[3],"Refilling") else write(61,Contents[3],"Low      ") end 
-    elseif conSum == 0 then
-     textCol(1,0,0,1)
-     write(61,Contents[3],"Empty")
-      else 
-        textCol(1,0,0,1)
-        write(61,Contents[3],"        ") 
-        textCol(1,1,1,1)
-      end
-end
-
-textCol(1,1,1,1)
-write(83,0,"O================================#")
-write(83,1,"| "..ProgName.." #")
-write(83,2,"| By : "..By.."                 |")
-write(83,3,"| Prg Ver : "..Ver.."                |")
-write(83,4,"| Mod Ver : "..MVer.."                |")
-write(83,5,"| Run Time: "..Hrs.." : "..Mins.." : "..Sec)
-write(116,5,"|")
-write(83,6,"O--------------------------------O")
-textCol(1,1,1,1)
-
-if Contents[4] == 1 then
-write(127,0,"#-Container----#-Contents-----------------------#-Amount---#-Status----#")
-write(127,Contents[3],"|") write(142,Contents[3],"|") write(175,Contents[3],"|") write(186,Contents[3],"|") write(198,Contents[3],"|")
-write(129,Contents[3], ConNumber) write(144,Contents[3],Contents[2]) write(177,Contents[3],conSum.."    ")
-
-if conSum > x then 
- textCol(0,1,0,1) 
-  write(188,Contents[3],"Full     ") 
+  write(DisX,DisY,"Full     ") 
 elseif
  conSum < z then 
   textCol(1,1,0,1) 
    if EnablePwrPol == true then 
-    write(188,Contents[3],"Refilling")
+    write(DisX,DisY,"Refilling")
      else
-      write(188,Contents[3],"Low      ")
-       end 
-    elseif conSum == 0 then
+      write(DisX,DisY,"Low      ")
+     end 
+  elseif conSum == 0 then
      textCol(1,0,0,1)
-     write(188,Contents[3],"Empty")
+     write(DisX,DisY,"Empty")
       else 
-       write(188,Contents[3],"        ") 
+        textCol(1,0,0,1)
+        write(DisX,DisY,"        ") 
         textCol(1,1,1,1)
       end
 end
-
-
 end
+
 --Screen List End
 
 if conSum > x then
@@ -365,7 +336,6 @@ end
 
 end
 -- Container Status Main End--
-
 -- Tanks Status Main Start ##############################################
 
 function FluidCon(DisX,DisY,Contents,TankNumber,ELight,EPower)
@@ -587,7 +557,7 @@ connector = powermonpole:getPowerConnectors()[1]
 circuit = connector:getCircuit()
 end
 
-function PowerStatus(DisX,DisY,Network)
+function PowerStatus(DisX,DisY,Network,Title)
 GetPowerData(Network)
 x = DisX
 y = DisY
@@ -596,7 +566,7 @@ Capacity   = circuit.capacity
 Consumption= circuit.consumption
 Fused      = circuit.isFuesed
 if EnableScreen == true then 
-write(x,y, "O-Power Monitoring---------------O")
+write(x,y, "O-"..(Title).."---------------O")
 y = y + 1
 write(x,y, "|                                |")
 y = y + 1
@@ -635,25 +605,67 @@ write(x,y,"#")
 FLAG = 0
 end
 end
+gpu:setForeground(1,1,1,1)
+gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
 end
 
 --- Power Connections End ---
 
---- Panel Lights ---
+--- Panel Lights [DISABLED]==WORK IN PROGRESS==
+--EnableCPanel     = false -- Enable Control Panel Status Lights
+-- Control Panel ############################
+--PAN = {""} -- Still in Alpha and causes lag so disabled for now
+--PLL = {10,10,10,10}
+--PLI = {0.5} -- Panel Light Brightness
+-- ##########################################
 --PanelSys = {"Panel System Ver : ","Alpha"}
-function ChangePanelLight(a,s,x,y,i)
-Panel = component.proxy(PAN[a])
-if s == 2 then
-Panel:getModule(x,y):setColor(10.0,10.0,0.0,i)
-end
-if s == 1 then
-Panel:getModule(x,y):setColor(0.0,10.0,0.0,i)
-end
-if s == 0 then
-Panel:getModule(x,y):setColor(10.0,0.0,0.0,i)
-end
-end
+--function ChangePanelLight(a,s,x,y,i)
+--Panel = component.proxy(PAN[a])
+--if s == 2 then
+--Panel:getModule(x,y):setColor(10.0,10.0,0.0,i)
+--end
+--if s == 1 then
+--Panel:getModule(x,y):setColor(0.0,10.0,0.0,i)
+--end
+--if s == 0 then
+--Panel:getModule(x,y):setColor(10.0,0.0,0.0,i)
+--end
+--end
 --- Panel Lights End
+
+function SystemInfo(DisX,DisY) --83 0
+textCol(1,1,1,1)
+x = DisX
+y = DisY
+
+write(DisX,y,"O================================#")
+y = y +1
+write(DisX,y,"| "..ProgName)
+y = y +1
+write(DisX,y,"| By : "..By)
+y = y +1
+write(DisX,y,"| Prg Ver : "..Ver)
+y = y +1
+write(DisX,y,"| Mod Ver : "..MVer)
+y = y +1
+write(DisX,y,"| Run Time: "..Hrs.." : "..Mins.." : "..Sec)
+y = y +1
+write(DisX,y,"O--------------------------------O")
+
+x = x + 33
+y = DisY + 1
+write(x,y,"|")
+y = y + 1
+write(x,y,"|")
+y = y + 1
+write(x,y,"|")
+y = y + 1
+write(x,y,"|")
+y = y + 1
+write(x,y,"|")-- +33
+textCol(1,1,1,1)
+end
+
 
 -- Boot Loop -- Add anything thats needs to be loaded before the main loop here
 function Boot()
@@ -663,14 +675,13 @@ if BFlag == 0 then
 print("O--------------------------------O")
 print("|",ProgName,"|")
 print("| By : "..By,"                |")
-print("| Prg Ver : "..Ver,"               |")
-print("| Mod Ver : "..MVer,"               |")
+print("| Prg Ver : "..Ver,"              |")
+print("| Mod Ver : "..MVer,"              |")
 print("O--------------------------------O")
 
 print("Item List Ver    : ".. ListVer[1])
 if EnableLights == false then print(SYS[1]) else print(LightSys[1]..LightSys[2]) end
 if EnablePwrPol == false then print(SYS[2]) else print(PowerSys[1]..PowerSys[2]) end
---if EnableCPanel == false then print(PanelSys[1]..PanelSys[2].." [Disabled]") end
 if EnableScreen == false then print(SYS[4]) else print(SystemScreenSys[1]..SystemScreenSys[2]) end
 BFlag = 1
 progstat:setColor(10.0, 0.0, 10.0,5.0)
@@ -731,11 +742,6 @@ if Mins == 60 then
  Mins = 0
 end
   
---write(83,12,"Tick: "..Tick)
---write(83,13,"Loop: "..Loop)
---write(83,14,"Run Time: "..Hrs.." : "..Mins.." : "..Sec)
-
-
 --##########################################################################################################
 end
 --##########################################################################################################
@@ -778,3 +784,4 @@ Sec = Sec + 1
 Tick = Tick + 1
 -- Screen System Main P3/3 End--
 end -- while true loop end
+
