@@ -1,12 +1,12 @@
 -- Status Light #############################
-STA = "StatusLight"
+STA = ""
 -- ##########################################
 
 CBeep            = false
-EnableLights     = true
-EnableStausLight = true
-EnablePwrPol     = true
-EnableScreen     = true
+EnableLights     = false
+EnableStausLight = false
+EnablePwrPol     = false
+EnableScreen     = false
 
 -- ITEM LIST ###############################################################################################
                   ListVer = {"1.0.1"}
@@ -128,20 +128,6 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
 
 function ORE()
 
--- Display
-DisBoarder(0,0,9,true,"ORE")
-
--- Storage Items
-ConStatus(2,2,LimeStone,1,0,true,true)
-ConStatus(2,3,IronOre,2,0,true,true)
-ConStatus(2,4,CopperOre,3,0,true,true)
-ConStatus(2,5,CateriumOre,4,0,true,true)
-ConStatus(2,6,Coal,5,0,true,true)
-ConStatus(2,7,RawQuartz,6,0,true,true)
-ConStatus(2,8,Sulfur,7,0,true,true)
-ConStatus(2,9,Bauxite,8,0,true,true)
-ConStatus(2,10,Uranium,9,0,true,true)
-
 end --## ORE ############################################
 
 function INGOTS()
@@ -171,19 +157,11 @@ end --## SPECIAL ############################################
 
 function LIQUIDS()
 
--- Display
-DisBoarder(0,14,1,true,"TANKS")
-
--- Storage Items
-FluidCon(2,16,Fuel,1,true,true)
-
 end --## LIQUIDS ############################################
 
 function OTHER()
 
-PowerStatus(83,7,"StatusPwr",     "Power Monitoring") -- 83,8
-PowerStatus(83,13,"StatusWaterPwr","Coal Power      ")
-SystemInfo(83,0)
+--SystemInfo(83,0)
 
 
 end --## OTHER ############################################
@@ -214,6 +192,7 @@ FLAG = 0
 IND = 0
 ChkDis = false
 progstat = component.proxy(component.findComponent(STA)[1])
+dev = 0
 local ProgName = ("Ficsit Production Manager 3030")
 local By = ("Skyamoeba")
 local Ver = ("1.0.10")
@@ -223,6 +202,7 @@ Page = 0
 fCont = {0,0,0,0,0,0,0,0,0}
 Tick = 0
 Loop = 0
+Days = 0
 Hrs = 0
 Mins = 0
 Sec = 0
@@ -292,8 +272,8 @@ elseif
      textCol(1,0,0,1)
      write(DisX,DisY,"Empty")
       else 
-        textCol(1,0,0,1)
-        write(DisX,DisY,"        ") 
+        textCol(1,1,0,1)
+        write(DisX,DisY,"         ") 
         textCol(1,1,1,1)
       end
 end
@@ -381,8 +361,8 @@ elseif
      textCol(1,0,0,1)
      write(DisX,DisY,"Empty")
       else 
-        textCol(1,0,0,1)
-        write(DisX,DisY,"        ") 
+        textCol(1,1,0,1)
+        write(DisX,DisY,"         ") 
         textCol(1,1,1,1)
       end
 
@@ -595,14 +575,15 @@ if Fused == true then
 gpu:setForeground(1,0,0,1)
 gpu:setBackground(1,0,0,1)
 x = x + 13
-write(x,y,"#") 
+write(x,y,"#")
 FLAG = 1
 else 
 gpu:setForeground(0,1,0,1)
 gpu:setBackground(0,1,0,1)
 x = x + 13
 write(x,y,"#")
-FLAG = 0
+--FLAG = 0
+progstat:setColor(0.0, 10.0, 0.0,10.0)
 end
 end
 gpu:setForeground(1,1,1,1)
@@ -648,7 +629,7 @@ write(DisX,y,"| Prg Ver : "..Ver)
 y = y +1
 write(DisX,y,"| Mod Ver : "..MVer)
 y = y +1
-write(DisX,y,"| Run Time: "..Hrs.." : "..Mins.." : "..Sec)
+write(DisX,y,"| Run Time: "..Days.." | "..Hrs.." : "..Mins.." : "..Sec)
 y = y +1
 write(DisX,y,"O--------------------------------O")
 
@@ -679,15 +660,17 @@ print("| Prg Ver : "..Ver,"              |")
 print("| Mod Ver : "..MVer,"              |")
 print("O--------------------------------O")
 
+if dev == 1 then
 print("Item List Ver    : ".. ListVer[1])
 if EnableLights == false then print(SYS[1]) else print(LightSys[1]..LightSys[2]) end
 if EnablePwrPol == false then print(SYS[2]) else print(PowerSys[1]..PowerSys[2]) end
 if EnableScreen == false then print(SYS[4]) else print(SystemScreenSys[1]..SystemScreenSys[2]) end
+end
 BFlag = 1
-progstat:setColor(10.0, 0.0, 10.0,5.0)
-print("Checking System")
+if EnableStausLight == true then progstat:setColor(10.0, 0.0, 10.0,5.0) end
+print("[System] : Checking....")
 sleep(5)
-print("OK!")
+if STA == "" then print("[System] : Program needs setting up") else print("[System] : Boot Ok!") end
 end
 end
 -- End of Boot Loop --################################################################################
@@ -741,6 +724,11 @@ if Mins == 60 then
  Hrs = Hrs + 1
  Mins = 0
 end
+
+if Hrs == 24 then
+ Days = Days + 1
+ Hrs = 0
+end
   
 --##########################################################################################################
 end
@@ -760,7 +748,6 @@ function selfTest()
   if pcall (OTHER) then fCont[9]= 0 else fCont[9] = 1 print(ERR[3].."Other")end
   
 end
-
 
 
 while true do
@@ -784,4 +771,3 @@ Sec = Sec + 1
 Tick = Tick + 1
 -- Screen System Main P3/3 End--
 end -- while true loop end
-
