@@ -184,11 +184,7 @@ end --## OTHER ############################################
 
 
 -- Anything after this point you should not have to change.
-
-
-
-
-
+-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 -- System Screen Sys P1/3 ###############################################################################--
 if EnableScreen == true then 
@@ -434,34 +430,7 @@ end
 
 end
 textCol(1,1,1,1)
-end -- END OF TANK FUNCTION
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+end -- END OF TANK FUNCTION #############################################################################--
 
 -- Screen System Main P2/3 ##############################################################################-- 
 --print(SystemScreenSys[1]..SystemScreenSys[2])
