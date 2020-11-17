@@ -6,7 +6,10 @@ CBeep            = false
 EnableLights     = false
 EnableStausLight = false
 EnablePwrPol     = false
-EnableScreen     = false
+AlertForAnyPWR   = false -- if this is true then any pwr issues will need change the status light, false it will not trigger onlyin the display you will see issues
+EnableScreen     = true  -- Default true
+ConPercentages   = false
+LiqPercentages   = false
 
 -- ITEM LIST ###############################################################################################
                   ListVer = {"1.0.1"}
@@ -117,7 +120,7 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
              SulfuricAcid = {400 ,"SulfuricAcid                ",0,0,0,0,"SulfuricAcid"}
 --##########################################################################################################
 
--- add below what each container is in the format below:
+-- add below what each container is in the format below, Examples have been inputted for you:
 
 -- Examples -- ###################################################################
 -- Containers = ConStatus(DisX,DisY,Contents,ConNumber,ConType,ELight,EPower)
@@ -126,7 +129,15 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
 -- Boarders   = DisBoarder(DisX,DisY,LinesToDraw,Title,TitleText)
 -- ###############################################################################
 
+-- (Where B1 is this is free for you to change so you know where the container is in your base.)
+-- You are not limited to the list above if you have Mods which add items then you can add them in the above list so long you use the same format so the program can use it.
+
+
 function ORE()
+-- Display
+-- DisBoarder(0,0,9,true,"ORE")
+-- Storage Items
+-- ConStatus(2,2,LimeStone,1,0,true,true) -- Name container CON B1 LimeStone
 
 end --## ORE ############################################
 
@@ -156,14 +167,19 @@ function SPECIAL()
 end --## SPECIAL ############################################
 
 function LIQUIDS()
+-- Display
+-- DisBoarder(0,14,1,true,"TANKS")
 
+-- Storage Items
+-- FluidCon(2,16,Fuel,1,true,true)
 end --## LIQUIDS ############################################
 
+function POWER()
+-- PowerStatus(83,7,"StatusPwr",     "Power Monitoring")
+end --## POWER ##############################################
+
 function OTHER()
-
---SystemInfo(83,0)
-
-
+SystemInfo(83,0)
 end --## OTHER ############################################
 
 
@@ -195,11 +211,11 @@ progstat = component.proxy(component.findComponent(STA)[1])
 dev = 0
 local ProgName = ("Ficsit Production Manager 3030")
 local By = ("Skyamoeba")
-local Ver = ("1.0.10")
+local Ver = ("1.0.14")
 local MVer = ("0.0.10")
 local BFlag = 0
 Page = 0
-fCont = {0,0,0,0,0,0,0,0,0}
+fCont = {0,0,0,0,0,0,0,0,0,0}
 Tick = 0
 Loop = 0
 Days = 0
@@ -224,6 +240,7 @@ conInv = ContStore:getInventories()[1]
 conSum = conInv.itemCount
 
 
+
 if ConType == 0 then -- "Small"
 if Contents[1] == 50 then x = 1199 y = 450 z = 200 end
 if Contents[1] == 100 then x = 2399 y = 1600 z = 800 end
@@ -245,6 +262,10 @@ if Contents[1] == 200 then x = 4799 y = 1600 z = 1000 end
 if Contents[1] == 500 then x = 11999 y = 8000 z = 2000 end
 end
 
+a = x + 1
+rawpercent = conSum / a * 100/1 
+percent= round(rawpercent)
+
 -- Screen List Start
 if EnableScreen == true then
 textCol(1,1,1,1)
@@ -254,7 +275,11 @@ write(DisX,DisY, ConNumber)
 DisX = DisX + 16
 write(DisX,DisY,Contents[2])
 DisX = DisX + 32
+if ConPercentages == false then
 write(DisX,DisY,conSum.."    ")
+else
+write(DisX,DisY,percent.."%   ")
+end
 DisX = DisX + 11
 
 if conSum > x then 
@@ -338,12 +363,20 @@ LiqLvl = round(RawLvl)
 if Contents[1] == 400 then x = 399 y = 199 z = 50 end
 if Contents[1] == 2400 then x = 2399 y = 1199 z = 100 end 
 
+--a = x + 1
+rawpercent = LiqLvl / Contents[1] * 100/1 
+percent= round(rawpercent)
+
 if Contents[4] == 0 then
 write(DisX,DisY, TankNumber) 
 DisX = DisX + 16
 write(DisX,DisY,Contents[2])
 DisX = DisX + 32
+if LiqPercentages == false then
 write(DisX,DisY,LiqLvl.."    ")
+else
+write(DisX,DisY,percent.."%   ")
+end
 DisX = DisX + 11
 
 if LiqLvl > x then 
@@ -582,7 +615,7 @@ gpu:setForeground(0,1,0,1)
 gpu:setBackground(0,1,0,1)
 x = x + 13
 write(x,y,"#")
---FLAG = 0
+if AlertForAnyPWR == false then FLAG = 0 end
 progstat:setColor(0.0, 10.0, 0.0,10.0)
 end
 end
@@ -707,7 +740,8 @@ end
   if fCont[6] == 0 then AMMO() end
   if fCont[7] == 0 then SPECIAL() end
   if fCont[8] == 0 then LIQUIDS() end
-  if fCont[9] == 0 then OTHER() end
+  if fCont[9] == 0 then POWER() end
+  if fCont[10] == 0 then OTHER() end
 Loop = Loop + 1
 
 if Tick == 255 then
@@ -745,7 +779,8 @@ function selfTest()
   if pcall (AMMO) then fCont[6]= 0 else fCont[6] = 1 print(ERR[3].."Ammo")end
   if pcall (SPECIAL) then fCont[7]= 0 else fCont[7] = 1 print(ERR[3].."Special")end
   if pcall (LIQUIDS) then fCont[8]= 0 else fCont[8] = 1 print(ERR[3].."Liquids")end
-  if pcall (OTHER) then fCont[9]= 0 else fCont[9] = 1 print(ERR[3].."Other")end
+  if pcall (POWER) then fCont[9]= 0 else fCont[9] = 1 print(ERR[3].."Power")end
+  if pcall (OTHER) then fCont[10]= 0 else fCont[10] = 1 print(ERR[3].."Other")end
   
 end
 
