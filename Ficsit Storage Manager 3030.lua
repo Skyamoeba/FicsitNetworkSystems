@@ -3,13 +3,12 @@ STA = ""
 -- ##########################################
 
 CBeep            = false
-EnableLights     = false
 EnableStausLight = false
-EnablePwrPol     = false
-AlertForAnyPWR   = false -- if this is true then any pwr issues will need change the status light, false it will not trigger onlyin the display you will see issues
-EnableScreen     = true  -- Default true
+AlertForAnyPWR   = true -- if this is true then any pwr issues will need change the status light, false it will not trigger only in the display you will see issues
+EnableScreen     = true
 ConPercentages   = false
 LiqPercentages   = false
+
 
 -- ITEM LIST ###############################################################################################
                   ListVer = {"1.0.1"}
@@ -120,7 +119,7 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
              SulfuricAcid = {400 ,"SulfuricAcid                ",0,0,0,0,"SulfuricAcid"}
 --##########################################################################################################
 
--- add below what each container is in the format below, Examples have been inputted for you:
+-- add below what each container is in the format below:
 
 -- Examples -- ###################################################################
 -- Containers = ConStatus(DisX,DisY,Contents,ConNumber,ConType,ELight,EPower)
@@ -129,15 +128,9 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
 -- Boarders   = DisBoarder(DisX,DisY,LinesToDraw,Title,TitleText)
 -- ###############################################################################
 
--- (Where B1 is this is free for you to change so you know where the container is in your base.)
--- You are not limited to the list above if you have Mods which add items then you can add them in the above list so long you use the same format so the program can use it.
-
-
 function ORE()
 -- Display
--- DisBoarder(0,0,9,true,"ORE")
 -- Storage Items
--- ConStatus(2,2,LimeStone,1,0,true,true) -- Name container CON B1 LimeStone
 
 end --## ORE ############################################
 
@@ -153,7 +146,6 @@ function COMPONENTS()
 
 end --## COMPONENTS ############################################
 
-
 function FUELS()
 
 end --## FUELS ############################################
@@ -167,24 +159,24 @@ function SPECIAL()
 end --## SPECIAL ############################################
 
 function LIQUIDS()
--- Display
--- DisBoarder(0,14,1,true,"TANKS")
 
--- Storage Items
--- FluidCon(2,16,Fuel,1,true,true)
 end --## LIQUIDS ############################################
 
 function POWER()
--- PowerStatus(83,7,"StatusPwr",     "Power Monitoring")
+
 end --## POWER ##############################################
 
 function OTHER()
-SystemInfo(83,0)
+SystemInfo(83,0) -- Default 83,0
 end --## OTHER ############################################
 
 
 -- Anything after this point you should not have to change.
--- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+
+
+
 
 -- System Screen Sys P1/3 ###############################################################################--
 if EnableScreen == true then 
@@ -207,11 +199,11 @@ progstat = component.proxy(component.findComponent(STA)[1])
 dev = 0
 local ProgName = ("Ficsit Production Manager 3030")
 local By = ("Skyamoeba")
-local Ver = ("1.0.14")
+local Ver = ("1.0.15")
 local MVer = ("0.0.10")
 local BFlag = 0
 Page = 0
-fCont = {0,0,0,0,0,0,0,0,0,0}
+fCont = {0,0,0,0,0,0,0,0,0}
 Tick = 0
 Loop = 0
 Days = 0
@@ -220,7 +212,7 @@ Mins = 0
 Sec = 0
 
 
-function ConStatus(DisX,DisY,Contents,ConNumber,ConType,ELight,EPower)
+function ConStatus(DisX,DisY,Contents,ConNumber,ConType,ELight,EPower,Containcount)
 prefix = {"CON","LIG","PWR"}
 local setupcon = {prefixcon= prefix[1], condata=Contents[7]}
 local setuppwr = {prefixpwr= prefix[3], pwrdata=Contents[7]}
@@ -234,8 +226,6 @@ Power = string.gsub("$prefixpwr $pwrdata", "%$(%w+)", setuppwr)
 ContStore = component.proxy(component.findComponent(Container)[1])
 conInv = ContStore:getInventories()[1]
 conSum = conInv.itemCount
-
-
 
 if ConType == 0 then -- "Small"
 if Contents[1] == 50 then x = 1199 y = 450 z = 200 end
@@ -284,7 +274,7 @@ if conSum > x then
 elseif
  conSum < z then 
   textCol(1,1,0,1) 
-   if EnablePwrPol == true then 
+   if EPower == true then 
     write(DisX,DisY,"Refilling")
      else
       write(DisX,DisY,"Low      ")
@@ -355,7 +345,6 @@ RawLvl = Fluid.fluidContent
 LiqMax = round(RawMax)
 LiqLvl = round(RawLvl)
 
-
 if Contents[1] == 400 then x = 399 y = 199 z = 50 end
 if Contents[1] == 2400 then x = 2399 y = 1199 z = 100 end 
 
@@ -381,7 +370,7 @@ if LiqLvl > x then
 elseif
  LiqLvl < z then 
   textCol(1,1,0,1) 
-   if EnablePwrPol == true then 
+   if EPower == true then 
     write(DisX,DisY,"Refilling")
      else
       write(DisX,DisY,"Low      ")
@@ -430,7 +419,34 @@ end
 
 end
 textCol(1,1,1,1)
-end -- END OF TANK FUNCTION #############################################################################--
+end -- END OF TANK FUNCTION
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 -- Screen System Main P2/3 ##############################################################################-- 
 --print(SystemScreenSys[1]..SystemScreenSys[2])
@@ -495,13 +511,8 @@ end
 LightSys = {"Light System Ver : ","2.0.1"}
 function LightSPL(LightNumber,RED,GREEN,BLUE,INTENSITY)
 ContLight = component.proxy(component.findComponent(LightNumber)[1])
-if EnableLights == true then
-  ContLight:setColor(RED,GREEN,BLUE,INTENSITY)
-else
- if EnableScreen == true then
- -- Status Code for Screen here
- end
-end
+
+ContLight:setColor(RED,GREEN,BLUE,INTENSITY)
 end
 
 function Blink(r,g,b)
@@ -664,8 +675,6 @@ print("O--------------------------------O")
 
 if dev == 1 then
 print("Item List Ver    : ".. ListVer[1])
-if EnableLights == false then print(SYS[1]) else print(LightSys[1]..LightSys[2]) end
-if EnablePwrPol == false then print(SYS[2]) else print(PowerSys[1]..PowerSys[2]) end
 if EnableScreen == false then print(SYS[4]) else print(SystemScreenSys[1]..SystemScreenSys[2]) end
 end
 BFlag = 1
@@ -709,8 +718,7 @@ end
   if fCont[6] == 0 then AMMO() end
   if fCont[7] == 0 then SPECIAL() end
   if fCont[8] == 0 then LIQUIDS() end
-  if fCont[9] == 0 then POWER() end
-  if fCont[10] == 0 then OTHER() end
+  if fCont[9] == 0 then OTHER() end
 Loop = Loop + 1
 
 if Tick == 255 then
@@ -748,8 +756,8 @@ function selfTest()
   if pcall (AMMO) then fCont[6]= 0 else fCont[6] = 1 print(ERR[3].."Ammo")end
   if pcall (SPECIAL) then fCont[7]= 0 else fCont[7] = 1 print(ERR[3].."Special")end
   if pcall (LIQUIDS) then fCont[8]= 0 else fCont[8] = 1 print(ERR[3].."Liquids")end
-  if pcall (POWER) then fCont[9]= 0 else fCont[9] = 1 print(ERR[3].."Power")end
-  if pcall (OTHER) then fCont[10]= 0 else fCont[10] = 1 print(ERR[3].."Other")end
+  if pcall (POWER) then fCont[8]= 0 else fCont[8] = 1 print(ERR[3].."Power")end
+  if pcall (OTHER) then fCont[9]= 0 else fCont[9] = 1 print(ERR[3].."Other")end
   
 end
 
