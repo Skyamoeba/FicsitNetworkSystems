@@ -199,11 +199,11 @@ progstat = component.proxy(component.findComponent(STA)[1])
 dev = 0
 local ProgName = ("Ficsit Production Manager 3030")
 local By = ("Skyamoeba")
-local Ver = ("1.0.15")
+local Ver = ("1.0.16")
 local MVer = ("0.0.10")
 local BFlag = 0
 Page = 0
-fCont = {0,0,0,0,0,0,0,0,0}
+fCont = {0,0,0,0,0,0,0,0,0,0}
 Tick = 0
 Loop = 0
 Days = 0
@@ -718,7 +718,8 @@ end
   if fCont[6] == 0 then AMMO() end
   if fCont[7] == 0 then SPECIAL() end
   if fCont[8] == 0 then LIQUIDS() end
-  if fCont[9] == 0 then OTHER() end
+  if fCont[9] == 0 then POWER() end
+  if fCont[10] == 0 then OTHER() end
 Loop = Loop + 1
 
 if Tick == 255 then
@@ -756,8 +757,8 @@ function selfTest()
   if pcall (AMMO) then fCont[6]= 0 else fCont[6] = 1 print(ERR[3].."Ammo")end
   if pcall (SPECIAL) then fCont[7]= 0 else fCont[7] = 1 print(ERR[3].."Special")end
   if pcall (LIQUIDS) then fCont[8]= 0 else fCont[8] = 1 print(ERR[3].."Liquids")end
-  if pcall (POWER) then fCont[8]= 0 else fCont[8] = 1 print(ERR[3].."Power")end
-  if pcall (OTHER) then fCont[9]= 0 else fCont[9] = 1 print(ERR[3].."Other")end
+  if pcall (POWER) then fCont[9]= 0 else fCont[9] = 1 print(ERR[3].."Power")end
+  if pcall (OTHER) then fCont[10]= 0 else fCont[10] = 1 print(ERR[3].."Other")end
   
 end
 
