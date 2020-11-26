@@ -1,13 +1,13 @@
 -- Status Light #############################
-STA = ""
+STA = "" -- Put the name of the status light here.
 -- ##########################################
 
 CBeep            = false
-EnableStausLight = false
-AlertForAnyPWR   = true -- if this is true then any pwr issues will need change the status light, false it will not trigger only in the display you will see issues
+EnableStausLight = true
+AlertForAnyPWR   = true -- if this is true then any pwr issues will need change the status light, false it will not trigger onlyin the display you will see issues
 EnableScreen     = true
 ConPercentages   = false
-LiqPercentages   = false
+LiqPercentages   = true
 
 
 -- ITEM LIST ###############################################################################################
@@ -128,9 +128,22 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
 -- Boarders   = DisBoarder(DisX,DisY,LinesToDraw,Title,TitleText)
 -- ###############################################################################
 
+-- Example For containers ########################################################
+-- Container Name Example : CON B1 LimeStone
+-- Power Pole Name Example: PWR B1 LimeStone
+-- Light Pole Name Example: LIG B1 LimeStone
+
+-- Example for tanks #############################################################
+-- Tank Name Exmple : LIQ B1 Fuel
+-- Power Pole Name Example: PWR B1 Fuel
+-- Light Pole Name Example: LIG B1 Fuel
+
 function ORE()
 -- Display
+-- DisBoarder(0,0,9,true,"ORE")
+
 -- Storage Items
+-- ConStatus(2,2,LimeStone,1,0,true,true)
 
 end --## ORE ############################################
 
@@ -146,6 +159,7 @@ function COMPONENTS()
 
 end --## COMPONENTS ############################################
 
+
 function FUELS()
 
 end --## FUELS ############################################
@@ -160,16 +174,24 @@ end --## SPECIAL ############################################
 
 function LIQUIDS()
 
+-- Display
+DisBoarder(0,14,1,true,"TANKS")
+
+-- Storage Items
+-- FluidCon(2,16,Fuel,1,true,true)
+
 end --## LIQUIDS ############################################
 
 function POWER()
+--PowerStatus(83,7,"StatusPwr","Power Monitoring") -- Name Pwoer pole StatusPwr to use thsi straight away 
+
+--PowerBackUp(83,13,"BLDG1Backup","BKPStation1",50,"Power Backup 1")
 
 end --## POWER ##############################################
 
 function OTHER()
 SystemInfo(83,0) -- Default 83,0
 end --## OTHER ############################################
-
 
 -- Anything after this point you should not have to change.
 
@@ -199,7 +221,7 @@ progstat = component.proxy(component.findComponent(STA)[1])
 dev = 0
 local ProgName = ("Ficsit Production Manager 3030")
 local By = ("Skyamoeba")
-local Ver = ("1.0.16")
+local Ver = ("1.0.18")
 local MVer = ("0.0.10")
 local BFlag = 0
 Page = 0
@@ -422,32 +444,6 @@ textCol(1,1,1,1)
 end -- END OF TANK FUNCTION
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 -- Screen System Main P2/3 ##############################################################################-- 
 --print(SystemScreenSys[1]..SystemScreenSys[2])
 function clearScreen()
@@ -588,13 +584,13 @@ if Fused == true then
 gpu:setForeground(1,0,0,1)
 gpu:setBackground(1,0,0,1)
 x = x + 13
-write(x,y,"#")
+write(x,y,"###")
 FLAG = 1
 else 
 gpu:setForeground(0,1,0,1)
 gpu:setBackground(0,1,0,1)
 x = x + 13
-write(x,y,"#")
+write(x,y,"###")
 if AlertForAnyPWR == false then FLAG = 0 end
 progstat:setColor(0.0, 10.0, 0.0,10.0)
 end
@@ -602,6 +598,61 @@ end
 gpu:setForeground(1,1,1,1)
 gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
 end
+
+
+
+function PowerBackUp(DisX,DisY,PWRProbe,PWRSwitch,Trigger,Title)
+GetPowerData(Network)
+x = DisX
+y = DisY
+Production = circuit.production 
+Capacity   = circuit.capacity
+Consumption= circuit.consumption
+Fused      = circuit.isFuesed
+if EnableScreen == true then 
+write(x,y, "O-------------------------------O")
+y = y + 1
+write(x,y,"|                                |")
+y = y + 1
+write(x,y,"|                                |")
+y = y + 1
+write(x,y,"|                                |")
+y = y + 1
+write(x,y,"|                                |")
+y = y + 1
+write(x,y,"O--------------------------------O")
+
+x = DisX
+y = DisY
+x = x + 2
+y = y + 1
+
+write(x,y,Title)
+y = y + 1
+write(x,y,"Consuption : "..round(Consumption))
+y = y + 1
+write(x,y,"Threshold  : "..(Trigger))
+y = y + 1
+write(x,y,"Active     : ")
+
+if Consumption > Trigger then
+  Connection(PWRSwitch,true)
+  gpu:setForeground(0,1,0,1)
+  gpu:setBackground(0,1,0,1)
+  x = x + 13
+  write(x,y,"###")
+else
+  Connection(PWRSwitch,false)
+  gpu:setForeground(1,0,0,1)
+  gpu:setBackground(1,0,0,1)
+  x = x + 13
+  write(x,y,"###")
+end
+gpu:setForeground(1,1,1,1)
+gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
+end
+end
+
 
 --- Power Connections End ---
 
