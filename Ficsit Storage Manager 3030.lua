@@ -11,9 +11,9 @@ LiqPercentages   = true
 
 
 -- ITEM LIST ###############################################################################################
-                  ListVer = {"1.0.1"}
--- Stacks,Display Name, Con number, Line, Group, RadioActive 1Y 0N, System Name 
-                      VAL = {100 ,"Default",0,0,0,0,"Default"}
+                  ListVer = {"1.0.2"}
+-- Stacks,Display Name, ConErr, LigErr, PwrErr, RadioActive 1Y 0N, System Name 
+                      VAL = {100 ,"Default                     ",0,0,0,0,"Default"}
 ---- Ores --------------------------------------------------------------------------------------------------9
                 LimeStone = {100 ,"LimeStone                   ",0,0,0,0,"LimeStone"} 
                   IronOre = {100 ,"Iron Ore                    ",0,0,0,0,"IronOre"}
@@ -117,6 +117,21 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
           HeavyOilResidue = {400 ,"Heavy Oil Residue           ",0,0,0,0,"HeavyOilResidue"}
           AluminaSolution = {400 ,"Alumina Solution            ",0,0,0,0,"AluminaSolution"}
              SulfuricAcid = {400 ,"SulfuricAcid                ",0,0,0,0,"SulfuricAcid"}
+
+-- Holiday Events ------------------------------------------------------------------------------------------
+-- FICS*MAS
+              FICSMASGift = {500 ,"FICSMAS Gift                ",0,0,0,0,"FICSMASGift"}
+        FICSMASTreeBranch = {500 ,"FICSMAS Tree Branch         ",0,0,0,0,"FICSMASTreeBranch"}
+                CandyCane = {500 ,"Candy Cane                  ",0,0,0,0,"CandyCane"}
+               FICSMASBow = {500 ,"FICSMAS Bow                 ",0,0,0,0,"FICSMASBow"}
+    CopperFICSMASOrnament = {200 ,"Copper FICSMAS Ornament     ",0,0,0,0,"CopperFICSMASOrnament"}
+       RedFICSMASOrnament = {500 ,"Red FICSMAS Ornament        ",0,0,0,0,"RedFICSMASOrnament"}
+      BlueFICSMASOrnament = {500 ,"Blue FICSMAS Ornament       ",0,0,0,0,"BlueFICSMASOrnament"}
+      IronFICSMASOrnament = {200 ,"Iron FICSMAS Ornament       ",0,0,0,0,"IronFICSMASOrnament"}
+    FICSMASOrnamentBundle = {100 ,"FICSMAS Ornament Bundle     ",0,0,0,0,"FICSMASOrnamentBundle"}
+        FICSMASDecoration = {100 ,"FICSMAS Decoration          ",0,0,0,0,"FICSMASDecoration"}
+        FICSMASWonderStar = {50  ,"FICSMAS Wonder Star         ",0,0,0,0,"FICSMASWonderStar"}
+               ActualSnow = {500 ,"Actual Snow                 ",0,0,0,0,"ActualSnow"}
 --##########################################################################################################
 
 -- add below what each container is in the format below:
