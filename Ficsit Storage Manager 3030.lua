@@ -1,5 +1,8 @@
+-- WORK IN PROGRESS
+-- Build : 021220-1948-1021-0001
+
 -- Status Light #############################
-STA = "" -- Put the name of the status light here.
+STA = "StatusLight"
 -- ##########################################
 
 CBeep            = false
@@ -12,8 +15,7 @@ LiqPercentages   = true
 
 -- ITEM LIST ###############################################################################################
                   ListVer = {"1.0.2"}
--- Stacks,Display Name, ConErr, LigErr, PwrErr, RadioActive 1Y 0N, System Name 
-                      VAL = {100 ,"Default                     ",0,0,0,0,"Default"}
+--               ITEMNAME = {100 ,"Print able text with spacing",0,0,0,0,"ItemNameforsystemornetworkname"}
 ---- Ores --------------------------------------------------------------------------------------------------9
                 LimeStone = {100 ,"LimeStone                   ",0,0,0,0,"LimeStone"} 
                   IronOre = {100 ,"Iron Ore                    ",0,0,0,0,"IronOre"}
@@ -143,22 +145,22 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
 -- Boarders   = DisBoarder(DisX,DisY,LinesToDraw,Title,TitleText)
 -- ###############################################################################
 
--- Example For containers ########################################################
--- Container Name Example : CON B1 LimeStone
--- Power Pole Name Example: PWR B1 LimeStone
--- Light Pole Name Example: LIG B1 LimeStone
-
--- Example for tanks #############################################################
--- Tank Name Exmple : LIQ B1 Fuel
--- Power Pole Name Example: PWR B1 Fuel
--- Light Pole Name Example: LIG B1 Fuel
-
 function ORE()
 -- Display
--- DisBoarder(0,0,9,true,"ORE")
+DisBoarder(0,0,9,true,"ORE")
 
 -- Storage Items
--- ConStatus(2,2,LimeStone,1,0,true,true)
+ConStatus(2,2,LimeStone,1,0,true,true)
+--ConStatus(2,3,IronOre,2,0,true,true)
+--ConStatus(2,4,CopperOre,3,0,true,true)
+--ConStatus(2,5,CateriumOre,4,0,true,true)
+--ConStatus(2,6,Coal,5,0,true,true)
+--ConStatus(2,7,RawQuartz,6,0,true,true)
+--ConStatus(2,8,Sulfur,7,0,true,true)
+--ConStatus(2,9,Bauxite,8,0,true,true)
+--ConStatus(2,10,Uranium,9,0,true,true)
+
+PowerStatus(83,7,"StatusPwr",     "Power Monitoring") -- 83,8
 
 end --## ORE ############################################
 
@@ -193,20 +195,20 @@ function LIQUIDS()
 DisBoarder(0,14,1,true,"TANKS")
 
 -- Storage Items
--- FluidCon(2,16,Fuel,1,true,true)
+FluidCon(2,16,Fuel,1,true,true)
 
 end --## LIQUIDS ############################################
 
 function POWER()
---PowerStatus(83,7,"StatusPwr","Power Monitoring") -- Name Pwoer pole StatusPwr to use thsi straight away 
 
---PowerBackUp(83,13,"BLDG1Backup","BKPStation1",50,"Power Backup 1")
-
+--PowerStatus(83,13,"StatusWaterPwr","Coal Power      ")
+--PowerBackUp(83,13,"BKPStation1","Backup1",7500,"Test Backup")
 end --## POWER ##############################################
 
 function OTHER()
 SystemInfo(83,0) -- Default 83,0
 end --## OTHER ############################################
+
 
 -- Anything after this point you should not have to change.
 
@@ -227,20 +229,21 @@ end
 -- System Screen System P1/3 End --
 
 SAT = {true, false}
-ERR = {"[System] : Error Detected Starting Self Check ", "[System] : Starting ", "[ERROR] : Connection Error For Group: "}
+ERR = {"[System] : Error Detected Starting Self Check ", "[System] : Starting Self Test ", "[ERROR]  : Connection Error For Container: ", "[ERROR]  : Connection Error For Light: ", "[ERROR]  : Connection Error For Power Switch: "}
 SYS = {"[System] : Light Poles Disabled","[System] : Power Poles Disabled","[System] : Control Panel Lights Disabled", "[System] : Computer Screen Disabled"}
 FLAG = 0
+TEST = 0
 IND = 0
 ChkDis = false
 progstat = component.proxy(component.findComponent(STA)[1])
 dev = 0
 local ProgName = ("Ficsit Production Manager 3030")
 local By = ("Skyamoeba")
-local Ver = ("1.0.18")
+local Ver = ("1.0.21")
 local MVer = ("0.0.10")
 local BFlag = 0
 Page = 0
-fCont = {0,0,0,0,0,0,0,0,0,0}
+fCont = {0,0,0,0,0,0,0,0,0,0,0}
 Tick = 0
 Loop = 0
 Days = 0
@@ -249,7 +252,17 @@ Mins = 0
 Sec = 0
 
 
+
+
 function ConStatus(DisX,DisY,Contents,ConNumber,ConType,ELight,EPower,Containcount)
+if FLAG == 0 then
+ if TEST == 1 then
+  Contents[3] = 0
+  --Contents[4] = 0
+ end
+end
+
+function ConData()
 prefix = {"CON","LIG","PWR"}
 local setupcon = {prefixcon= prefix[1], condata=Contents[7]}
 local setuppwr = {prefixpwr= prefix[3], pwrdata=Contents[7]}
@@ -263,6 +276,12 @@ Power = string.gsub("$prefixpwr $pwrdata", "%$(%w+)", setuppwr)
 ContStore = component.proxy(component.findComponent(Container)[1])
 conInv = ContStore:getInventories()[1]
 conSum = conInv.itemCount
+end
+
+if Contents[3] == 1 then else
+if pcall (ConData) then 
+
+ConData()
 
 if ConType == 0 then -- "Small"
 if Contents[1] == 50 then x = 1199 y = 450 z = 200 end
@@ -293,7 +312,6 @@ percent= round(rawpercent)
 if EnableScreen == true then
 textCol(1,1,1,1)
 
-if Contents[4] == 0 then
 write(DisX,DisY, ConNumber)
 DisX = DisX + 16
 write(DisX,DisY,Contents[2])
@@ -324,46 +342,54 @@ elseif
         write(DisX,DisY,"         ") 
         textCol(1,1,1,1)
       end
-end
-end
+   end
+
 
 --Screen List End
 
 if conSum > x then
   if Contents[6] == 1 then 
      if IND == 1 then 
-       LightSPL(Light,10.0, 0.0, 0.0,10.0)
+       LightSPL(Light,10.0, 0.0, 0.0,10.0,Contents)
         IND = 0
          computer.millis(1000)
           else
-           LightSPL(Light,10.0, 10.0, 10.0,0)
+           LightSPL(Light,10.0, 10.0, 10.0,0,Contents)
             IND = 1
              computer.millis(1000)
               end
 
 
-if ELight == true then LightSPL(Light,10.0, 0.0, 0.0,10.0) end
+if ELight == true then LightSPL(Light,10.0, 0.0, 0.0,10.0,Contents) end
  else
-  if ELight == true then LightSPL(Light,0.0,10.0, 0.0,10.0) end
+  if ELight == true then LightSPL(Light,0.0,10.0, 0.0,10.0,Contents) end
 end
   
-  if EPower == true then Connection(Power,false) end
+  if EPower == true then Connection(Power,false,Contents) end
   
 elseif conSum > y then
   
-  if ELight == true then LightSPL(Light,10.0,10.0, 0.0,10.0) end
+  if ELight == true then LightSPL(Light,10.0,10.0, 0.0,10.0,Contents) end
   
 elseif conSum < z then
 if Contents[6] == 1 then
-  if ELight == true then LightSPL(Light,0.0, 10.0, 0.0,10.0) end
+  if ELight == true then LightSPL(Light,0.0, 10.0, 0.0,10.0,Contents) end
  else
-  if ELight == true then LightSPL(Light,10.0, 0.0, 0.0,10.0) end
+  if ELight == true then LightSPL(Light,10.0, 0.0, 0.0,10.0,Contents) end
 end
-  if EPower == true then Connection(Power,true) end
+  if EPower == true then Connection(Power,true,Contents) end
   end
 
+else 
+FLAG = 1 print(ERR[3]..Contents[7]) Contents[3] = 1 end
+end
+gpu:setForeground(1,1,1,1)
+gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
 end
 -- Container Status Main End--
+
+
+
 -- Tanks Status Main Start ##############################################
 
 function FluidCon(DisX,DisY,Contents,TankNumber,ELight,EPower)
@@ -435,27 +461,29 @@ if LiqLvl > x then
               end
 
 
-     if ELight == true then LightSPL(Light,10.0, 0.0, 0.0,10.0) end
+     if ELight == true then LightSPL(Light,10.0, 0.0, 0.0,10.0,Contents) end
     else
-  if ELight == true then LightSPL(Light,0.0,10.0, 0.0,10.0) end
+  if ELight == true then LightSPL(Light,0.0,10.0, 0.0,10.0,Contents) end
 end
-  if EPower == true then Connection(Power,false) end
+  if EPower == true then Connection(Power,false,Contents) end
 elseif LiqLvl > y then
-  if ELight == true then LightSPL(Light,10.0,10.0, 0.0,10.0) end
+  if ELight == true then LightSPL(Light,10.0,10.0, 0.0,10.0,Contents) end
  elseif LiqLvl < z then
 if Contents[6] == 1 then -- Is Radio Active?
-  if ELight == true then LightSPL(Light,0.0, 10.0, 0.0,10.0) end
+  if ELight == true then LightSPL(Light,0.0, 10.0, 0.0,10.0,Contents) end
  else
-  if ELight == true then LightSPL(Light,10.0, 0.0, 0.0,10.0) end
+  if ELight == true then LightSPL(Light,10.0, 0.0, 0.0,10.0,Contents) end
 end
-  if EPower == true then Connection(Power,true) end
+  if EPower == true then Connection(Power,true,Contents) end
  
   end
 
 
 
 end
-textCol(1,1,1,1)
+--textCol(1,1,1,1)
+gpu:setForeground(1,1,1,1)
+gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
 end -- END OF TANK FUNCTION
 
 
@@ -520,10 +548,25 @@ end
 
 --- LightStatus Pole V2 ---
 LightSys = {"Light System Ver : ","2.0.1"}
-function LightSPL(LightNumber,RED,GREEN,BLUE,INTENSITY)
-ContLight = component.proxy(component.findComponent(LightNumber)[1])
+function LightSPL(LightNumber,RED,GREEN,BLUE,INTENSITY,Contents)
 
-ContLight:setColor(RED,GREEN,BLUE,INTENSITY)
+if FLAG == 0 then
+ if TEST == 1 then
+  Contents[4] = 0
+ end
+end
+
+function LigData() 
+ContLight = component.proxy(component.findComponent(LightNumber)[1])
+end
+
+if Contents[4] == 1 then else
+  if pcall (LigData) then
+   LigData()
+   ContLight:setColor(RED,GREEN,BLUE,INTENSITY)
+  else 
+   FLAG = 1 print(ERR[4]..Contents[7]) Contents[4] = 1 end
+  end
 end
 
 function Blink(r,g,b)
@@ -540,15 +583,34 @@ end
 --event.pull(1)
 end
 
---- LightStatus Pole V2 End ---
 
 
 --- Power Conections / Monitoring ---
 PowerSys = {"Power System Ver : ","2.0.0"}
-function Connection(x,y)
-Comp = component.proxy(component.findComponent(x)[1])
-Comp:setConnected(y)
+function Connection(x,y,Contents)
+if FLAG == 0 then
+ if TEST == 1 then
+  Contents[5] = 0
+  end
 end
+
+function GPwrSwitch()
+Comp = component.proxy(component.findComponent(x)[1])
+end
+
+
+if Contents[5] == 1 then else
+if pcall (GPwrSwitch) then
+
+GPwrSwitch()
+
+Comp:setConnected(y)
+
+else 
+ FLAG = 1 print(ERR[5]..Contents[7]) Contents[5] = 1 
+end
+end
+end --Function Connection End
 
 function CheckConnected(x,y)
 Comp = component.proxy(PWR[x])
@@ -617,7 +679,7 @@ end
 
 
 function PowerBackUp(DisX,DisY,PWRProbe,PWRSwitch,Trigger,Title)
-GetPowerData(Network)
+GetPowerData(PWRProbe)
 x = DisX
 y = DisY
 Production = circuit.production 
@@ -671,27 +733,7 @@ end
 
 --- Power Connections End ---
 
---- Panel Lights [DISABLED]==WORK IN PROGRESS==
---EnableCPanel     = false -- Enable Control Panel Status Lights
--- Control Panel ############################
---PAN = {""} -- Still in Alpha and causes lag so disabled for now
---PLL = {10,10,10,10}
---PLI = {0.5} -- Panel Light Brightness
--- ##########################################
---PanelSys = {"Panel System Ver : ","Alpha"}
---function ChangePanelLight(a,s,x,y,i)
---Panel = component.proxy(PAN[a])
---if s == 2 then
---Panel:getModule(x,y):setColor(10.0,10.0,0.0,i)
---end
---if s == 1 then
---Panel:getModule(x,y):setColor(0.0,10.0,0.0,i)
---end
---if s == 0 then
---Panel:getModule(x,y):setColor(10.0,0.0,0.0,i)
---end
---end
---- Panel Lights End
+
 
 function SystemInfo(DisX,DisY) --83 0
 textCol(1,1,1,1)
@@ -775,8 +817,8 @@ end
 --##########################################################################################################
 -- ** Add your containers to the erro check incase of accedential disconnection so the program can keep on *
 
-
-  if fCont[1] == 0 then ORE() end
+ORE()
+  --if fCont[1] == 0 then ORE() end
   if fCont[2] == 0 then INGOTS() end
   if fCont[3] == 0 then MATERIALS() end
   if fCont[4] == 0 then COMPONENTS() end
@@ -815,33 +857,36 @@ end
 function selfTest()
   if EnableStausLight == true then progstat:setColor(10.0, 0.0, 0.0,10.0) end
   print(ERR[2])
-  if pcall (ORE) then fCont[1]= 0 else fCont[1] = 1 print(ERR[3].."Ore")end
-  if pcall (INGOTS) then fCont[2]= 0 else fCont[2] = 1 print(ERR[3].."Ingots")end
-  if pcall (MATERIALS) then fCont[3]= 0 else fCont[3] = 1 print(ERR[3].."Materials")end
-  if pcall (COMPONENTS) then fCont[4]= 0 else fCont[4] = 1 print(ERR[3].."Components")end
-  if pcall (FUELS) then fCont[5]= 0 else fCont[5] = 1 print(ERR[3].."Fuels")end
-  if pcall (AMMO) then fCont[6]= 0 else fCont[6] = 1 print(ERR[3].."Ammo")end
-  if pcall (SPECIAL) then fCont[7]= 0 else fCont[7] = 1 print(ERR[3].."Special")end
-  if pcall (LIQUIDS) then fCont[8]= 0 else fCont[8] = 1 print(ERR[3].."Liquids")end
-  if pcall (POWER) then fCont[9]= 0 else fCont[9] = 1 print(ERR[3].."Power")end
-  if pcall (OTHER) then fCont[10]= 0 else fCont[10] = 1 print(ERR[3].."Other")end
+  --if pcall (ORE) then fCont[1]= 0 else fCont[1] = 1 print(ERR[3].."Ore")end
+  --if pcall (INGOTS) then fCont[2]= 0 else fCont[2] = 1 print(ERR[3].."Ingots")end
+  --if pcall (MATERIALS) then fCont[3]= 0 else fCont[3] = 1 print(ERR[3].."Materials")end
+  --if pcall (COMPONENTS) then fCont[4]= 0 else fCont[4] = 1 print(ERR[3].."Components")end
+  --if pcall (FUELS) then fCont[5]= 0 else fCont[5] = 1 print(ERR[3].."Fuels")end
+  --if pcall (AMMO) then fCont[6]= 0 else fCont[6] = 1 print(ERR[3].."Ammo")end
+  --if pcall (SPECIAL) then fCont[7]= 0 else fCont[7] = 1 print(ERR[3].."Special")end
+  --if pcall (LIQUIDS) then fCont[8]= 0 else fCont[8] = 1 print(ERR[3].."Liquids")end
+  --if pcall (POWER) then fCont[9]= 0 else fCont[9] = 1 print(ERR[3].."Power")end
+  --if pcall (OTHER) then fCont[10]= 0 else fCont[10] = 1 print(ERR[3].."Other")end
+  FLAG = 0
+  TEST = 1
   
 end
 
 
 while true do
 Boot()
-
-if pcall (MainLoop) then
+MainLoop()
+--if pcall (MainLoop) then
   if EnableStausLight == true then
    if FLAG == 0 then progstat:setColor(0.0, 10.0, 0.0,10.0) end
     if FLAG == 1 then Blink() end
   end
- else
-  FLAG = 1
-   print(ERR[1])
-    selfTest()
-end
+ --else
+  --FLAG = 1
+   --print(ERR[1])
+    
+if FLAG == 1 then if Sec == 30 then selfTest() end else TEST = 0 end
+--end
 
 -- Screen System Main P3/3 ##############################################################################--
 if EnableScreen == true then gpu:flush() end
