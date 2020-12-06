@@ -1,5 +1,4 @@
---############################-- WORK IN PROGRESS --############################
-Build = "| Build   : 051220-2054-1021-0004|"
+Build = "| Build   : 061220-2233-1021-0005|"
 
 
 -- Status Light #############################
@@ -14,11 +13,11 @@ ConPercentages   = false
 LiqPercentages   = true
 
 
--- ITEM LIST ###############################################################################################
+-- ITEM LIST ############################################################################################
                   ListVer = {"1.0.1"}
 -- Stacks,Display Name, ConErr, LigErr, PwrErr, RadioActive 1Y 0N, System Name 
                       VAL = {100 ,"Default                     ",0,0,0,0,"Default"}
----- Ores --------------------------------------------------------------------------------------------------9
+---- Ores ----------------------------------------------------------------------------------------------9
                 LimeStone = {100 ,"LimeStone                   ",0,0,0,0,"LimeStone"} 
                   IronOre = {100 ,"Iron Ore                    ",0,0,0,0,"IronOre"}
                 CopperOre = {100 ,"Copper Ore                  ",0,0,0,0,"CopperOre"}
@@ -28,13 +27,13 @@ LiqPercentages   = true
                    Sulfur = {100 ,"Sulfur                      ",0,0,0,0,"Sulfur"}
                   Bauxite = {100 ,"Bauxite                     ",0,0,0,0,"Bauxite"}
                   Uranium = {100 ,"Uranium                     ",0,0,0,0,"Uranium"}
----- Ingots --------------------------------------------------------------------------------------------------5
+---- Ingots --------------------------------------------------------------------------------------------5
                 IronIngot = {100 ,"Iron Ingot                  ",0,0,0,0,"IronIngot"}
               CopperIngot = {100 ,"Copper Ingot                ",0,0,0,0,"CopperIngot"}
             CateriumIngot = {100 ,"Caterium Ingot              ",0,0,0,0,"CateriumIngot"}
                SteelIngot = {100 ,"Steel Ingot                 ",0,0,0,0,"SteelIngot"}
             AluminumIngot = {100 ,"Aluminum Ingot              ",0,0,0,0,"AluminumIngot"}
----- Materials ------------------------------------------------------------------------------------------------25
+---- Materials ----------------------------------------------------------------------------------------25
                  Concrete = {100 ,"Concrete                    ",0,0,0,0,"Concrete"}
             QuartzCrystal = {100 ,"Quartz Crystal              ",0,0,0,0,"QuartzCrystal"}
              PolymerResin = {200 ,"PolymerResin                ",0,0,0,0,"PolymerResin"}
@@ -60,7 +59,7 @@ LiqPercentages   = true
           YellowPowerSlug = {50  ,"Yellow Power Slug           ",0,0,0,0,"YellowPowerSlug"}
           PurplePowerSlug = {50  ,"Purple Power Slug           ",0,0,0,0,"PurplePowerSlug"}
              FlowerPetals = {200 ,"FlowerPetals                ",0,0,0,0,"FlowerPetals"}
--- Components -----------------------------------------------------------------------------------------------22
+-- Components -----------------------------------------------------------------------------------------22
         CrystalOscillator = {100 ,"Crystal Oscillator          ",0,0,0,0,"CrystalOscillator"}
             EmptyCanister = {100 ,"Empty Canister              ",0,0,0,0,"EmptyCanister"}
                    Fabric = {100 ,"Fabric                      ",0,0,0,0,"Fabric"}
@@ -83,7 +82,7 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
             UraniumPellet = {200 ,"Uranium Pellet              ",0,0,0,0,"UraniumPellet"}
        EncasedUraniumCell = {200 ,"Encased Uranium Cell        ",0,0,0,0,"EncasedUraniumCell"}
                    Beacon = {100 ,"Beacon                      ",0,0,0,0,"Beacon"}
--- Fuels ----------------------------------------------------------------------------------------------------12
+-- Fuels ----------------------------------------------------------------------------------------------12
             CompactedCoal = {100 ,"Compacted Coal              ",0,0,0,0,"CompactedCoal"}
                    Leaves = {500 ,"Leaves                      ",0,0,0,0,"Leaves"}
                   Mycelia = {200 ,"Mycelia                     ",0,0,0,0,"Mycelia"}
@@ -96,14 +95,14 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
     PackagedLiquidBiofuel = {100 ,"PackagedLiquidBiofuel       ",0,0,0,0,"PackagedLiquidBiofuel"}
         PackagedTurbofuel = {100 ,"PackagedTurbofuel           ",0,0,0,0,"PackagedTurbofuel"}
            NuclearFuelRod = {50  ,"Nuclear Fuel Rod            ",0,0,0,0,"NuclearFuelRod"}
--- Ammo ---------------------------------------------------------------------------------------------------6
+-- Ammo ------------------------------------------------------------------------------------------------6
                  Nobelisk = {50  ,"Nobelisk                    ",0,0,0,0,"Nobelisk"}
                 GasFilter = {50  ,"Gas Filter                  ",0,0,0,0,"GasFilter"}
            ColorCartridge = {200 ,"Color Cartridge             ",0,0,0,0,"ColorCartridge"}
            RifleCartridge = {100 ,"Rifle Cartridge             ",0,0,0,0,"RifleCartridge"}
               SpikedRebar = {50  ,"Spiked Rebar                ",0,0,0,0,"SpikedRebar"} 
       IodineInfusedFilter = {50  ,"Iodine Infused Filter       ",0,0,0,0,"IodineInfusedFilter"} 
--- Special--------------------------------------------------------------------------------------------------8
+-- Special----------------------------------------------------------------------------------------------8
                PowerShard = {100 ,"Power Shard                 ",0,0,0,0,"PowerShard"}
              FICSITCoupon = {500 ,"FICSIT Coupon               ",0,0,0,0,"FICSITCoupon"}
              SmartPlating = {50  ,"Smart Plating               ",0,0,0,0,"SmartPlating"}
@@ -112,7 +111,7 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
             ModularEngine = {50  ,"Modular Engine              ",0,0,0,0,"ModularEngine"}
       AdaptiveControlUnit = {50  ,"Adaptive Control Unit       ",0,0,0,0,"AdaptiveControlUnit"} 
              NuclearWaste = {500 ,"Nuclear Waste               ",0,0,1,1,"NuclearWaste"}
--- Liquids -------------------------------------------------------------------------------------------------
+-- Liquids ----------------------------------------------------------------------------------------------
                      Fuel = {400 ,"Fuel                        ",0,0,0,0,"Fuel"}
                   BioFuel = {400 ,"Bio Fuel                    ",0,0,0,0,"BioFuel"}
                 TurboFuel = {400 ,"Turbo Fuel                  ",0,0,0,0,"TurboFuel"}
@@ -121,7 +120,7 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
           HeavyOilResidue = {400 ,"Heavy Oil Residue           ",0,0,0,0,"HeavyOilResidue"}
           AluminaSolution = {400 ,"Alumina Solution            ",0,0,0,0,"AluminaSolution"}
              SulfuricAcid = {400 ,"SulfuricAcid                ",0,0,0,0,"SulfuricAcid"}
--- Holiday Events ------------------------------------------------------------------------------------------
+-- Holiday Events ---------------------------------------------------------------------------------------
 -- FICS*MAS
               FICSMASGift = {500 ,"FICSMAS Gift                ",0,0,0,0,"FICSMASGift"}
         FICSMASTreeBranch = {500 ,"FICSMAS Tree Branch         ",0,0,0,0,"FICSMASTreeBranch"}
@@ -135,19 +134,11 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
         FICSMASDecoration = {100 ,"FICSMAS Decoration          ",0,0,0,0,"FICSMASDecoration"}
         FICSMASWonderStar = {50  ,"FICSMAS Wonder Star         ",0,0,0,0,"FICSMASWonderStar"}
                ActualSnow = {500 ,"Actual Snow                 ",0,0,0,0,"ActualSnow"}
---##########################################################################################################
+--#######################################################################################################
 
 -- Power Monitoring / Backup
-PowerPole1  = {1 ,"Building 1",0,0,0,0,"PowerPole1"}
-PowerPole2  = {1 ,"Building 1",0,0,0,0,"PowerPole2"}
-PowerPole3  = {1 ,"Building 1",0,0,0,0,"PowerPole3"}
-PowerPole4  = {1 ,"Building 1",0,0,0,0,"PowerPole4"}
-PowerPole5  = {1 ,"Building 1",0,0,0,0,"PowerPole5"}
-PowerPole6  = {1 ,"Building 1",0,0,0,0,"PowerPole6"}
-PowerPole7  = {1 ,"Building 1",0,0,0,0,"PowerPole7"}
-PowerPole8  = {1 ,"Building 1",0,0,0,0,"PowerPole8"}
-PowerPole9  = {1 ,"Building 1",0,0,0,0,"PowerPole9"}
-PowerPole10 = {1 ,"Building 1",0,0,0,0,"PowerPole10"}
+Building1  = {1 ,"Building 1",0,0,0,0,"Building1"}
+StatusWaterPwr = {1 ,"Building 2",0,0,0,0,"StatusWaterPwr"}
 
 BackUp1 = {3000,"Building 1",0,0,0,0,"BackUp1"}
 
@@ -162,8 +153,8 @@ BackUp1 = {3000,"Building 1",0,0,0,0,"BackUp1"}
 -- Boarders   = DisBoarder(DisX,DisY,LinesToDraw,Title,TitleText)
 -- ###############################################################################
 function ITEMDISPLAY()
-DisBoarder(0,0,9,true,"ORE")
-DisBoarder(0,14,1,true,"TANKS")
+--DisBoarder(0,0,9,true,"ORE")
+--DisBoarder(0,14,1,true,"TANKS")
 
 SystemInfo(83,0) -- Default 83,0
 end
@@ -177,24 +168,21 @@ function ITEMLIST()
 
 
 -- Storage Items
-ConStatus(2,2,LimeStone,1,0,true,true)
-ConStatus(2,3,IronOre,2,0,true,true)
-ConStatus(2,4,CopperOre,3,0,true,true)
-ConStatus(2,5,CateriumOre,4,0,true,true)
-ConStatus(2,6,Coal,5,0,true,true)
-ConStatus(2,7,RawQuartz,6,0,true,true)
-ConStatus(2,8,Sulfur,7,0,true,true)
-ConStatus(2,9,Bauxite,8,0,true,true)
-ConStatus(2,10,Uranium,9,0,true,true)
+--ConStatus(2,2,LimeStone,1,0,true,true)
+--ConStatus(2,3,IronOre,2,0,true,true)
+--ConStatus(2,4,CopperOre,3,0,true,true)
+--ConStatus(2,5,CateriumOre,4,0,true,true)
+--ConStatus(2,6,Coal,5,0,true,true)
+--ConStatus(2,7,RawQuartz,6,0,true,true)
+--ConStatus(2,8,Sulfur,7,0,true,true)
+--ConStatus(2,9,Bauxite,8,0,true,true)
+--ConStatus(2,10,Uranium,9,0,true,true)
 
---PWRStatus(83,7,PowerPole1)
---PWRStatus(83,13,PowerPole2)
-PWRBackUp(83,20,BackUp1)
+--PWRStatus(83,7,Building1)
+--PWRStatus(83,13,StatusWaterPwr)
+--PWRBackUp(83,20,BackUp1)
 
-PowerStatus(83,7,"StatusPwr",     "Power Monitoring") -- 83,8
-PowerStatus(83,13,"StatusWaterPwr","Coal Power      ")
-
-LiqStatus(2,16,Fuel,1,true,true)
+--LiqStatus(2,16,Fuel,1,true,true)
 
 
 end --## ITEM LIST ############################################
@@ -223,7 +211,7 @@ end --## ITEM LIST ############################################
 
 
 
--- System Screen Sys P1/3 ###############################################################################--
+-- System Screen Sys P1/3 #############################################################################--
 if EnableScreen == true then 
 SystemScreenSys = {"System Screen Sys Ver: ","1.0.1"}
 gpu = computer.getGPUs()[1]
@@ -516,7 +504,7 @@ gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
 end -- END OF TANK FUNCTION
 
 
--- Screen System Main P2/3 ##############################################################################-- 
+-- Screen System Main P2/3 ############################################################################-- 
 --print(SystemScreenSys[1]..SystemScreenSys[2])
 function clearScreen()
   w,h=gpu:getSize()
@@ -652,16 +640,47 @@ connector = powermonpole:getPowerConnectors()[1]
 circuit = connector:getCircuit()
 end
 
-function PowerStatus(DisX,DisY,Network,Title)
-GetPowerData(Network)
+function PWRStatus(DisX,DisY,Contents)
+if FLAG == 0 then
+ if TEST == 1 then
+  Contents[3] = 0
+ end
+end
+
+function PWRData()
+prefix = {"MON","LIG","SWT"}
+local setupcon = {prefixcon= prefix[1], condata=Contents[7]}
+local setuppwr = {prefixpwr= prefix[3], pwrdata=Contents[7]}
+local setuplig = {prefixlig= prefix[2], ligdata=Contents[7]}
+
+PWRMon = string.gsub("$prefixcon $condata", "%$(%w+)", setupcon)
+Light = string.gsub("$prefixlig $ligdata", "%$(%w+)", setuplig)
+Switch = string.gsub("$prefixpwr $pwrdata", "%$(%w+)", setuppwr)
+
+powermonpole = component.proxy(component.findComponent(PWRMon)[1])
+connector = powermonpole:getPowerConnectors()[1]
+Circuit = connector:getCircuit()
+
+Production = Circuit.production 
+Capacity   = Circuit.capacity
+Consumption= Circuit.consumption
+Fused      = Circuit.isFuesed
+end
+
+
+if Contents[3] == 1 then else
+if pcall (PWRData) then
+
+PWRData()
+
 x = DisX
 y = DisY
-Production = circuit.production 
-Capacity   = circuit.capacity
-Consumption= circuit.consumption
-Fused      = circuit.isFuesed
+Production = Circuit.production 
+Capacity   = Circuit.capacity
+Consumption= Circuit.consumption
+Fused      = Circuit.isFuesed
 if EnableScreen == true then 
-write(x,y, "O-"..(Title).."---------------O")
+write(x,y, "O-"..(Contents[2]).."---------------O")
 y = y + 1
 write(x,y, "|                                |")
 y = y + 1
@@ -700,6 +719,9 @@ write(x,y,"###")
 if AlertForAnyPWR == false then FLAG = 0 end
 progstat:setColor(0.0, 10.0, 0.0,10.0)
 end
+end
+  else FLAG = 1 print(ERR[6]..Contents[7]) Contents[3] = 1
+ end
 end
 gpu:setForeground(1,1,1,1)
 gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
@@ -933,7 +955,7 @@ while true do
 Boot()
 --print(FLAG)
 MainLoop()
-ErrorBoxDis(0,50)
+--ErrorBoxDis(0,50)
   if EnableStausLight == true then
    if FLAG == 0 then progstat:setColor(0.0, 10.0, 0.0,10.0) end
     if FLAG == 1 then Blink() end
