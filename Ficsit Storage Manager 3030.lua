@@ -61,6 +61,7 @@ LiqPercentages   = true
              FlowerPetals = {200 ,"FlowerPetals                ",0,0,0,0,"FlowerPetals"}
 -- Components -----------------------------------------------------------------------------------------22
         CrystalOscillator = {100 ,"Crystal Oscillator          ",0,0,0,0,"CrystalOscillator"}
+  SuperpositionOscillator = {100 ,"Superposition Oscillator    ",0,0,0,0,"SuperpositionOscillator"}
             EmptyCanister = {100 ,"Empty Canister              ",0,0,0,0,"EmptyCanister"}
                    Fabric = {100 ,"Fabric                      ",0,0,0,0,"Fabric"}
              ModularFrame = {50  ,"Modular Frame               ",0,0,0,0,"ModularFrame"}
@@ -71,6 +72,8 @@ LiqPercentages   = true
                 Quickwire = {500 ,"Quickwire                   ",0,0,0,0,"Quickwire"}
              CircuitBoard = {200 ,"CircuitBoard                ",0,0,0,0,"CircuitBoard"}
                  Computer = {50  ,"Computer                    ",0,0,0,0,"Computer"}
+          QuantumComputer = {50  ,"QuantumComputer             ",0,0,0,0,"QuantumComputer"}
+           QuantumCrystal = {50  ,"Quantum Crystal             ",0,0,0,0,"QuantumCrystal"}
                 AILimiter = {100 ,"A.I. Limiter                ",0,0,0,0,"AILimiter"}
        HighSpeedConnector = {100 ,"High Speed Connector        ",0,0,0,0,"HighSpeedConnector"}
             Supercomputer = {50  ,"Supercomputer               ",0,0,0,0,"Supercomputer"}
@@ -147,14 +150,30 @@ BackUp1 = {3000,"Building 1",0,0,0,0,"BackUp1"}
 -- add below what each container is in the format below:
 
 -- Examples -- ###################################################################
--- Containers = ConStatus(DisX,DisY,Contents,ConNumber,ConType,ELight,EPower)
--- Tanks      = FluidCon(DisX,DisY,Contents,TankNumber,ELight,EPower)
--- Power      = PowerStatus(DisX,DisY,NetworkName,Title)
--- Boarders   = DisBoarder(DisX,DisY,LinesToDraw,Title,TitleText)
+-- Containers   = ConStatus(DisX,DisY,Contents,ConNumber,ConType,ELight,EPower)
+-- Tanks        = LiqStatus(DisX,DisY,Contents,TankNumber,ELight,EPower)
+-- Power        = PWRStatus(DisX,DisY,Power List Name For maonitoring)
+-- Backup Power = PWRBackUp(DisX,DisY,Power list name for Backup Power station)
+-- Boarders     = DisBoarder(DisX,DisY,LinesToDraw,Title,TitleText)
 -- ###############################################################################
+
+-- Example For containers ########################################################
+-- Container Name Example : CON B1 LimeStone
+-- Power Pole Name Example: PWR B1 LimeStone
+-- Light Pole Name Example: LIG B1 LimeStone
+
+-- Example for tanks #############################################################
+-- Tank Name Exmple : LIQ B1 Fuel
+-- Power Pole Name Example: PWR B1 Fuel
+-- Light Pole Name Example: LIG B1 Fuel
+
+-- Example for Power Moniting #############################################################
+-- PowerPole name example : MON B1 Building1
+
+
 function ITEMDISPLAY()
---DisBoarder(0,0,9,true,"ORE")
---DisBoarder(0,14,1,true,"TANKS")
+DisBoarder(0,0,9,true,"Storage Area")
+DisBoarder(0,14,1,true,"TANKS")
 
 SystemInfo(83,0) -- Default 83,0
 end
@@ -164,25 +183,19 @@ end
 
 
 function ITEMLIST()
--- Display
-
-
 -- Storage Items
---ConStatus(2,2,LimeStone,1,0,true,true)
---ConStatus(2,3,IronOre,2,0,true,true)
---ConStatus(2,4,CopperOre,3,0,true,true)
---ConStatus(2,5,CateriumOre,4,0,true,true)
---ConStatus(2,6,Coal,5,0,true,true)
---ConStatus(2,7,RawQuartz,6,0,true,true)
---ConStatus(2,8,Sulfur,7,0,true,true)
---ConStatus(2,9,Bauxite,8,0,true,true)
---ConStatus(2,10,Uranium,9,0,true,true)
+ConStatus(2,2,IronPlates,1,0,true,true)
 
---PWRStatus(83,7,Building1)
---PWRStatus(83,13,StatusWaterPwr)
---PWRBackUp(83,20,BackUp1)
+-- Storage Liquids
+LiqStatus(2,16,Water,1,true,true)
+  
+  
+-- Power Status / Backup
+PWRStatus(83,7,Storage)
+PWRBackUp(83,20,BackUp1)
 
---LiqStatus(2,16,Fuel,1,true,true)
+
+
 
 
 end --## ITEM LIST ############################################
