@@ -1,5 +1,8 @@
+Build = "| Build   : 061220-2233-1021-0005|"
+
+
 -- Status Light #############################
-STA = "" -- Put the name of the status light here.
+STA = "StatusLight"
 -- ##########################################
 
 CBeep            = false
@@ -10,11 +13,11 @@ ConPercentages   = false
 LiqPercentages   = true
 
 
--- ITEM LIST ###############################################################################################
-                  ListVer = {"1.0.2"}
+-- ITEM LIST ############################################################################################
+                  ListVer = {"1.0.1"}
 -- Stacks,Display Name, ConErr, LigErr, PwrErr, RadioActive 1Y 0N, System Name 
                       VAL = {100 ,"Default                     ",0,0,0,0,"Default"}
----- Ores --------------------------------------------------------------------------------------------------9
+---- Ores ----------------------------------------------------------------------------------------------9
                 LimeStone = {100 ,"LimeStone                   ",0,0,0,0,"LimeStone"} 
                   IronOre = {100 ,"Iron Ore                    ",0,0,0,0,"IronOre"}
                 CopperOre = {100 ,"Copper Ore                  ",0,0,0,0,"CopperOre"}
@@ -24,13 +27,13 @@ LiqPercentages   = true
                    Sulfur = {100 ,"Sulfur                      ",0,0,0,0,"Sulfur"}
                   Bauxite = {100 ,"Bauxite                     ",0,0,0,0,"Bauxite"}
                   Uranium = {100 ,"Uranium                     ",0,0,0,0,"Uranium"}
----- Ingots --------------------------------------------------------------------------------------------------5
+---- Ingots --------------------------------------------------------------------------------------------5
                 IronIngot = {100 ,"Iron Ingot                  ",0,0,0,0,"IronIngot"}
               CopperIngot = {100 ,"Copper Ingot                ",0,0,0,0,"CopperIngot"}
             CateriumIngot = {100 ,"Caterium Ingot              ",0,0,0,0,"CateriumIngot"}
                SteelIngot = {100 ,"Steel Ingot                 ",0,0,0,0,"SteelIngot"}
             AluminumIngot = {100 ,"Aluminum Ingot              ",0,0,0,0,"AluminumIngot"}
----- Materials ------------------------------------------------------------------------------------------------25
+---- Materials ----------------------------------------------------------------------------------------25
                  Concrete = {100 ,"Concrete                    ",0,0,0,0,"Concrete"}
             QuartzCrystal = {100 ,"Quartz Crystal              ",0,0,0,0,"QuartzCrystal"}
              PolymerResin = {200 ,"PolymerResin                ",0,0,0,0,"PolymerResin"}
@@ -56,8 +59,9 @@ LiqPercentages   = true
           YellowPowerSlug = {50  ,"Yellow Power Slug           ",0,0,0,0,"YellowPowerSlug"}
           PurplePowerSlug = {50  ,"Purple Power Slug           ",0,0,0,0,"PurplePowerSlug"}
              FlowerPetals = {200 ,"FlowerPetals                ",0,0,0,0,"FlowerPetals"}
--- Components -----------------------------------------------------------------------------------------------22
+-- Components -----------------------------------------------------------------------------------------22
         CrystalOscillator = {100 ,"Crystal Oscillator          ",0,0,0,0,"CrystalOscillator"}
+  SuperpositionOscillator = {100 ,"Superposition Oscillator    ",0,0,0,0,"SuperpositionOscillator"}
             EmptyCanister = {100 ,"Empty Canister              ",0,0,0,0,"EmptyCanister"}
                    Fabric = {100 ,"Fabric                      ",0,0,0,0,"Fabric"}
              ModularFrame = {50  ,"Modular Frame               ",0,0,0,0,"ModularFrame"}
@@ -68,6 +72,8 @@ LiqPercentages   = true
                 Quickwire = {500 ,"Quickwire                   ",0,0,0,0,"Quickwire"}
              CircuitBoard = {200 ,"CircuitBoard                ",0,0,0,0,"CircuitBoard"}
                  Computer = {50  ,"Computer                    ",0,0,0,0,"Computer"}
+          QuantumComputer = {50  ,"QuantumComputer             ",0,0,0,0,"QuantumComputer"}
+           QuantumCrystal = {50  ,"Quantum Crystal             ",0,0,0,0,"QuantumCrystal"}
                 AILimiter = {100 ,"A.I. Limiter                ",0,0,0,0,"AILimiter"}
        HighSpeedConnector = {100 ,"High Speed Connector        ",0,0,0,0,"HighSpeedConnector"}
             Supercomputer = {50  ,"Supercomputer               ",0,0,0,0,"Supercomputer"}
@@ -79,7 +85,7 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
             UraniumPellet = {200 ,"Uranium Pellet              ",0,0,0,0,"UraniumPellet"}
        EncasedUraniumCell = {200 ,"Encased Uranium Cell        ",0,0,0,0,"EncasedUraniumCell"}
                    Beacon = {100 ,"Beacon                      ",0,0,0,0,"Beacon"}
--- Fuels ----------------------------------------------------------------------------------------------------12
+-- Fuels ----------------------------------------------------------------------------------------------12
             CompactedCoal = {100 ,"Compacted Coal              ",0,0,0,0,"CompactedCoal"}
                    Leaves = {500 ,"Leaves                      ",0,0,0,0,"Leaves"}
                   Mycelia = {200 ,"Mycelia                     ",0,0,0,0,"Mycelia"}
@@ -92,14 +98,14 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
     PackagedLiquidBiofuel = {100 ,"PackagedLiquidBiofuel       ",0,0,0,0,"PackagedLiquidBiofuel"}
         PackagedTurbofuel = {100 ,"PackagedTurbofuel           ",0,0,0,0,"PackagedTurbofuel"}
            NuclearFuelRod = {50  ,"Nuclear Fuel Rod            ",0,0,0,0,"NuclearFuelRod"}
--- Ammo ---------------------------------------------------------------------------------------------------6
+-- Ammo ------------------------------------------------------------------------------------------------6
                  Nobelisk = {50  ,"Nobelisk                    ",0,0,0,0,"Nobelisk"}
                 GasFilter = {50  ,"Gas Filter                  ",0,0,0,0,"GasFilter"}
            ColorCartridge = {200 ,"Color Cartridge             ",0,0,0,0,"ColorCartridge"}
            RifleCartridge = {100 ,"Rifle Cartridge             ",0,0,0,0,"RifleCartridge"}
               SpikedRebar = {50  ,"Spiked Rebar                ",0,0,0,0,"SpikedRebar"} 
       IodineInfusedFilter = {50  ,"Iodine Infused Filter       ",0,0,0,0,"IodineInfusedFilter"} 
--- Special--------------------------------------------------------------------------------------------------8
+-- Special----------------------------------------------------------------------------------------------8
                PowerShard = {100 ,"Power Shard                 ",0,0,0,0,"PowerShard"}
              FICSITCoupon = {500 ,"FICSIT Coupon               ",0,0,0,0,"FICSITCoupon"}
              SmartPlating = {50  ,"Smart Plating               ",0,0,0,0,"SmartPlating"}
@@ -108,7 +114,7 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
             ModularEngine = {50  ,"Modular Engine              ",0,0,0,0,"ModularEngine"}
       AdaptiveControlUnit = {50  ,"Adaptive Control Unit       ",0,0,0,0,"AdaptiveControlUnit"} 
              NuclearWaste = {500 ,"Nuclear Waste               ",0,0,1,1,"NuclearWaste"}
--- Liquids -------------------------------------------------------------------------------------------------
+-- Liquids ----------------------------------------------------------------------------------------------
                      Fuel = {400 ,"Fuel                        ",0,0,0,0,"Fuel"}
                   BioFuel = {400 ,"Bio Fuel                    ",0,0,0,0,"BioFuel"}
                 TurboFuel = {400 ,"Turbo Fuel                  ",0,0,0,0,"TurboFuel"}
@@ -117,8 +123,7 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
           HeavyOilResidue = {400 ,"Heavy Oil Residue           ",0,0,0,0,"HeavyOilResidue"}
           AluminaSolution = {400 ,"Alumina Solution            ",0,0,0,0,"AluminaSolution"}
              SulfuricAcid = {400 ,"SulfuricAcid                ",0,0,0,0,"SulfuricAcid"}
-
--- Holiday Events ------------------------------------------------------------------------------------------
+-- Holiday Events ---------------------------------------------------------------------------------------
 -- FICS*MAS
               FICSMASGift = {500 ,"FICSMAS Gift                ",0,0,0,0,"FICSMASGift"}
         FICSMASTreeBranch = {500 ,"FICSMAS Tree Branch         ",0,0,0,0,"FICSMASTreeBranch"}
@@ -132,15 +137,24 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
         FICSMASDecoration = {100 ,"FICSMAS Decoration          ",0,0,0,0,"FICSMASDecoration"}
         FICSMASWonderStar = {50  ,"FICSMAS Wonder Star         ",0,0,0,0,"FICSMASWonderStar"}
                ActualSnow = {500 ,"Actual Snow                 ",0,0,0,0,"ActualSnow"}
---##########################################################################################################
+--#######################################################################################################
+
+-- Power Monitoring / Backup
+Building1  = {1 ,"Building 1",0,0,0,0,"Building1"}
+StatusWaterPwr = {1 ,"Building 2",0,0,0,0,"StatusWaterPwr"}
+
+BackUp1 = {3000,"Building 1",0,0,0,0,"BackUp1"}
+
+
 
 -- add below what each container is in the format below:
 
 -- Examples -- ###################################################################
--- Containers = ConStatus(DisX,DisY,Contents,ConNumber,ConType,ELight,EPower)
--- Tanks      = FluidCon(DisX,DisY,Contents,TankNumber,ELight,EPower)
--- Power      = PowerStatus(DisX,DisY,NetworkName,Title)
--- Boarders   = DisBoarder(DisX,DisY,LinesToDraw,Title,TitleText)
+-- Containers   = ConStatus(DisX,DisY,Contents,ConNumber,ConType,ELight,EPower)
+-- Tanks        = LiqStatus(DisX,DisY,Contents,TankNumber,ELight,EPower)
+-- Power        = PWRStatus(DisX,DisY,Power List Name For maonitoring)
+-- Backup Power = PWRBackUp(DisX,DisY,Power list name for Backup Power station)
+-- Boarders     = DisBoarder(DisX,DisY,LinesToDraw,Title,TitleText)
 -- ###############################################################################
 
 -- Example For containers ########################################################
@@ -153,61 +167,42 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
 -- Power Pole Name Example: PWR B1 Fuel
 -- Light Pole Name Example: LIG B1 Fuel
 
-function ORE()
--- Display
--- DisBoarder(0,0,9,true,"ORE")
-
--- Storage Items
--- ConStatus(2,2,LimeStone,1,0,true,true)
-
-end --## ORE ############################################
-
-function INGOTS()
-
-end --## INGOTS ############################################
-
-function MATERIALS()
-
-end --## MATERIALS ############################################
-
-function COMPONENTS()
-
-end --## COMPONENTS ############################################
+-- Example for Power Moniting #############################################################
+-- PowerPole name example : MON B1 Building1
 
 
-function FUELS()
-
-end --## FUELS ############################################
-
-function AMMO()
-
-end --## AMMO ############################################
-
-function SPECIAL()
-
-end --## SPECIAL ############################################
-
-function LIQUIDS()
-
--- Display
+function ITEMDISPLAY()
+DisBoarder(0,0,9,true,"Storage Area")
 DisBoarder(0,14,1,true,"TANKS")
 
--- Storage Items
--- FluidCon(2,16,Fuel,1,true,true)
-
-end --## LIQUIDS ############################################
-
-function POWER()
---PowerStatus(83,7,"StatusPwr","Power Monitoring") -- Name Pwoer pole StatusPwr to use thsi straight away 
-
---PowerBackUp(83,13,"BLDG1Backup","BKPStation1",50,"Power Backup 1")
-
-end --## POWER ##############################################
-
-function OTHER()
 SystemInfo(83,0) -- Default 83,0
-end --## OTHER ############################################
+end
 
+
+
+
+
+function ITEMLIST()
+-- Storage Items
+ConStatus(2,2,IronPlates,1,0,true,true)
+
+-- Storage Liquids
+LiqStatus(2,16,Water,1,true,true)
+  
+  
+-- Power Status / Backup
+PWRStatus(83,7,Storage)
+PWRBackUp(83,20,BackUp1)
+
+
+
+
+
+end --## ITEM LIST ############################################
+
+
+
+--############################################################################
 -- Anything after this point you should not have to change.
 
 
@@ -215,7 +210,21 @@ end --## OTHER ############################################
 
 
 
--- System Screen Sys P1/3 ###############################################################################--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- System Screen Sys P1/3 #############################################################################--
 if EnableScreen == true then 
 SystemScreenSys = {"System Screen Sys Ver: ","1.0.1"}
 gpu = computer.getGPUs()[1]
@@ -227,20 +236,30 @@ end
 -- System Screen System P1/3 End --
 
 SAT = {true, false}
-ERR = {"[System] : Error Detected Starting Self Check ", "[System] : Starting ", "[ERROR] : Connection Error For Group: "}
-SYS = {"[System] : Light Poles Disabled","[System] : Power Poles Disabled","[System] : Control Panel Lights Disabled", "[System] : Computer Screen Disabled"}
+ERR = {"[System] : Error Detected Starting Self Check ", 
+       "[System] : Starting Self Test ", 
+       "[ERROR]  : Connection Error For Container: ", 
+       "[ERROR]  : Connection Error For Light: ", 
+       "[ERROR]  : Connection Error For Power Switch: ",
+       "[ERROR]  : Connection Error For Power Monitor: "}
+
+SYS = {"[System] : Light Poles Disabled",
+       "[System] : Power Poles Disabled",
+       "[System] : Control Panel Lights Disabled", 
+       "[System] : Computer Screen Disabled"}
 FLAG = 0
+TEST = 0
 IND = 0
 ChkDis = false
 progstat = component.proxy(component.findComponent(STA)[1])
 dev = 0
 local ProgName = ("Ficsit Production Manager 3030")
 local By = ("Skyamoeba")
-local Ver = ("1.0.18")
+local Ver = ("1.0.21")
 local MVer = ("0.0.10")
 local BFlag = 0
 Page = 0
-fCont = {0,0,0,0,0,0,0,0,0,0}
+fCont = {0,0,0,0,0,0,0,0,0,0,0}
 Tick = 0
 Loop = 0
 Days = 0
@@ -249,7 +268,16 @@ Mins = 0
 Sec = 0
 
 
+
+
 function ConStatus(DisX,DisY,Contents,ConNumber,ConType,ELight,EPower,Containcount)
+if FLAG == 0 then
+ if TEST == 1 then
+  Contents[3] = 0
+ end
+end
+
+function ConData()
 prefix = {"CON","LIG","PWR"}
 local setupcon = {prefixcon= prefix[1], condata=Contents[7]}
 local setuppwr = {prefixpwr= prefix[3], pwrdata=Contents[7]}
@@ -263,6 +291,12 @@ Power = string.gsub("$prefixpwr $pwrdata", "%$(%w+)", setuppwr)
 ContStore = component.proxy(component.findComponent(Container)[1])
 conInv = ContStore:getInventories()[1]
 conSum = conInv.itemCount
+end
+
+if Contents[3] == 1 then else
+if pcall (ConData) then 
+
+ConData()
 
 if ConType == 0 then -- "Small"
 if Contents[1] == 50 then x = 1199 y = 450 z = 200 end
@@ -293,7 +327,6 @@ percent= round(rawpercent)
 if EnableScreen == true then
 textCol(1,1,1,1)
 
-if Contents[4] == 0 then
 write(DisX,DisY, ConNumber)
 DisX = DisX + 16
 write(DisX,DisY,Contents[2])
@@ -324,49 +357,64 @@ elseif
         write(DisX,DisY,"         ") 
         textCol(1,1,1,1)
       end
-end
-end
+   end
+
 
 --Screen List End
 
 if conSum > x then
   if Contents[6] == 1 then 
      if IND == 1 then 
-       LightSPL(Light,10.0, 0.0, 0.0,10.0)
+       LightSPL(Light,10.0, 0.0, 0.0,10.0,Contents)
         IND = 0
          computer.millis(1000)
           else
-           LightSPL(Light,10.0, 10.0, 10.0,0)
+           LightSPL(Light,10.0, 10.0, 10.0,0,Contents)
             IND = 1
              computer.millis(1000)
               end
 
 
-if ELight == true then LightSPL(Light,10.0, 0.0, 0.0,10.0) end
+if ELight == true then LightSPL(Light,10.0, 0.0, 0.0,10.0,Contents) end
  else
-  if ELight == true then LightSPL(Light,0.0,10.0, 0.0,10.0) end
+  if ELight == true then LightSPL(Light,0.0,10.0, 0.0,10.0,Contents) end
 end
   
-  if EPower == true then Connection(Power,false) end
+  if EPower == true then Connection(Power,false,Contents) end
   
 elseif conSum > y then
   
-  if ELight == true then LightSPL(Light,10.0,10.0, 0.0,10.0) end
+  if ELight == true then LightSPL(Light,10.0,10.0, 0.0,10.0,Contents) end
   
 elseif conSum < z then
 if Contents[6] == 1 then
-  if ELight == true then LightSPL(Light,0.0, 10.0, 0.0,10.0) end
+  if ELight == true then LightSPL(Light,0.0, 10.0, 0.0,10.0,Contents) end
  else
-  if ELight == true then LightSPL(Light,10.0, 0.0, 0.0,10.0) end
+  if ELight == true then LightSPL(Light,10.0, 0.0, 0.0,10.0,Contents) end
 end
-  if EPower == true then Connection(Power,true) end
+  if EPower == true then Connection(Power,true,Contents) end
   end
 
+else 
+FLAG = 1 print(ERR[3]..Contents[7]) Contents[3] = 1 end
+end
+gpu:setForeground(1,1,1,1)
+gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
 end
 -- Container Status Main End--
+
+
+
 -- Tanks Status Main Start ##############################################
 
-function FluidCon(DisX,DisY,Contents,TankNumber,ELight,EPower)
+function LiqStatus(DisX,DisY,Contents,TankNumber,ELight,EPower)
+if FLAG == 0 then
+ if TEST == 1 then
+  Contents[3] = 0
+  end
+end
+
+function LiqData()
 prefix = {"LIQ", "LIG", "PWR"}
 local setupliq = {prefixcon= prefix[1], condata=Contents[7]}
 local setuplig = {prefixlig= prefix[2], ligdata=Contents[7]}
@@ -382,6 +430,15 @@ RawLvl = Fluid.fluidContent
 LiqMax = round(RawMax)
 LiqLvl = round(RawLvl)
 
+end
+
+
+if Contents[3] == 1 then else
+if pcall (LiqData) then 
+
+LiqData()
+
+
 if Contents[1] == 400 then x = 399 y = 199 z = 50 end
 if Contents[1] == 2400 then x = 2399 y = 1199 z = 100 end 
 
@@ -389,7 +446,7 @@ if Contents[1] == 2400 then x = 2399 y = 1199 z = 100 end
 rawpercent = LiqLvl / Contents[1] * 100/1 
 percent= round(rawpercent)
 
-if Contents[4] == 0 then
+--if Contents[4] == 0 then
 write(DisX,DisY, TankNumber) 
 DisX = DisX + 16
 write(DisX,DisY,Contents[2])
@@ -435,31 +492,32 @@ if LiqLvl > x then
               end
 
 
-     if ELight == true then LightSPL(Light,10.0, 0.0, 0.0,10.0) end
+     if ELight == true then LightSPL(Light,10.0, 0.0, 0.0,10.0,Contents) end
     else
-  if ELight == true then LightSPL(Light,0.0,10.0, 0.0,10.0) end
+  if ELight == true then LightSPL(Light,0.0,10.0, 0.0,10.0,Contents) end
 end
-  if EPower == true then Connection(Power,false) end
+  if EPower == true then Connection(Power,false,Contents) end
 elseif LiqLvl > y then
-  if ELight == true then LightSPL(Light,10.0,10.0, 0.0,10.0) end
+  if ELight == true then LightSPL(Light,10.0,10.0, 0.0,10.0,Contents) end
  elseif LiqLvl < z then
 if Contents[6] == 1 then -- Is Radio Active?
-  if ELight == true then LightSPL(Light,0.0, 10.0, 0.0,10.0) end
+  if ELight == true then LightSPL(Light,0.0, 10.0, 0.0,10.0,Contents) end
  else
-  if ELight == true then LightSPL(Light,10.0, 0.0, 0.0,10.0) end
+  if ELight == true then LightSPL(Light,10.0, 0.0, 0.0,10.0,Contents) end
 end
-  if EPower == true then Connection(Power,true) end
+  if EPower == true then Connection(Power,true,Contents) end
  
   end
-
-
-
+--end
+else 
+FLAG = 1 print(ERR[3]..Contents[7]) Contents[3] = 1 end
 end
-textCol(1,1,1,1)
+gpu:setForeground(1,1,1,1)
+gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
 end -- END OF TANK FUNCTION
 
 
--- Screen System Main P2/3 ##############################################################################-- 
+-- Screen System Main P2/3 ############################################################################-- 
 --print(SystemScreenSys[1]..SystemScreenSys[2])
 function clearScreen()
   w,h=gpu:getSize()
@@ -520,10 +578,25 @@ end
 
 --- LightStatus Pole V2 ---
 LightSys = {"Light System Ver : ","2.0.1"}
-function LightSPL(LightNumber,RED,GREEN,BLUE,INTENSITY)
-ContLight = component.proxy(component.findComponent(LightNumber)[1])
+function LightSPL(LightNumber,RED,GREEN,BLUE,INTENSITY,Contents)
 
-ContLight:setColor(RED,GREEN,BLUE,INTENSITY)
+if FLAG == 0 then
+ if TEST == 1 then
+  Contents[4] = 0
+ end
+end
+
+function LigData() 
+ContLight = component.proxy(component.findComponent(LightNumber)[1])
+end
+
+if Contents[4] == 1 then else
+  if pcall (LigData) then
+   LigData()
+   ContLight:setColor(RED,GREEN,BLUE,INTENSITY)
+  else 
+   FLAG = 1 print(ERR[4]..Contents[7]) Contents[4] = 1 end
+  end
 end
 
 function Blink(r,g,b)
@@ -540,15 +613,34 @@ end
 --event.pull(1)
 end
 
---- LightStatus Pole V2 End ---
 
 
 --- Power Conections / Monitoring ---
 PowerSys = {"Power System Ver : ","2.0.0"}
-function Connection(x,y)
-Comp = component.proxy(component.findComponent(x)[1])
-Comp:setConnected(y)
+function Connection(x,y,Contents)
+if FLAG == 0 then
+ if TEST == 1 then
+  Contents[5] = 0
+  end
 end
+
+function GPwrSwitch()
+Comp = component.proxy(component.findComponent(x)[1])
+end
+
+
+if Contents[5] == 1 then else
+if pcall (GPwrSwitch) then
+
+GPwrSwitch()
+
+Comp:setConnected(y)
+
+else 
+ FLAG = 1 print(ERR[5]..Contents[7]) Contents[5] = 1 
+end
+end
+end --Function Connection End
 
 function CheckConnected(x,y)
 Comp = component.proxy(PWR[x])
@@ -561,16 +653,47 @@ connector = powermonpole:getPowerConnectors()[1]
 circuit = connector:getCircuit()
 end
 
-function PowerStatus(DisX,DisY,Network,Title)
-GetPowerData(Network)
+function PWRStatus(DisX,DisY,Contents)
+if FLAG == 0 then
+ if TEST == 1 then
+  Contents[3] = 0
+ end
+end
+
+function PWRData()
+prefix = {"MON","LIG","SWT"}
+local setupcon = {prefixcon= prefix[1], condata=Contents[7]}
+local setuppwr = {prefixpwr= prefix[3], pwrdata=Contents[7]}
+local setuplig = {prefixlig= prefix[2], ligdata=Contents[7]}
+
+PWRMon = string.gsub("$prefixcon $condata", "%$(%w+)", setupcon)
+Light = string.gsub("$prefixlig $ligdata", "%$(%w+)", setuplig)
+Switch = string.gsub("$prefixpwr $pwrdata", "%$(%w+)", setuppwr)
+
+powermonpole = component.proxy(component.findComponent(PWRMon)[1])
+connector = powermonpole:getPowerConnectors()[1]
+Circuit = connector:getCircuit()
+
+Production = Circuit.production 
+Capacity   = Circuit.capacity
+Consumption= Circuit.consumption
+Fused      = Circuit.isFuesed
+end
+
+
+if Contents[3] == 1 then else
+if pcall (PWRData) then
+
+PWRData()
+
 x = DisX
 y = DisY
-Production = circuit.production 
-Capacity   = circuit.capacity
-Consumption= circuit.consumption
-Fused      = circuit.isFuesed
+Production = Circuit.production 
+Capacity   = Circuit.capacity
+Consumption= Circuit.consumption
+Fused      = Circuit.isFuesed
 if EnableScreen == true then 
-write(x,y, "O-"..(Title).."---------------O")
+write(x,y, "O-"..(Contents[2]).."---------------O")
 y = y + 1
 write(x,y, "|                                |")
 y = y + 1
@@ -610,20 +733,50 @@ if AlertForAnyPWR == false then FLAG = 0 end
 progstat:setColor(0.0, 10.0, 0.0,10.0)
 end
 end
+  else FLAG = 1 print(ERR[6]..Contents[7]) Contents[3] = 1
+ end
+end
 gpu:setForeground(1,1,1,1)
 gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
 end
 
 
 
-function PowerBackUp(DisX,DisY,PWRProbe,PWRSwitch,Trigger,Title)
-GetPowerData(Network)
+
+function PWRBackUp(DisX,DisY,Contents)
+if FLAG == 0 then
+ if TEST == 1 then
+  Contents[3] = 0
+ end
+end
+
+function PWRData()
+prefix = {"BCK","LIG","SWT"}
+local setupcon = {prefixcon= prefix[1], condata=Contents[7]}
+local setuppwr = {prefixpwr= prefix[3], pwrdata=Contents[7]}
+local setuplig = {prefixlig= prefix[2], ligdata=Contents[7]}
+
+PWRMon = string.gsub("$prefixcon $condata", "%$(%w+)", setupcon)
+Light = string.gsub("$prefixlig $ligdata", "%$(%w+)", setuplig)
+Switch = string.gsub("$prefixpwr $pwrdata", "%$(%w+)", setuppwr)
+
+powermonpole = component.proxy(component.findComponent(PWRMon)[1])
+connector = powermonpole:getPowerConnectors()[1]
+Circuit = connector:getCircuit()
+
+Production = Circuit.production 
+Capacity   = Circuit.capacity
+Consumption= Circuit.consumption
+Fused      = Circuit.isFuesed
+end
+if Contents[3] == 1 then else
+if pcall (PWRData) then
+
+PWRData()
+
 x = DisX
 y = DisY
-Production = circuit.production 
-Capacity   = circuit.capacity
-Consumption= circuit.consumption
-Fused      = circuit.isFuesed
+
 if EnableScreen == true then 
 write(x,y, "O-------------------------------O")
 y = y + 1
@@ -642,56 +795,41 @@ y = DisY
 x = x + 2
 y = y + 1
 
-write(x,y,Title)
+write(x,y,Contents[2])
 y = y + 1
 write(x,y,"Consuption : "..round(Consumption))
 y = y + 1
-write(x,y,"Threshold  : "..(Trigger))
+write(x,y,"Threshold  : "..Contents[1])
 y = y + 1
 write(x,y,"Active     : ")
 
-if Consumption > Trigger then
-  Connection(PWRSwitch,true)
+ if Consumption > Contents[1] then
+  Connection(Switch,true, Contents)
   gpu:setForeground(0,1,0,1)
   gpu:setBackground(0,1,0,1)
   x = x + 13
   write(x,y,"###")
-else
-  Connection(PWRSwitch,false)
+ else
+  Connection(Switch,false, Contents)
   gpu:setForeground(1,0,0,1)
   gpu:setBackground(1,0,0,1)
   x = x + 13
-  write(x,y,"###")
+  write(x,y,"###") end
+
+    
+  end
+else FLAG = 1 print(ERR[6]..Contents[7]) Contents[3] = 1
+ end
 end
+
 gpu:setForeground(1,1,1,1)
 gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
-end
-end
+end -- PWRData()
 
 
 --- Power Connections End ---
 
---- Panel Lights [DISABLED]==WORK IN PROGRESS==
---EnableCPanel     = false -- Enable Control Panel Status Lights
--- Control Panel ############################
---PAN = {""} -- Still in Alpha and causes lag so disabled for now
---PLL = {10,10,10,10}
---PLI = {0.5} -- Panel Light Brightness
--- ##########################################
---PanelSys = {"Panel System Ver : ","Alpha"}
---function ChangePanelLight(a,s,x,y,i)
---Panel = component.proxy(PAN[a])
---if s == 2 then
---Panel:getModule(x,y):setColor(10.0,10.0,0.0,i)
---end
---if s == 1 then
---Panel:getModule(x,y):setColor(0.0,10.0,0.0,i)
---end
---if s == 0 then
---Panel:getModule(x,y):setColor(10.0,0.0,0.0,i)
---end
---end
---- Panel Lights End
+
 
 function SystemInfo(DisX,DisY) --83 0
 textCol(1,1,1,1)
@@ -726,6 +864,19 @@ write(x,y,"|")-- +33
 textCol(1,1,1,1)
 end
 
+function ErrorBoxDis(x,y)
+write(x,y,"O-[ System ] --------------------O")
+y = y + 1
+write(x,y,"|                                |")
+y = y + 1
+write(x,y,"|                                |")
+y = y + 1
+write(x,y,"|                                |")
+y = y + 1
+write(x,y,"|                                |")
+y = y + 1
+write(x,y,"O--------------------------------O")
+end
 
 -- Boot Loop -- Add anything thats needs to be loaded before the main loop here
 function Boot()
@@ -737,6 +888,7 @@ print("|",ProgName,"|")
 print("| By : "..By,"                |")
 print("| Prg Ver : "..Ver,"              |")
 print("| Mod Ver : "..MVer,"              |")
+print(Build)
 print("O--------------------------------O")
 
 if dev == 1 then
@@ -775,17 +927,9 @@ end
 --##########################################################################################################
 -- ** Add your containers to the erro check incase of accedential disconnection so the program can keep on *
 
+ITEMDISPLAY()
+ITEMLIST()
 
-  if fCont[1] == 0 then ORE() end
-  if fCont[2] == 0 then INGOTS() end
-  if fCont[3] == 0 then MATERIALS() end
-  if fCont[4] == 0 then COMPONENTS() end
-  if fCont[5] == 0 then FUELS() end
-  if fCont[6] == 0 then AMMO() end
-  if fCont[7] == 0 then SPECIAL() end
-  if fCont[8] == 0 then LIQUIDS() end
-  if fCont[9] == 0 then POWER() end
-  if fCont[10] == 0 then OTHER() end
 Loop = Loop + 1
 
 if Tick == 255 then
@@ -815,33 +959,22 @@ end
 function selfTest()
   if EnableStausLight == true then progstat:setColor(10.0, 0.0, 0.0,10.0) end
   print(ERR[2])
-  if pcall (ORE) then fCont[1]= 0 else fCont[1] = 1 print(ERR[3].."Ore")end
-  if pcall (INGOTS) then fCont[2]= 0 else fCont[2] = 1 print(ERR[3].."Ingots")end
-  if pcall (MATERIALS) then fCont[3]= 0 else fCont[3] = 1 print(ERR[3].."Materials")end
-  if pcall (COMPONENTS) then fCont[4]= 0 else fCont[4] = 1 print(ERR[3].."Components")end
-  if pcall (FUELS) then fCont[5]= 0 else fCont[5] = 1 print(ERR[3].."Fuels")end
-  if pcall (AMMO) then fCont[6]= 0 else fCont[6] = 1 print(ERR[3].."Ammo")end
-  if pcall (SPECIAL) then fCont[7]= 0 else fCont[7] = 1 print(ERR[3].."Special")end
-  if pcall (LIQUIDS) then fCont[8]= 0 else fCont[8] = 1 print(ERR[3].."Liquids")end
-  if pcall (POWER) then fCont[9]= 0 else fCont[9] = 1 print(ERR[3].."Power")end
-  if pcall (OTHER) then fCont[10]= 0 else fCont[10] = 1 print(ERR[3].."Other")end
-  
+  FLAG = 0
+  TEST = 1
 end
 
 
 while true do
 Boot()
-
-if pcall (MainLoop) then
+--print(FLAG)
+MainLoop()
+--ErrorBoxDis(0,50)
   if EnableStausLight == true then
    if FLAG == 0 then progstat:setColor(0.0, 10.0, 0.0,10.0) end
     if FLAG == 1 then Blink() end
   end
- else
-  FLAG = 1
-   print(ERR[1])
-    selfTest()
-end
+    
+if FLAG == 1 then if Sec == 30 then selfTest() end else TEST = 0 end
 
 -- Screen System Main P3/3 ##############################################################################--
 if EnableScreen == true then gpu:flush() end
