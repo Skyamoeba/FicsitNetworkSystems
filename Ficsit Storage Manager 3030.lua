@@ -172,8 +172,8 @@ BackUp1 = {3000,"Building 1",0,0,0,0,"BackUp1"}
 
 
 function ITEMDISPLAY()
-DisBoarder(0,0,9,true,"Storage Area")
-DisBoarder(0,14,1,true,"TANKS")
+--DisBoarder(0,0,9,true,"Storage Area")
+--DisBoarder(0,14,1,true,"TANKS")
 
 SystemInfo(83,0) -- Default 83,0
 end
@@ -184,15 +184,15 @@ end
 
 function ITEMLIST()
 -- Storage Items
-ConStatus(2,2,IronPlates,1,0,true,true)
+--ConStatus(2,2,IronPlates,1,0,true,true)
 
 -- Storage Liquids
-LiqStatus(2,16,Water,1,true,true)
+--LiqStatus(2,16,Water,1,true,true)
   
   
 -- Power Status / Backup
-PWRStatus(83,7,Storage)
-PWRBackUp(83,20,BackUp1)
+--PWRStatus(83,7,Storage)
+--PWRBackUp(83,20,BackUp1)
 
 
 
