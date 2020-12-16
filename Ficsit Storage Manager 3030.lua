@@ -14,7 +14,7 @@ LiqPercentages   = true
 
 
 -- ITEM LIST ############################################################################################
-                  ListVer = {"1.0.1"}
+                  ListVer = {"1.0.2"}
 -- Stacks,Display Name, ConErr, LigErr, PwrErr, RadioActive 1Y 0N, System Name 
                       VAL = {100 ,"Default                     ",0,0,0,0,"Default"}
 ---- Ores ----------------------------------------------------------------------------------------------9
@@ -71,9 +71,11 @@ LiqPercentages   = true
                     Motor = {50  ,"Motor                       ",0,0,0,0,"Motor"}
                 Quickwire = {500 ,"Quickwire                   ",0,0,0,0,"Quickwire"}
              CircuitBoard = {200 ,"CircuitBoard                ",0,0,0,0,"CircuitBoard"}
+         --AluminumCasing = {100 ,"Aluminum Casing             ",0,0,0,0,"AluminumCasing"}  -- Update 4   
                  Computer = {50  ,"Computer                    ",0,0,0,0,"Computer"}
-          QuantumComputer = {50  ,"QuantumComputer             ",0,0,0,0,"QuantumComputer"}
-           QuantumCrystal = {50  ,"Quantum Crystal             ",0,0,0,0,"QuantumCrystal"}
+        --QuantumComputer = {50  ,"QuantumComputer             ",0,0,0,0,"QuantumComputer"} -- Update 4?
+         --QuantumCrystal = {50  ,"Quantum Crystal             ",0,0,0,0,"QuantumCrystal"}  -- Update 4?
+             --DarkMatter = {50  ,"Dark Matter                 ",0,0,0,0,"DarkMatter"}      -- Update 4?
                 AILimiter = {100 ,"A.I. Limiter                ",0,0,0,0,"AILimiter"}
        HighSpeedConnector = {100 ,"High Speed Connector        ",0,0,0,0,"HighSpeedConnector"}
             Supercomputer = {50  ,"Supercomputer               ",0,0,0,0,"Supercomputer"}
@@ -97,6 +99,8 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
              PackagedFuel = {100 ,"PackagedFuel                ",0,0,0,0,"PackagedFuel"}
     PackagedLiquidBiofuel = {100 ,"PackagedLiquidBiofuel       ",0,0,0,0,"PackagedLiquidBiofuel"}
         PackagedTurbofuel = {100 ,"PackagedTurbofuel           ",0,0,0,0,"PackagedTurbofuel"}
+--PackagedAluminaSolution = {50 ,"Packaged Alumina Solution    ",0,0,0,0,"PackagedAluminaSolution"} -- Update 4
+   --PackagedSulfuricAcid = {50 ,"Packaged Sulfuric Acid       ",0,0,0,0,"PackagedSulfuricAcid"}    -- Update 4
            NuclearFuelRod = {50  ,"Nuclear Fuel Rod            ",0,0,0,0,"NuclearFuelRod"}
 -- Ammo ------------------------------------------------------------------------------------------------6
                  Nobelisk = {50  ,"Nobelisk                    ",0,0,0,0,"Nobelisk"}
@@ -112,8 +116,12 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
        VersatileFrameWork = {50  ,"Versatile FrameWork         ",0,0,0,0,"VersatileFrameWork"}
           AutomatedWiring = {50  ,"Automated Wiring            ",0,0,0,0,"AutomatedWiring"}
             ModularEngine = {50  ,"Modular Engine              ",0,0,0,0,"ModularEngine"}
-      AdaptiveControlUnit = {50  ,"Adaptive Control Unit       ",0,0,0,0,"AdaptiveControlUnit"} 
-             NuclearWaste = {500 ,"Nuclear Waste               ",0,0,1,1,"NuclearWaste"}
+      AdaptiveControlUnit = {50  ,"Adaptive Control Unit       ",0,0,0,0,"AdaptiveControlUnit"}
+  --MagneticFeldGenerator = {50  ,"Magnetic Feld Generator     ",0,0,0,0,"MagneticFeldGenerator"}  -- Update 4 
+ --AssemblyDirectorSystem = {50  ,"Assembly Director System    ",0,0,0,0,"AssemblyDirectorSystem"} -- Update 4 
+--ThermalPropulsionRocket = {50  ,"Thermal Propulsion Rocket   ",0,0,0,0,"ThermalPropulsionRocket"} -- Update 4 
+             NuclearWaste = {500 ,"Nuclear Waste               ",0,0,0,1,"NuclearWaste"}
+         --PlutoniumWaste = {500 ,"PlutoniumWaste              ",0,0,0,1,"PlutoniumWaste"} -- Update 4
 -- Liquids ----------------------------------------------------------------------------------------------
                      Fuel = {400 ,"Fuel                        ",0,0,0,0,"Fuel"}
                   BioFuel = {400 ,"Bio Fuel                    ",0,0,0,0,"BioFuel"}
@@ -172,8 +180,8 @@ BackUp1 = {3000,"Building 1",0,0,0,0,"BackUp1"}
 
 
 function ITEMDISPLAY()
---DisBoarder(0,0,9,true,"Storage Area")
---DisBoarder(0,14,1,true,"TANKS")
+DisBoarder(0,0,9,true,"ORE")
+DisBoarder(0,14,1,true,"TANKS")
 
 SystemInfo(83,0) -- Default 83,0
 end
@@ -183,19 +191,25 @@ end
 
 
 function ITEMLIST()
+-- Display
+
+
 -- Storage Items
---ConStatus(2,2,IronPlates,1,0,true,true)
+ConStatus(2,2,LimeStone,1,0,true,true)
+ConStatus(2,3,IronOre,2,0,true,true)
+ConStatus(2,4,CopperOre,3,0,true,true)
+ConStatus(2,5,CateriumOre,4,0,true,true)
+ConStatus(2,6,Coal,5,0,true,true)
+ConStatus(2,7,RawQuartz,6,0,true,true)
+ConStatus(2,8,Sulfur,7,0,true,true)
+ConStatus(2,9,Bauxite,8,0,true,true)
+ConStatus(2,10,Uranium,9,0,true,true)
 
--- Storage Liquids
---LiqStatus(2,16,Water,1,true,true)
-  
-  
--- Power Status / Backup
---PWRStatus(83,7,Storage)
---PWRBackUp(83,20,BackUp1)
+PWRStatus(83,7,Building1)
+PWRStatus(83,13,StatusWaterPwr)
+PWRBackUp(83,20,BackUp1)
 
-
-
+LiqStatus(2,16,Fuel,1,true,true)
 
 
 end --## ITEM LIST ############################################
