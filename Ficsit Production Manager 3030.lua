@@ -542,7 +542,7 @@ end -- END OF TANK FUNCTION
 
 -- Screen System Main P2/3 ############################################################################-- 
 --print(SystemScreenSys[1]..SystemScreenSys[2])
-function clearScreen()
+function clearScreen() -- Issue #8
   w,h = gpu:setSize(200,55)
   gpu:setForeground(1,1,1,1)
   gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
