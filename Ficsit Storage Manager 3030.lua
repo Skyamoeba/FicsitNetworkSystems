@@ -1,4 +1,4 @@
-Build = "| Build   : 061220-2233-1021-0005|"
+Build = "| Build   : 211220-2217-1021-0006|"
 
 
 -- Status Light #############################
@@ -12,9 +12,8 @@ EnableScreen     = true
 ConPercentages   = false
 LiqPercentages   = true
 
-
 -- ITEM LIST ############################################################################################
-                  ListVer = {"1.0.2"}
+                  ListVer = "1.0.2"
 -- Stacks,Display Name, ConErr, LigErr, PwrErr, RadioActive 1Y 0N, System Name 
                       VAL = {100 ,"Default                     ",0,0,0,0,"Default"}
 ---- Ores ----------------------------------------------------------------------------------------------9
@@ -121,7 +120,7 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
  --AssemblyDirectorSystem = {50  ,"Assembly Director System    ",0,0,0,0,"AssemblyDirectorSystem"} -- Update 4 
 --ThermalPropulsionRocket = {50  ,"Thermal Propulsion Rocket   ",0,0,0,0,"ThermalPropulsionRocket"} -- Update 4 
              NuclearWaste = {500 ,"Nuclear Waste               ",0,0,0,1,"NuclearWaste"}
-         --PlutoniumWaste = {500 ,"PlutoniumWaste              ",0,0,0,1,"PlutoniumWaste"} -- Update 4
+         --PlutoniumWaste = {500 ,"Plutonium Waste             ",0,0,0,1,"PlutoniumWaste"} -- Update 4
 -- Liquids ----------------------------------------------------------------------------------------------
                      Fuel = {400 ,"Fuel                        ",0,0,0,0,"Fuel"}
                   BioFuel = {400 ,"Bio Fuel                    ",0,0,0,0,"BioFuel"}
@@ -148,12 +147,11 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
 --#######################################################################################################
 
 -- Power Monitoring / Backup
-Building1  = {1 ,"Building 1",0,0,0,0,"Building1"}
-StatusWaterPwr = {1 ,"Building 2",0,0,0,0,"StatusWaterPwr"}
+               Building1  = {1 ,"Building 1      ",0,0,0,0,"Building1"}
+           StatusWaterPwr = {1 ,"Building 2      ",0,0,0,0,"StatusWaterPwr"}
 
-BackUp1 = {3000,"Building 1",0,0,0,0,"BackUp1"}
-
-
+                  BackUp1 = {3000,"Building 1 ",0,0,0,0,"BackUp1"}
+ 
 
 -- add below what each container is in the format below:
 
@@ -163,6 +161,7 @@ BackUp1 = {3000,"Building 1",0,0,0,0,"BackUp1"}
 -- Power        = PWRStatus(DisX,DisY,Power List Name For maonitoring)
 -- Backup Power = PWRBackUp(DisX,DisY,Power list name for Backup Power station)
 -- Boarders     = DisBoarder(DisX,DisY,LinesToDraw,Title,TitleText)
+-- LayoutMode   = LayoutMode(X,Y) -- Helps with the layout process
 -- ###############################################################################
 
 -- Example For containers ########################################################
@@ -182,8 +181,9 @@ BackUp1 = {3000,"Building 1",0,0,0,0,"BackUp1"}
 function ITEMDISPLAY()
 DisBoarder(0,0,9,true,"ORE")
 DisBoarder(0,14,1,true,"TANKS")
-
+DisBoarder(127,0,1,true,"Nuclear Power Plant")
 SystemInfo(83,0) -- Default 83,0
+LayoutMode(23,23)
 end
 
 
@@ -204,13 +204,14 @@ ConStatus(2,7,RawQuartz,6,0,true,true)
 ConStatus(2,8,Sulfur,7,0,true,true)
 ConStatus(2,9,Bauxite,8,0,true,true)
 ConStatus(2,10,Uranium,9,0,true,true)
+ConStatus(129,2,NuclearWaste,1,1,true,false)
 
+-- Power Monitoring
 PWRStatus(83,7,Building1)
 PWRStatus(83,13,StatusWaterPwr)
 PWRBackUp(83,20,BackUp1)
 
 LiqStatus(2,16,Fuel,1,true,true)
-
 
 end --## ITEM LIST ############################################
 
@@ -218,6 +219,7 @@ end --## ITEM LIST ############################################
 
 --############################################################################
 -- Anything after this point you should not have to change.
+-- The program will let you know if anything will need updating above.
 
 
 
@@ -270,6 +272,7 @@ dev = 0
 local ProgName = ("Ficsit Production Manager 3030")
 local By = ("Skyamoeba")
 local Ver = ("1.0.21")
+local UVer = {"1.0.21","1.0.2","0.0.10"} -- keep this here until you can pull pastes from Git / pastebin
 local MVer = ("0.0.10")
 local BFlag = 0
 Page = 0
@@ -283,12 +286,18 @@ Sec = 0
 
 
 
-
 function ConStatus(DisX,DisY,Contents,ConNumber,ConType,ELight,EPower,Containcount)
 if FLAG == 0 then
  if TEST == 1 then
   Contents[3] = 0
  end
+end
+
+function LayoutMode(X,Y)
+textCol(1,0,0,1) 
+write(X,Y,"#") 
+gpu:setForeground(1,1,1,1)
+gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
 end
 
 function ConData()
@@ -534,7 +543,7 @@ end -- END OF TANK FUNCTION
 -- Screen System Main P2/3 ############################################################################-- 
 --print(SystemScreenSys[1]..SystemScreenSys[2])
 function clearScreen()
-  w,h=gpu:getSize()
+  w,h = gpu:setSize(200,55)
   gpu:setForeground(1,1,1,1)
   gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
   gpu:fill(0,0,w,h," ")
@@ -586,6 +595,14 @@ t=t+1
 end
 write(s,t,"O--------------O--------------------------------O----------O-----------O")
 end
+
+function LayoutMode(X,Y)
+textCol(1,0,0,1) 
+write(X,Y,"#") 
+gpu:setForeground(1,1,1,1)
+gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
+end
+
 
 -- Screen System Main  P2/3 End --
 
@@ -878,6 +895,63 @@ write(x,y,"|")-- +33
 textCol(1,1,1,1)
 end
 
+function ForceClear()
+write(0,0, "                                                                                                                                                                                                          ")
+write(0,1, "                                                                                                                                                                                                          ")
+write(0,2, "                                                                                                                                                                                                          ")
+write(0,3, "                                                                                                                                                                                                          ")
+write(0,4, "                                                                                                                                                                                                          ")
+write(0,5, "                                                                                                                                                                                                          ")
+write(0,6, "                                                                                                                                                                                                          ")
+write(0,7, "                                                                                                                                                                                                          ")
+write(0,8, "                                                                                                                                                                                                          ")
+write(0,9, "                                                                                                                                                                                                          ")
+write(0,10,"                                                                                                                                                                                                          ")
+write(0,11,"                                                                                                                                                                                                          ")
+write(0,12,"                                                                                                                                                                                                          ")
+write(0,13,"                                                                                                                                                                                                          ")
+write(0,14,"                                                                                                                                                                                                          ")
+write(0,15,"                                                                                                                                                                                                          ")
+write(0,16,"                                                                                                                                                                                                          ")
+write(0,17,"                                                                                                                                                                                                          ")
+write(0,18,"                                                                                                                                                                                                          ")
+write(0,19,"                                                                                                                                                                                                          ")
+write(0,20,"                                                                                                                                                                                                          ")
+write(0,21,"                                                                                                                                                                                                          ")
+write(0,22,"                                                                                                                                                                                                          ")
+write(0,23,"                                                                                                                                                                                                          ")
+write(0,24,"                                                                                                                                                                                                          ")
+write(0,25,"                                                                                                                                                                                                          ")
+write(0,26,"                                                                                                                                                                                                          ")
+write(0,27,"                                                                                                                                                                                                          ")
+write(0,28,"                                                                                                                                                                                                          ")
+write(0,29,"                                                                                                                                                                                                          ")
+write(0,30,"                                                                                                                                                                                                          ")
+write(0,31,"                                                                                                                                                                                                          ")
+write(0,32,"                                                                                                                                                                                                          ")
+write(0,33,"                                                                                                                                                                                                          ")
+write(0,34,"                                                                                                                                                                                                          ")
+write(0,35,"                                                                                                                                                                                                          ")
+write(0,36,"                                                                                                                                                                                                          ")
+write(0,37,"                                                                                                                                                                                                          ")
+write(0,38,"                                                                                                                                                                                                          ")
+write(0,39,"                                                                                                                                                                                                          ")
+write(0,40,"                                                                                                                                                                                                          ")
+write(0,41,"                                                                                                                                                                                                          ")
+write(0,42,"                                                                                                                                                                                                          ")
+write(0,43,"                                                                                                                                                                                                          ")
+write(0,44,"                                                                                                                                                                                                          ")
+write(0,45,"                                                                                                                                                                                                          ")
+write(0,46,"                                                                                                                                                                                                          ")
+write(0,47,"                                                                                                                                                                                                          ")
+write(0,48,"                                                                                                                                                                                                          ")
+write(0,49,"                                                                                                                                                                                                          ")
+write(0,50,"                                                                                                                                                                                                          ")
+write(0,51,"                                                                                                                                                                                                          ")
+write(0,52,"                                                                                                                                                                                                          ")
+write(0,53,"                                                                                                                                                                                                          ")
+write(0,54,"                                                                                                                                                                                                          ")
+end
 function ErrorBoxDis(x,y)
 write(x,y,"O-[ System ] --------------------O")
 y = y + 1
@@ -912,6 +986,10 @@ end
 BFlag = 1
 if EnableStausLight == true then progstat:setColor(10.0, 0.0, 10.0,5.0) end
 print("[System] : Checking....")
+if Ver == UVer[1] then else print("[System] : New Update On Git") end
+if ListVer == UVer[2] then else print("[System] : List is not current version") end
+if MVer == UVer[3] then else print("[System] : Program may not be compactable with this mod version") end
+
 sleep(5)
 if STA == "" then print("[System] : Program needs setting up") else print("[System] : Boot Ok!") end
 end
@@ -940,9 +1018,10 @@ end
   function MainLoop() if EnableScreen == true then clearScreen() end 
 --##########################################################################################################
 -- ** Add your containers to the erro check incase of accedential disconnection so the program can keep on *
-
 ITEMDISPLAY()
 ITEMLIST()
+
+
 
 Loop = Loop + 1
 
@@ -979,9 +1058,11 @@ end
 
 
 while true do
+ForceClear()
 Boot()
 --print(FLAG)
 MainLoop()
+
 --ErrorBoxDis(0,50)
   if EnableStausLight == true then
    if FLAG == 0 then progstat:setColor(0.0, 10.0, 0.0,10.0) end
