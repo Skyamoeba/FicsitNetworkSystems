@@ -1,4 +1,4 @@
-Build = "| Build   : 211220-2217-1021-0006|"
+Build = "| Build   : 211220-2217-1022-0006|"
 
 
 -- Status Light #############################
@@ -271,8 +271,8 @@ progstat = component.proxy(component.findComponent(STA)[1])
 dev = 0
 local ProgName = ("Ficsit Production Manager 3030")
 local By = ("Skyamoeba")
-local Ver = ("1.0.21")
-local UVer = {"1.0.21","1.0.2","0.0.10"} -- keep this here until you can pull pastes from Git / pastebin
+local Ver = ("1.0.22")
+local UVer = {"1.0.22","1.0.2","0.0.10"} -- keep this here until you can pull pastes from Git / pastebin
 local MVer = ("0.0.10")
 local BFlag = 0
 Page = 0
