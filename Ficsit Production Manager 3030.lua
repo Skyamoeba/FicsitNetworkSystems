@@ -1,10 +1,11 @@
-Build = "| Build   : 211220-2217-1022-0001|"
+Build = "| Build   : 291220-2020-1022-0003|"
 
 
 -- Status Light #############################
 STA = "StatusLight"
 -- ##########################################
 
+FicsItNetworksVer= "0.0.11"
 CBeep            = false
 EnableStausLight = true
 AlertForAnyPWR   = true -- if this is true then any pwr issues will need change the status light, false it will not trigger onlyin the display you will see issues
@@ -100,7 +101,7 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
         PackagedTurbofuel = {100 ,"PackagedTurbofuel           ",0,0,0,0,"PackagedTurbofuel"}
 --PackagedAluminaSolution = {50 ,"Packaged Alumina Solution    ",0,0,0,0,"PackagedAluminaSolution"} -- Update 4
    --PackagedSulfuricAcid = {50 ,"Packaged Sulfuric Acid       ",0,0,0,0,"PackagedSulfuricAcid"}    -- Update 4
-           NuclearFuelRod = {50  ,"Nuclear Fuel Rod            ",0,0,0,0,"NuclearFuelRod"}
+           NuclearFuelRod = {50  ,"Nuclear Fuel Rod            ",0,0,0,1,"NuclearFuelRod"}
 -- Ammo ------------------------------------------------------------------------------------------------6
                  Nobelisk = {50  ,"Nobelisk                    ",0,0,0,0,"Nobelisk"}
                 GasFilter = {50  ,"Gas Filter                  ",0,0,0,0,"GasFilter"}
@@ -183,7 +184,7 @@ DisBoarder(0,0,9,true,"ORE")
 DisBoarder(0,14,1,true,"TANKS")
 DisBoarder(127,0,1,true,"Nuclear Power Plant")
 SystemInfo(83,0) -- Default 83,0
-LayoutMode(23,23)
+--LayoutMode(23,23)
 end
 
 
@@ -272,8 +273,8 @@ dev = 0
 local ProgName = ("Ficsit Production Manager 3030")
 local By = ("Skyamoeba")
 local Ver = ("1.0.22")
-local UVer = {"1.0.22","1.0.2","0.0.10"} -- keep this here until you can pull pastes from Git / pastebin
-local MVer = ("0.0.10")
+local UVer = {"1.0.22","1.0.2","0.0.11"} -- keep this here until you can pull pastes from Git / pastebin
+local MVer = ("0.0.11")
 local BFlag = 0
 Page = 0
 fCont = {0,0,0,0,0,0,0,0,0,0,0}
@@ -370,14 +371,20 @@ elseif
    if EPower == true then 
     write(DisX,DisY,"Refilling")
      else
+      if Contents[6] == 0 then
+       textCol(1,0,0,1)
+        else
+         textCol(0,1,0,1)
+          end
       write(DisX,DisY,"Low      ")
      end 
   elseif conSum == 0 then
      textCol(1,0,0,1)
-     write(DisX,DisY,"Empty")
+        write(DisX,DisY,"Empty    ")
       else 
         textCol(1,1,0,1)
-        write(DisX,DisY,"         ") 
+        --write(DisX,DisY,"         ")
+        write(DisX,DisY,"Normal   ")
         textCol(1,1,1,1)
       end
    end
@@ -497,7 +504,7 @@ elseif
      write(DisX,DisY,"Empty")
       else 
         textCol(1,1,0,1)
-        write(DisX,DisY,"         ") 
+        write(DisX,DisY,"Normal   ") 
         textCol(1,1,1,1)
       end
 
