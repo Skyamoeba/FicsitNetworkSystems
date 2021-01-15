@@ -1,4 +1,4 @@
-Build = "| Build   : 291220-2020-1022-0003|"
+Build = "| Build   : 150121-1946-1023-0004|"
 
 
 -- Status Light #############################
@@ -14,7 +14,7 @@ ConPercentages   = false
 LiqPercentages   = true
 
 -- ITEM LIST ############################################################################################
-                  ListVer = "1.0.2"
+                  ListVer = "2.0.0"
 -- Stacks,Display Name, ConErr, LigErr, PwrErr, RadioActive 1Y 0N, System Name 
                       VAL = {100 ,"Default                     ",0,0,0,0,"Default"}
 ---- Ores ----------------------------------------------------------------------------------------------9
@@ -66,6 +66,7 @@ LiqPercentages   = true
                    Fabric = {100 ,"Fabric                      ",0,0,0,0,"Fabric"}
              ModularFrame = {50  ,"Modular Frame               ",0,0,0,0,"ModularFrame"}
         HeavyModularFrame = {50  ,"Heavy Modular Frame         ",0,0,0,0,"HeavyModularFrame"}
+      --FusedModularFrame = {50  ,"Fused Modular Frame         ",0,0,0,0,"FusedModularFrame"} -- Update 4
                     Rotor = {100 ,"Rotor                       ",0,0,0,0,"Rotor"}
                    Stator = {100 ,"Stator                      ",0,0,0,0,"Stator"}
                     Motor = {50  ,"Motor                       ",0,0,0,0,"Motor"}
@@ -101,6 +102,7 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
         PackagedTurbofuel = {100 ,"PackagedTurbofuel           ",0,0,0,0,"PackagedTurbofuel"}
 --PackagedAluminaSolution = {50 ,"Packaged Alumina Solution    ",0,0,0,0,"PackagedAluminaSolution"} -- Update 4
    --PackagedSulfuricAcid = {50 ,"Packaged Sulfuric Acid       ",0,0,0,0,"PackagedSulfuricAcid"}    -- Update 4
+     --PackagedNitricAcid = {50 ,"Packaged Nitric Acid         ",0,0,0,0,"PackagedNitricAcid"}      -- Update 4
            NuclearFuelRod = {50  ,"Nuclear Fuel Rod            ",0,0,0,1,"NuclearFuelRod"}
 -- Ammo ------------------------------------------------------------------------------------------------6
                  Nobelisk = {50  ,"Nobelisk                    ",0,0,0,0,"Nobelisk"}
@@ -131,6 +133,8 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
           HeavyOilResidue = {400 ,"Heavy Oil Residue           ",0,0,0,0,"HeavyOilResidue"}
           AluminaSolution = {400 ,"Alumina Solution            ",0,0,0,0,"AluminaSolution"}
              SulfuricAcid = {400 ,"SulfuricAcid                ",0,0,0,0,"SulfuricAcid"}
+-- Gases ------------------------------------------------------------------------------------------------
+                 Nitrogen = {400 ,"Nitrogen                    ",0,0,0,0,"Nitrogen"} -- UPDATE 4
 -- Holiday Events ---------------------------------------------------------------------------------------
 -- FICS*MAS
               FICSMASGift = {500 ,"FICSMAS Gift                ",0,0,0,0,"FICSMASGift"}
@@ -158,7 +162,8 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
 
 -- Examples -- ###################################################################
 -- Containers   = ConStatus(DisX,DisY,Contents,ConNumber,ConType,ELight,EPower)
--- Tanks        = LiqStatus(DisX,DisY,Contents,TankNumber,ELight,EPower)
+-- Tanks Liquid = LiqStatus(DisX,DisY,Contents,TankNumber,ELight,EPower)
+-- Tanks Gases  = GasStatus(DisX,DisY,Contents,TankNumber,ELight,EPower)
 -- Power        = PWRStatus(DisX,DisY,Power List Name For maonitoring)
 -- Backup Power = PWRBackUp(DisX,DisY,Power list name for Backup Power station)
 -- Boarders     = DisBoarder(DisX,DisY,LinesToDraw,Title,TitleText)
@@ -272,8 +277,8 @@ progstat = component.proxy(component.findComponent(STA)[1])
 dev = 0
 local ProgName = ("Ficsit Production Manager 3030")
 local By = ("Skyamoeba")
-local Ver = ("1.0.22")
-local UVer = {"1.0.22","1.0.2","0.0.11"} -- keep this here until you can pull pastes from Git / pastebin
+local Ver = ("1.0.23")
+local UVer = {"1.0.23","1.0.2","0.0.11"} -- keep this here until you can pull pastes from Git / pastebin
 local MVer = ("0.0.11")
 local BFlag = 0
 Page = 0
@@ -435,7 +440,7 @@ end
 
 
 
--- Tanks Status Main Start ##############################################
+-- Liquids Tanks Status Main Start ##############################################
 
 function LiqStatus(DisX,DisY,Contents,TankNumber,ELight,EPower)
 if FLAG == 0 then
@@ -545,6 +550,122 @@ end
 gpu:setForeground(1,1,1,1)
 gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
 end -- END OF TANK FUNCTION
+
+
+--Gas status coming in update 4 (NOT TESTED)
+function GasStatus(DisX,DisY,Contents,TankNumber,ELight,EPower)
+if FLAG == 0 then
+ if TEST == 1 then
+  Contents[3] = 0
+  end
+end
+
+function GasData()
+prefix = {"GAS", "LIG", "PWR"}
+local setupgas = {prefixcon= prefix[1], condata=Contents[7]}
+local setuplig = {prefixlig= prefix[2], ligdata=Contents[7]}
+local setuppwr = {prefixpwr= prefix[3], pwrdata=Contents[7]}
+Tank = string.gsub("$prefixcon $condata", "%$(%w+)", setupliq)
+Light = string.gsub("$prefixlig $ligdata", "%$(%w+)", setuplig)
+Power = string.gsub("$prefixpwr $pwrdata", "%$(%w+)", setuppwr)
+
+Gas = component.proxy(component.findComponent(Tank)[1])
+Name = Fluid.getFluidType
+RawMax = Fluid.maxFluidContent
+RawLvl = Fluid.fluidContent
+GasMax = round(RawMax)
+GasLvl = round(RawLvl)
+
+end
+
+
+if Contents[3] == 1 then else
+if pcall (GasData) then 
+
+GasData()
+
+
+if Contents[1] == 400 then x = 399 y = 199 z = 50 end
+if Contents[1] == 2400 then x = 2399 y = 1199 z = 100 end 
+
+--a = x + 1
+rawpercent = LiqLvl / Contents[1] * 100/1 
+percent= round(rawpercent)
+
+--if Contents[4] == 0 then
+write(DisX,DisY, TankNumber) 
+DisX = DisX + 16
+write(DisX,DisY,Contents[2])
+DisX = DisX + 32
+if LiqPercentages == false then
+write(DisX,DisY,LiqLvl.."    ")
+else
+write(DisX,DisY,percent.."%   ")
+end
+DisX = DisX + 11
+
+if GasLvl > x then 
+ textCol(0,1,0,1) 
+  write(DisX,DisY,"Full     ") 
+elseif
+ GasLvl < z then 
+  textCol(1,1,0,1) 
+   if EPower == true then 
+    write(DisX,DisY,"Refilling")
+     else
+      write(DisX,DisY,"Low      ")
+       end 
+    elseif GasLvl == 0 then
+     textCol(1,0,0,1)
+     write(DisX,DisY,"Empty")
+      else 
+        textCol(1,1,0,1)
+        write(DisX,DisY,"Normal   ") 
+        textCol(1,1,1,1)
+      end
+
+
+if GasLvl > x then
+  if Contents[6] == 1 then 
+     if IND == 1 then 
+       LightSPL(Light,10.0, 0.0, 0.0,10.0)
+        IND = 0
+         computer.millis(1000)
+          else
+           LightSPL(Light,10.0, 10.0, 10.0,0)
+            IND = 1
+             computer.millis(1000)
+              end
+
+
+     if ELight == true then LightSPL(Light,10.0, 0.0, 0.0,10.0,Contents) end
+    else
+  if ELight == true then LightSPL(Light,0.0,10.0, 0.0,10.0,Contents) end
+end
+  if EPower == true then Connection(Power,false,Contents) end
+elseif GasLvl > y then
+  if ELight == true then LightSPL(Light,10.0,10.0, 0.0,10.0,Contents) end
+ elseif GasLvl < z then
+if Contents[6] == 1 then -- Is Radio Active?
+  if ELight == true then LightSPL(Light,0.0, 10.0, 0.0,10.0,Contents) end
+ else
+  if ELight == true then LightSPL(Light,10.0, 0.0, 0.0,10.0,Contents) end
+end
+  if EPower == true then Connection(Power,true,Contents) end
+ 
+  end
+--end
+else 
+FLAG = 1 print(ERR[3]..Contents[7]) Contents[3] = 1 end
+end
+gpu:setForeground(1,1,1,1)
+gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
+end -- END OF GAS TANK FUNCTION
+
+
+
+
+
 
 
 -- Screen System Main P2/3 ############################################################################-- 
