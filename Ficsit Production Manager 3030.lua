@@ -1,4 +1,4 @@
-Build = "| Build   : 150121-1946-1023-0004|"
+Build = "150121-2135-1023-0015"
 
 
 -- Status Light #############################
@@ -278,7 +278,7 @@ dev = 0
 local ProgName = ("Ficsit Production Manager 3030")
 local By = ("Skyamoeba")
 local Ver = ("1.0.23")
-local UVer = {"1.0.23","1.0.2","0.0.11"} -- keep this here until you can pull pastes from Git / pastebin
+local UVer = {"1.0.23","2.0.0","0.0.11"} -- keep this here until you can pull pastes from Git / pastebin
 local MVer = ("0.0.11")
 local BFlag = 0
 Page = 0
@@ -671,10 +671,10 @@ end -- END OF GAS TANK FUNCTION
 -- Screen System Main P2/3 ############################################################################-- 
 --print(SystemScreenSys[1]..SystemScreenSys[2])
 function clearScreen() -- Issue #8
-  w,h = gpu:setSize(200,55)
   gpu:setForeground(1,1,1,1)
   gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
-  gpu:fill(0,0,w,h," ")
+  gpu:fill(0,0,200,55," ")
+  --gpu:flush()
   return w,h
 end
 
@@ -1023,63 +1023,6 @@ write(x,y,"|")-- +33
 textCol(1,1,1,1)
 end
 
-function ForceClear()
-write(0,0, "                                                                                                                                                                                                          ")
-write(0,1, "                                                                                                                                                                                                          ")
-write(0,2, "                                                                                                                                                                                                          ")
-write(0,3, "                                                                                                                                                                                                          ")
-write(0,4, "                                                                                                                                                                                                          ")
-write(0,5, "                                                                                                                                                                                                          ")
-write(0,6, "                                                                                                                                                                                                          ")
-write(0,7, "                                                                                                                                                                                                          ")
-write(0,8, "                                                                                                                                                                                                          ")
-write(0,9, "                                                                                                                                                                                                          ")
-write(0,10,"                                                                                                                                                                                                          ")
-write(0,11,"                                                                                                                                                                                                          ")
-write(0,12,"                                                                                                                                                                                                          ")
-write(0,13,"                                                                                                                                                                                                          ")
-write(0,14,"                                                                                                                                                                                                          ")
-write(0,15,"                                                                                                                                                                                                          ")
-write(0,16,"                                                                                                                                                                                                          ")
-write(0,17,"                                                                                                                                                                                                          ")
-write(0,18,"                                                                                                                                                                                                          ")
-write(0,19,"                                                                                                                                                                                                          ")
-write(0,20,"                                                                                                                                                                                                          ")
-write(0,21,"                                                                                                                                                                                                          ")
-write(0,22,"                                                                                                                                                                                                          ")
-write(0,23,"                                                                                                                                                                                                          ")
-write(0,24,"                                                                                                                                                                                                          ")
-write(0,25,"                                                                                                                                                                                                          ")
-write(0,26,"                                                                                                                                                                                                          ")
-write(0,27,"                                                                                                                                                                                                          ")
-write(0,28,"                                                                                                                                                                                                          ")
-write(0,29,"                                                                                                                                                                                                          ")
-write(0,30,"                                                                                                                                                                                                          ")
-write(0,31,"                                                                                                                                                                                                          ")
-write(0,32,"                                                                                                                                                                                                          ")
-write(0,33,"                                                                                                                                                                                                          ")
-write(0,34,"                                                                                                                                                                                                          ")
-write(0,35,"                                                                                                                                                                                                          ")
-write(0,36,"                                                                                                                                                                                                          ")
-write(0,37,"                                                                                                                                                                                                          ")
-write(0,38,"                                                                                                                                                                                                          ")
-write(0,39,"                                                                                                                                                                                                          ")
-write(0,40,"                                                                                                                                                                                                          ")
-write(0,41,"                                                                                                                                                                                                          ")
-write(0,42,"                                                                                                                                                                                                          ")
-write(0,43,"                                                                                                                                                                                                          ")
-write(0,44,"                                                                                                                                                                                                          ")
-write(0,45,"                                                                                                                                                                                                          ")
-write(0,46,"                                                                                                                                                                                                          ")
-write(0,47,"                                                                                                                                                                                                          ")
-write(0,48,"                                                                                                                                                                                                          ")
-write(0,49,"                                                                                                                                                                                                          ")
-write(0,50,"                                                                                                                                                                                                          ")
-write(0,51,"                                                                                                                                                                                                          ")
-write(0,52,"                                                                                                                                                                                                          ")
-write(0,53,"                                                                                                                                                                                                          ")
-write(0,54,"                                                                                                                                                                                                          ")
-end
 function ErrorBoxDis(x,y)
 write(x,y,"O-[ System ] --------------------O")
 y = y + 1
@@ -1099,12 +1042,18 @@ function Boot()
 
 
 if BFlag == 0 then
+clearScreen()
+write(0,0,"Ficsit Production Manager 3030")
+write(0,1,"Prg Ver : "..Ver)
+write(0,2,"Mod Ver : "..MVer)
+write(0,3,"Build   : "..Build)
+gpu:flush()
 print("O--------------------------------O")
 print("|",ProgName,"|")
 print("| By : "..By,"                |")
 print("| Prg Ver : "..Ver,"              |")
 print("| Mod Ver : "..MVer,"              |")
-print(Build)
+print("| Build   : "..Build.."|")
 print("O--------------------------------O")
 
 if dev == 1 then
@@ -1117,10 +1066,9 @@ print("[System] : Checking....")
 if Ver == UVer[1] then else print("[System] : New Update On Git") end
 if ListVer == UVer[2] then else print("[System] : List is not current version") end
 if MVer == UVer[3] then else print("[System] : Program may not be compactable with this mod version") end
-
 sleep(5)
 if STA == "" then print("[System] : Program needs setting up") else print("[System] : Boot Ok!") end
-end
+ end
 end
 -- End of Boot Loop --################################################################################
 
@@ -1186,7 +1134,7 @@ end
 
 
 while true do
-ForceClear()
+write(0,0,"Booting System Up")
 Boot()
 --print(FLAG)
 MainLoop()
