@@ -1,4 +1,4 @@
-Build = "150121-2135-1023-0015"
+Build = "150121-2135-1023-0016"
 
 
 -- Status Light #############################
@@ -201,7 +201,7 @@ function ITEMLIST()
 
 
 -- Storage Items
-ConStatus(2,2,LimeStone,1,0,true,true)
+ConStatus(2,2,LimeStone,1,0,true,false)
 ConStatus(2,3,IronOre,2,0,true,true)
 ConStatus(2,4,CopperOre,3,0,true,true)
 ConStatus(2,5,CateriumOre,4,0,true,true)
@@ -289,6 +289,7 @@ Days = 0
 Hrs = 0
 Mins = 0
 Sec = 0
+Cat = 0
 
 
 
@@ -367,7 +368,7 @@ write(DisX,DisY,percent.."%   ")
 end
 DisX = DisX + 11
 
-if conSum > x then 
+if conSum > x then  -- Rewrite this bit
  textCol(0,1,0,1) 
   write(DisX,DisY,"Full     ") 
 elseif
@@ -389,12 +390,14 @@ elseif
       else 
         textCol(1,1,0,1)
         --write(DisX,DisY,"         ")
+        if Contents[6] == 1 then 
+        write(DisX,DisY,"Caution  ")
+        else
         write(DisX,DisY,"Normal   ")
+        end
         textCol(1,1,1,1)
       end
-   end
-
-
+end
 --Screen List End
 
 if conSum > x then
@@ -1097,7 +1100,11 @@ end
 ITEMDISPLAY()
 ITEMLIST()
 
-
+if Cat == 0 then
+Cat = 1
+else
+Cat = 0
+end
 
 Loop = Loop + 1
 
