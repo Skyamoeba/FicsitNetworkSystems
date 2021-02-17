@@ -1,17 +1,19 @@
-Build = "150121-2135-1023-0016"
+Build = "310121-1431-1024-0017"
 
 
 -- Status Light #############################
 STA = "StatusLight"
 -- ##########################################
 
-FicsItNetworksVer= "0.0.11"
+FicsItNetworksVer= "0.1.0"
 CBeep            = false
 EnableStausLight = true
 AlertForAnyPWR   = true -- if this is true then any pwr issues will need change the status light, false it will not trigger onlyin the display you will see issues
 EnableScreen     = true
 ConPercentages   = false
 LiqPercentages   = true
+-- ServerAddress = "" -- Work in progress
+-- NetworkCard   = "" -- Work in progress
 
 -- ITEM LIST ############################################################################################
                   ListVer = "2.0.0"
@@ -186,8 +188,8 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
 
 function ITEMDISPLAY()
 DisBoarder(0,0,9,true,"ORE")
-DisBoarder(0,14,1,true,"TANKS")
-DisBoarder(127,0,1,true,"Nuclear Power Plant")
+DisBoarder(0,14,8,true,"TANKS")
+DisBoarder(127,0,25,true,"Materials")
 SystemInfo(83,0) -- Default 83,0
 --LayoutMode(23,23)
 end
@@ -204,20 +206,20 @@ function ITEMLIST()
 ConStatus(2,2,LimeStone,1,0,true,false)
 ConStatus(2,3,IronOre,2,0,true,true)
 ConStatus(2,4,CopperOre,3,0,true,true)
-ConStatus(2,5,CateriumOre,4,0,true,true)
-ConStatus(2,6,Coal,5,0,true,true)
-ConStatus(2,7,RawQuartz,6,0,true,true)
-ConStatus(2,8,Sulfur,7,0,true,true)
-ConStatus(2,9,Bauxite,8,0,true,true)
-ConStatus(2,10,Uranium,9,0,true,true)
-ConStatus(129,2,NuclearWaste,1,1,true,false)
+--ConStatus(2,5,CateriumOre,4,0,true,true)
+--ConStatus(2,6,Coal,5,0,true,true)
+--ConStatus(2,7,RawQuartz,6,0,true,true)
+--ConStatus(2,8,Sulfur,7,0,true,true)
+--ConStatus(2,9,Bauxite,8,0,true,true)
+--ConStatus(2,10,Uranium,9,0,true,true)
+--ConStatus(129,2,NuclearWaste,1,1,true,false)
 
 -- Power Monitoring
-PWRStatus(83,7,Building1)
-PWRStatus(83,13,StatusWaterPwr)
-PWRBackUp(83,20,BackUp1)
+--PWRStatus(83,7,Building1)
+--PWRStatus(83,13,StatusWaterPwr)
+--PWRBackUp(83,20,BackUp1)
 
-LiqStatus(2,16,Fuel,1,true,true)
+--LiqStatus(2,16,Fuel,1,true,true)
 
 end --## ITEM LIST ############################################
 
@@ -230,12 +232,23 @@ end --## ITEM LIST ############################################
 
 
 
+--############################################################################
+--TEST AREA
+--############################################################################
+server = "0A6327714236EABC4C7C879916A8C876" -- (network Card)
+netcard = component.proxy("2C3CF1544EF6734B3844E5BD84A556B2")
 
+function Send(port,receiver,message)
+netcard:open(port)
+netcard:send(receiver, port, message)
+end
 
+--Send(0001,server, "Booting")
 
-
-
-
+--print("Message sent to server")
+--############################################################################
+--TEST AREA
+--############################################################################
 
 
 
@@ -250,6 +263,7 @@ end --## ITEM LIST ############################################
 if EnableScreen == true then 
 SystemScreenSys = {"System Screen Sys Ver: ","1.0.1"}
 gpu = computer.getGPUs()[1]
+--local screen = computer.proxy(component.findComponent("Monitor"))[1]
 screen = computer.getScreens()[1]
 gpu:bindScreen(screen)
 w,h = gpu:setSize(200,55)
@@ -277,9 +291,9 @@ progstat = component.proxy(component.findComponent(STA)[1])
 dev = 0
 local ProgName = ("Ficsit Production Manager 3030")
 local By = ("Skyamoeba")
-local Ver = ("1.0.23")
-local UVer = {"1.0.23","2.0.0","0.0.11"} -- keep this here until you can pull pastes from Git / pastebin
-local MVer = ("0.0.11")
+local Ver = ("1.0.24")
+local UVer = {"1.0.24","2.0.0","0.0.11"} -- keep this here until you can pull pastes from Git / pastebin
+local MVer = ("0.1.0")
 local BFlag = 0
 Page = 0
 fCont = {0,0,0,0,0,0,0,0,0,0,0}
@@ -304,7 +318,7 @@ function LayoutMode(X,Y)
 textCol(1,0,0,1) 
 write(X,Y,"#") 
 gpu:setForeground(1,1,1,1)
-gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
+gpu:setBackground(0,0,0,0)
 end
 
 function ConData()
@@ -321,6 +335,8 @@ Power = string.gsub("$prefixpwr $pwrdata", "%$(%w+)", setuppwr)
 ContStore = component.proxy(component.findComponent(Container)[1])
 conInv = ContStore:getInventories()[1]
 conSum = conInv.itemCount
+itemStack = conInv:getStack(0)
+itemName = itemStack.item.type:getName()
 end
 
 if Contents[3] == 1 then else
@@ -367,10 +383,10 @@ else
 write(DisX,DisY,percent.."%   ")
 end
 DisX = DisX + 11
-
+--print(itemName)
 if conSum > x then  -- Rewrite this bit
  textCol(0,1,0,1) 
-  write(DisX,DisY,"Full     ") 
+  write(DisX,DisY,"Full     ")
 elseif
  conSum < z then 
   textCol(1,1,0,1) 
@@ -437,7 +453,7 @@ else
 FLAG = 1 print(ERR[3]..Contents[7]) Contents[3] = 1 end
 end
 gpu:setForeground(1,1,1,1)
-gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
+gpu:setBackground(0,0,0,0)
 end
 -- Container Status Main End--
 
@@ -551,7 +567,7 @@ else
 FLAG = 1 print(ERR[3]..Contents[7]) Contents[3] = 1 end
 end
 gpu:setForeground(1,1,1,1)
-gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
+gpu:setBackground(0,0,0,0)
 end -- END OF TANK FUNCTION
 
 
@@ -662,7 +678,7 @@ else
 FLAG = 1 print(ERR[3]..Contents[7]) Contents[3] = 1 end
 end
 gpu:setForeground(1,1,1,1)
-gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
+gpu:setBackground(0,0,0,0)
 end -- END OF GAS TANK FUNCTION
 
 
@@ -675,14 +691,15 @@ end -- END OF GAS TANK FUNCTION
 --print(SystemScreenSys[1]..SystemScreenSys[2])
 function clearScreen() -- Issue #8
   gpu:setForeground(1,1,1,1)
-  gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
+  gpu:setBackground(0,0,0,0)
+  --gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
   gpu:fill(0,0,200,55," ")
   --gpu:flush()
   return w,h
 end
 
 function textCol(x,y,z,i)
-gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
+gpu:setBackground(0,0,0,0)
 gpu:setForeground(x,y,z,i)
 end
 
@@ -691,7 +708,7 @@ gpu:setText(x,y,z)
 end
 
 function clearLoc(x,y,z)
-gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
+gpu:setBackground(0,0,0,0)
 gpu:setForeground(1,1,1,1)  
 gpu:setText(x,y,z)
 end
@@ -731,7 +748,7 @@ function LayoutMode(X,Y)
 textCol(1,0,0,1) 
 write(X,Y,"#") 
 gpu:setForeground(1,1,1,1)
-gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
+gpu:setBackground(0,0,0,0)
 end
 
 
