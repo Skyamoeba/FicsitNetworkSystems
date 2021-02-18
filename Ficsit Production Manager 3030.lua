@@ -336,7 +336,8 @@ ContStore = component.proxy(component.findComponent(Container)[1])
 conInv = ContStore:getInventories()[1]
 conSum = conInv.itemCount
 itemStack = conInv:getStack(0)
-itemName = itemStack.item.type.name
+itemName = itemStack.item.type:getName() -- v0.0.11
+--itemName = itemStack.item.type.name -- M update v0.1.0
 end
 
 if Contents[3] == 1 then else
@@ -454,7 +455,7 @@ FLAG = 1 print(ERR[3]..Contents[7]) Contents[3] = 1
 end
 end
 gpu:setForeground(1,1,1,1)
-gpu:setBackground(0,0,0,0)
+gpu:setBackground(0,0,0,0) -- update mv0.1.0
 end
 -- Container Status Main End--
 
