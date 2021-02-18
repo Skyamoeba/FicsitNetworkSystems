@@ -1,11 +1,11 @@
-Build = "310121-1431-1024-0017"
+Build = "130221-2202-1024-0018"
 
 
 -- Status Light #############################
 STA = "StatusLight"
 -- ##########################################
 
-FicsItNetworksVer= "0.1.0"
+FicsItNetworksVer= "0.0.11"
 CBeep            = false
 EnableStausLight = true
 AlertForAnyPWR   = true -- if this is true then any pwr issues will need change the status light, false it will not trigger onlyin the display you will see issues
@@ -187,9 +187,9 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
 
 
 function ITEMDISPLAY()
-DisBoarder(0,0,9,true,"ORE")
-DisBoarder(0,14,8,true,"TANKS")
-DisBoarder(127,0,25,true,"Materials")
+--DisBoarder(0,0,9,true,"ORE")
+--DisBoarder(0,14,8,true,"TANKS")
+--DisBoarder(127,0,25,true,"Materials")
 SystemInfo(83,0) -- Default 83,0
 --LayoutMode(23,23)
 end
@@ -203,9 +203,9 @@ function ITEMLIST()
 
 
 -- Storage Items
-ConStatus(2,2,LimeStone,1,0,true,false)
-ConStatus(2,3,IronOre,2,0,true,true)
-ConStatus(2,4,CopperOre,3,0,true,true)
+--ConStatus(2,2,LimeStone,1,0,false,false) -- Name a container: CON B1 LimeStone to run this lie and get started. If you add a light name it : LIG B1 LimeStone . If you add power : PWR B1 LimeStone
+--ConStatus(2,3,IronOre,2,0,true,true)
+--ConStatus(2,4,CopperOre,3,0,true,true)
 --ConStatus(2,5,CateriumOre,4,0,true,true)
 --ConStatus(2,6,Coal,5,0,true,true)
 --ConStatus(2,7,RawQuartz,6,0,true,true)
@@ -219,7 +219,7 @@ ConStatus(2,4,CopperOre,3,0,true,true)
 --PWRStatus(83,13,StatusWaterPwr)
 --PWRBackUp(83,20,BackUp1)
 
---LiqStatus(2,16,Fuel,1,true,true)
+--LiqStatus(2,16,Fuel,0,false,false)
 
 end --## ITEM LIST ############################################
 
@@ -293,7 +293,7 @@ local ProgName = ("Ficsit Production Manager 3030")
 local By = ("Skyamoeba")
 local Ver = ("1.0.24")
 local UVer = {"1.0.24","2.0.0","0.0.11"} -- keep this here until you can pull pastes from Git / pastebin
-local MVer = ("0.1.0")
+local MVer = ("0.0.11")
 local BFlag = 0
 Page = 0
 fCont = {0,0,0,0,0,0,0,0,0,0,0}
@@ -336,7 +336,7 @@ ContStore = component.proxy(component.findComponent(Container)[1])
 conInv = ContStore:getInventories()[1]
 conSum = conInv.itemCount
 itemStack = conInv:getStack(0)
-itemName = itemStack.item.type:getName()
+itemName = itemStack.item.type.name
 end
 
 if Contents[3] == 1 then else
@@ -450,7 +450,8 @@ end
   end
 
 else 
-FLAG = 1 print(ERR[3]..Contents[7]) Contents[3] = 1 end
+FLAG = 1 print(ERR[3]..Contents[7]) Contents[3] = 1 
+end
 end
 gpu:setForeground(1,1,1,1)
 gpu:setBackground(0,0,0,0)
@@ -459,7 +460,7 @@ end
 
 
 
--- Liquids Tanks Status Main Start ##############################################
+-- Tanks Status Main Start ##############################################
 
 function LiqStatus(DisX,DisY,Contents,TankNumber,ELight,EPower)
 if FLAG == 0 then
@@ -528,7 +529,7 @@ elseif
      write(DisX,DisY,"Empty")
       else 
         textCol(1,1,0,1)
-        write(DisX,DisY,"Normal   ") 
+        write(DisX,DisY,"         ") 
         textCol(1,1,1,1)
       end
 
@@ -567,9 +568,8 @@ else
 FLAG = 1 print(ERR[3]..Contents[7]) Contents[3] = 1 end
 end
 gpu:setForeground(1,1,1,1)
-gpu:setBackground(0,0,0,0)
+gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
 end -- END OF TANK FUNCTION
-
 
 --Gas status coming in update 4 (NOT TESTED)
 function GasStatus(DisX,DisY,Contents,TankNumber,ELight,EPower)
