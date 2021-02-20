@@ -1,4 +1,4 @@
-Build = "180221-2202-1024-0018"
+Build = "200221-2311-1025-0019"
 
 
 -- Status Light #############################
@@ -154,7 +154,7 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
 --#######################################################################################################
 
 -- Power Monitoring / Backup
-               Building1  = {1 ,"Building 1      ",0,0,0,0,"Building1"}
+               PowerMain  = {1 ,"Building 1      ",0,0,0,0,"PowerMain"}
            StatusWaterPwr = {1 ,"Building 2      ",0,0,0,0,"StatusWaterPwr"}
 
                   BackUp1 = {3000,"Building 1 ",0,0,0,0,"BackUp1"}
@@ -187,9 +187,10 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
 
 
 function ITEMDISPLAY()
---DisBoarder(0,0,9,true,"ORE")
---DisBoarder(0,14,8,true,"TANKS")
---DisBoarder(127,0,25,true,"Materials")
+DisBoarder(0,0,9,true,"ORE")
+DisBoarder(0,14,8,true,"TANKS")
+DisBoarder(127,0,25,true,"Materials")
+DisBoarder(127,30,10,true,"Materials2")
 SystemInfo(83,0) -- Default 83,0
 --LayoutMode(23,23)
 end
@@ -203,7 +204,7 @@ function ITEMLIST()
 
 
 -- Storage Items
---ConStatus(2,2,LimeStone,1,0,false,false) -- Name a container: CON B1 LimeStone to run this lie and get started. If you add a light name it : LIG B1 LimeStone . If you add power : PWR B1 LimeStone
+ConStatus(2,2,LimeStone,1,0,true,true)
 --ConStatus(2,3,IronOre,2,0,true,true)
 --ConStatus(2,4,CopperOre,3,0,true,true)
 --ConStatus(2,5,CateriumOre,4,0,true,true)
@@ -215,11 +216,11 @@ function ITEMLIST()
 --ConStatus(129,2,NuclearWaste,1,1,true,false)
 
 -- Power Monitoring
---PWRStatus(83,7,Building1)
+PWRStatus(83,7,PowerMain)
 --PWRStatus(83,13,StatusWaterPwr)
---PWRBackUp(83,20,BackUp1)
+PWRBackUp(83,20,BackUp1)
 
---LiqStatus(2,16,Fuel,0,false,false)
+LiqStatus(2,16,Water,0,true,true)
 
 end --## ITEM LIST ############################################
 
@@ -235,8 +236,8 @@ end --## ITEM LIST ############################################
 --############################################################################
 --TEST AREA
 --############################################################################
-server = "0A6327714236EABC4C7C879916A8C876" -- (network Card)
-netcard = component.proxy("2C3CF1544EF6734B3844E5BD84A556B2")
+--server = "0A6327714236EABC4C7C879916A8C876" -- (network Card)
+--netcard = component.proxy("2C3CF1544EF6734B3844E5BD84A556B2")
 
 function Send(port,receiver,message)
 netcard:open(port)
@@ -291,8 +292,8 @@ progstat = component.proxy(component.findComponent(STA)[1])
 dev = 0
 local ProgName = ("Ficsit Production Manager 3030")
 local By = ("Skyamoeba")
-local Ver = ("1.0.24")
-local UVer = {"1.0.24","2.0.0","0.0.11"} -- keep this here until you can pull pastes from Git / pastebin
+local Ver = ("1.0.25")
+local UVer = {"1.0.25","2.0.0","0.0.11"} -- keep this here until you can pull pastes from Git / pastebin
 local MVer = ("0.0.11")
 local BFlag = 0
 Page = 0
@@ -336,7 +337,7 @@ ContStore = component.proxy(component.findComponent(Container)[1])
 conInv = ContStore:getInventories()[1]
 conSum = conInv.itemCount
 itemStack = conInv:getStack(0)
-itemName = itemStack.item.type:getName() -- v0.0.11
+itemName = itemStack.item.type:getName()
 --itemName = itemStack.item.type.name -- M update v0.1.0
 end
 
@@ -455,7 +456,7 @@ FLAG = 1 print(ERR[3]..Contents[7]) Contents[3] = 1
 end
 end
 gpu:setForeground(1,1,1,1)
-gpu:setBackground(0,0,0,0) -- update mv0.1.0
+gpu:setBackground(0,0,0,0)
 end
 -- Container Status Main End--
 
@@ -913,11 +914,11 @@ if AlertForAnyPWR == false then FLAG = 0 end
 progstat:setColor(0.0, 10.0, 0.0,10.0)
 end
 end
-  else FLAG = 1 print(ERR[6]..Contents[7]) Contents[3] = 1
+  --else FLAG = 1 print(ERR[6]..Contents[7]) Contents[3] = 1
  end
 end
 gpu:setForeground(1,1,1,1)
-gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
+gpu:setBackground(0,0,0,0)
 end
 
 
@@ -1158,13 +1159,14 @@ function selfTest()
 end
 
 
+
 while true do
 write(0,0,"Booting System Up")
 Boot()
 --print(FLAG)
 MainLoop()
 
---ErrorBoxDis(0,50)
+ErrorBoxDis(0,49)
   if EnableStausLight == true then
    if FLAG == 0 then progstat:setColor(0.0, 10.0, 0.0,10.0) end
     if FLAG == 1 then Blink() end
