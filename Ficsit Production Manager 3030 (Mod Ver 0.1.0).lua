@@ -5,7 +5,7 @@ Build = "180221-2202-1025-0000"
 STA = "StatusLight"
 -- ##########################################
 
-FicsItNetworksVer= "0.0.11"
+FicsItNetworksVer= "0.1.0"
 CBeep            = false
 EnableStausLight = true
 AlertForAnyPWR   = true -- if this is true then any pwr issues will need change the status light, false it will not trigger onlyin the display you will see issues
@@ -293,7 +293,7 @@ local ProgName = ("Ficsit Production Manager 3030")
 local By = ("Skyamoeba")
 local Ver = ("1.0.25")
 local UVer = {"1.0.25","2.0.0","0.0.11"} -- keep this here until you can pull pastes from Git / pastebin
-local MVer = ("0.0.11")
+local MVer = ("0.1.0")
 local BFlag = 0
 Page = 0
 fCont = {0,0,0,0,0,0,0,0,0,0,0}
