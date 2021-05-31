@@ -1075,12 +1075,6 @@ y = y + 1
 if Status == 3 then write(x,y,"Time Till E/F: "..round(TimeFull))
 elseif Status == 4 then write(x,y,"Time Till E/F: "..round(TimeEmpty))
 else write(x,y,"Time Till E/F: N/A") end
-
-
-
-
-
-
 y = y + 1
 write(x,y,"Consumption  : "..round(Incoming))
 y = y + 1
@@ -1091,11 +1085,6 @@ if Status == 1 then x = x + 15 gpu:setForeground(0,0,0,1) gpu:setBackground(1,1,
 if Status == 2 then x = x + 15 gpu:setForeground(0,0,0,1) gpu:setBackground(0,1,0,1) write(x,y,"Idle Full ") end
 if Status == 3 then x = x + 15 gpu:setForeground(0,0,0,1) gpu:setBackground(0,1,0,1) write(x,y,"Power In  ") end
 if Status == 4 then x = x + 15 gpu:setForeground(0,0,0,1) gpu:setBackground(1,0,0,1) write(x,y,"Power Out ") end
---gpu:setForeground(1,0,0,1) - RED
---gpu:setBackground(1,0,0,1)
---gpu:setForeground(0,1,0,1) -Green
---gpu:setBackground(0,1,0,1)
-
 end -- EnableScreen
 
 
