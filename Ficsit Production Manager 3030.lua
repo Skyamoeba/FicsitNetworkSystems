@@ -1,23 +1,23 @@
--- WORKS ONLY WITH MOD VER: 0.0.11 !!!!
-Build = "200221-2311-1025-0019"
+Build = "310521-2016-1026-0028"
 
 
 -- Status Light #############################
 STA = "StatusLight"
 -- ##########################################
 
-FicsItNetworksVer= "0.0.11"
+FicsItNetworksVer= "0.2.1"
 CBeep            = false
 EnableStausLight = true
 AlertForAnyPWR   = true -- if this is true then any pwr issues will need change the status light, false it will not trigger onlyin the display you will see issues
 EnableScreen     = true
 ConPercentages   = false
-LiqPercentages   = true
+LiqPercentages   = false
+GasPercentages   = false
 -- ServerAddress = "" -- Work in progress
 -- NetworkCard   = "" -- Work in progress
 
 -- ITEM LIST ############################################################################################
-                  ListVer = "2.0.0"
+                  ListVer = "4.0.0"
 -- Stacks,Display Name, ConErr, LigErr, PwrErr, RadioActive 1Y 0N, System Name 
                       VAL = {100 ,"Default                     ",0,0,0,0,"Default"}
 ---- Ores ----------------------------------------------------------------------------------------------9
@@ -29,6 +29,7 @@ LiqPercentages   = true
                 RawQuartz = {100 ,"Raw Quartz                  ",0,0,0,0,"RawQuartz"}
                    Sulfur = {100 ,"Sulfur                      ",0,0,0,0,"Sulfur"}
                   Bauxite = {100 ,"Bauxite                     ",0,0,0,0,"Bauxite"}
+                   SAMOre = {100 ,"SAMOre                      ",0,0,0,0,"SAMOre"}
                   Uranium = {100 ,"Uranium                     ",0,0,0,0,"Uranium"}
 ---- Ingots --------------------------------------------------------------------------------------------5
                 IronIngot = {100 ,"Iron Ingot                  ",0,0,0,0,"IronIngot"}
@@ -37,7 +38,7 @@ LiqPercentages   = true
                SteelIngot = {100 ,"Steel Ingot                 ",0,0,0,0,"SteelIngot"}
             AluminumIngot = {100 ,"Aluminum Ingot              ",0,0,0,0,"AluminumIngot"}
 ---- Materials ----------------------------------------------------------------------------------------25
-                 Concrete = {100 ,"Concrete                    ",0,0,0,0,"Concrete"}
+                 Concrete = {500 ,"Concrete                    ",0,0,0,0,"Concrete"}
             QuartzCrystal = {100 ,"Quartz Crystal              ",0,0,0,0,"QuartzCrystal"}
              PolymerResin = {200 ,"PolymerResin                ",0,0,0,0,"PolymerResin"}
             PetroleumCoke = {200 ,"PetroleumCoke               ",0,0,0,0,"PetroleumCoke"} 
@@ -45,15 +46,15 @@ LiqPercentages   = true
                    Silica = {100 ,"Silica                      ",0,0,0,0,"Silica"}
               BlackPowder = {100 ,"Black Powder                ",0,0,0,0,"BlackPowder"}
                      Wire = {500 ,"Wire                        ",0,0,0,0,"Wire"}
-                    Cable = {100 ,"Cable                       ",0,0,0,0,"Cable"}
-                 IronRods = {100 ,"Iron Rods                   ",0,0,0,0,"IronRods"}
+                    Cable = {200 ,"Cable                       ",0,0,0,0,"Cable"}
+                 IronRods = {200 ,"Iron Rods                   ",0,0,0,0,"IronRods"}
                    Screws = {500 ,"Screws                      ",0,0,0,0,"Screws"}
-               IronPlates = {100 ,"Iron Plates                 ",0,0,0,0,"IronPlates"}
+               IronPlates = {200 ,"Iron Plates                 ",0,0,0,0,"IronPlates"}
       ReinforcedIronPlate = {100 ,"Reinforced Iron Plate       ",0,0,0,0,"ReinforcedIronPlate"}
-              CopperSheet = {100 ,"Copper Sheet                ",0,0,0,0,"CopperSheet"}
+              CopperSheet = {200 ,"Copper Sheet                ",0,0,0,0,"CopperSheet"}
       AlcladAluminumSheet = {100 ,"Alclad Aluminum Sheet       ",0,0,0,0,"AlcladAluminumSheet"}   
-                  Plastic = {100 ,"Plastic                     ",0,0,0,0,"Plastic"}                 
-                   Rubber = {100 ,"Rubber                      ",0,0,0,0,"Rubber"}
+                  Plastic = {200 ,"Plastic                     ",0,0,0,0,"Plastic"}                 
+                   Rubber = {200 ,"Rubber                      ",0,0,0,0,"Rubber"}
             PackagedWater = {100 ,"Packaged Water              ",0,0,0,0,"PackagedWater"}
                 SteelPipe = {100 ,"Steel Pipe                  ",0,0,0,0,"SteelPipe"}
                 SteelBeam = {100 ,"Steel Beam                  ",0,0,0,0,"SteelBeam"}
@@ -69,17 +70,14 @@ LiqPercentages   = true
                    Fabric = {100 ,"Fabric                      ",0,0,0,0,"Fabric"}
              ModularFrame = {50  ,"Modular Frame               ",0,0,0,0,"ModularFrame"}
         HeavyModularFrame = {50  ,"Heavy Modular Frame         ",0,0,0,0,"HeavyModularFrame"}
-      --FusedModularFrame = {50  ,"Fused Modular Frame         ",0,0,0,0,"FusedModularFrame"} -- Update 4
+        FusedModularFrame = {50  ,"Fused Modular Frame         ",0,0,0,0,"FusedModularFrame"}
                     Rotor = {100 ,"Rotor                       ",0,0,0,0,"Rotor"}
                    Stator = {100 ,"Stator                      ",0,0,0,0,"Stator"}
                     Motor = {50  ,"Motor                       ",0,0,0,0,"Motor"}
                 Quickwire = {500 ,"Quickwire                   ",0,0,0,0,"Quickwire"}
              CircuitBoard = {200 ,"CircuitBoard                ",0,0,0,0,"CircuitBoard"}
-         --AluminumCasing = {100 ,"Aluminum Casing             ",0,0,0,0,"AluminumCasing"}  -- Update 4   
+           AluminumCasing = {100 ,"Aluminum Casing             ",0,0,0,0,"AluminumCasing"}  
                  Computer = {50  ,"Computer                    ",0,0,0,0,"Computer"}
-        --QuantumComputer = {50  ,"QuantumComputer             ",0,0,0,0,"QuantumComputer"} -- Update 4?
-         --QuantumCrystal = {50  ,"Quantum Crystal             ",0,0,0,0,"QuantumCrystal"}  -- Update 4?
-             --DarkMatter = {50  ,"Dark Matter                 ",0,0,0,0,"DarkMatter"}      -- Update 4?
                 AILimiter = {100 ,"A.I. Limiter                ",0,0,0,0,"AILimiter"}
        HighSpeedConnector = {100 ,"High Speed Connector        ",0,0,0,0,"HighSpeedConnector"}
             Supercomputer = {50  ,"Supercomputer               ",0,0,0,0,"Supercomputer"}
@@ -103,9 +101,10 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
              PackagedFuel = {100 ,"PackagedFuel                ",0,0,0,0,"PackagedFuel"}
     PackagedLiquidBiofuel = {100 ,"PackagedLiquidBiofuel       ",0,0,0,0,"PackagedLiquidBiofuel"}
         PackagedTurbofuel = {100 ,"PackagedTurbofuel           ",0,0,0,0,"PackagedTurbofuel"}
---PackagedAluminaSolution = {50 ,"Packaged Alumina Solution    ",0,0,0,0,"PackagedAluminaSolution"} -- Update 4
-   --PackagedSulfuricAcid = {50 ,"Packaged Sulfuric Acid       ",0,0,0,0,"PackagedSulfuricAcid"}    -- Update 4
-     --PackagedNitricAcid = {50 ,"Packaged Nitric Acid         ",0,0,0,0,"PackagedNitricAcid"}      -- Update 4
+  PackagedAluminaSolution = {50  ,"Packaged Alumina Solution   ",0,0,0,0,"PackagedAluminaSolution"}
+     PackagedSulfuricAcid = {50  ,"Packaged Sulfuric Acid      ",0,0,0,0,"PackagedSulfuricAcid"}
+       PackagedNitricAcid = {50  ,"Packaged Nitric Acid        ",0,0,0,0,"PackagedNitricAcid"}
+      PackagedNitrogenGas = {50  ,"Packaged Nitrogen Gas       ",0,0,0,0,"PackagedNitrogenGas"}
            NuclearFuelRod = {50  ,"Nuclear Fuel Rod            ",0,0,0,1,"NuclearFuelRod"}
 -- Ammo ------------------------------------------------------------------------------------------------6
                  Nobelisk = {50  ,"Nobelisk                    ",0,0,0,0,"Nobelisk"}
@@ -122,22 +121,23 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
           AutomatedWiring = {50  ,"Automated Wiring            ",0,0,0,0,"AutomatedWiring"}
             ModularEngine = {50  ,"Modular Engine              ",0,0,0,0,"ModularEngine"}
       AdaptiveControlUnit = {50  ,"Adaptive Control Unit       ",0,0,0,0,"AdaptiveControlUnit"}
-  --MagneticFeldGenerator = {50  ,"Magnetic Feld Generator     ",0,0,0,0,"MagneticFeldGenerator"}  -- Update 4 
- --AssemblyDirectorSystem = {50  ,"Assembly Director System    ",0,0,0,0,"AssemblyDirectorSystem"} -- Update 4 
---ThermalPropulsionRocket = {50  ,"Thermal Propulsion Rocket   ",0,0,0,0,"ThermalPropulsionRocket"} -- Update 4 
-             NuclearWaste = {500 ,"Nuclear Waste               ",0,0,0,1,"NuclearWaste"}
-         --PlutoniumWaste = {500 ,"Plutonium Waste             ",0,0,0,1,"PlutoniumWaste"} -- Update 4
+    MagneticFeldGenerator = {50  ,"Magnetic Feld Generator     ",0,0,0,0,"MagneticFeldGenerator"}  -- Update 4 
+   AssemblyDirectorSystem = {50  ,"Assembly Director System    ",0,0,0,0,"AssemblyDirectorSystem"} -- Update 4 
+  ThermalPropulsionRocket = {50  ,"Thermal Propulsion Rocket   ",0,0,0,0,"ThermalPropulsionRocket"} -- Update 4 
+        NonFissileUranium = {500 ,"Non-Fissile Uranium         ",0,0,0,1,"NonFissileUranium"}
+             UraniumWaste = {500 ,"Uranium Waste               ",0,0,0,1,"UraniumWaste"}
+           PlutoniumWaste = {500 ,"Plutonium Waste             ",0,0,0,1,"PlutoniumWaste"} -- Update 4
 -- Liquids ----------------------------------------------------------------------------------------------
                      Fuel = {400 ,"Fuel                        ",0,0,0,0,"Fuel"}
                   BioFuel = {400 ,"Bio Fuel                    ",0,0,0,0,"BioFuel"}
                 TurboFuel = {400 ,"Turbo Fuel                  ",0,0,0,0,"TurboFuel"}
-                    Water = {400 ,"Water                       ",0,0,0,0,"Water"}
+                    Water = {2400 ,"Water                       ",0,0,0,0,"Water"}
                       Oil = {400 ,"Oil                         ",0,0,0,0,"Oil"}
           HeavyOilResidue = {400 ,"Heavy Oil Residue           ",0,0,0,0,"HeavyOilResidue"}
           AluminaSolution = {400 ,"Alumina Solution            ",0,0,0,0,"AluminaSolution"}
              SulfuricAcid = {400 ,"SulfuricAcid                ",0,0,0,0,"SulfuricAcid"}
 -- Gases ------------------------------------------------------------------------------------------------
-                 Nitrogen = {400 ,"Nitrogen                    ",0,0,0,0,"Nitrogen"} -- UPDATE 4
+                 Nitrogen = {2400 ,"Nitrogen                    ",0,0,0,0,"Nitrogen"} -- UPDATE 4
 -- Holiday Events ---------------------------------------------------------------------------------------
 -- FICS*MAS
               FICSMASGift = {500 ,"FICSMAS Gift                ",0,0,0,0,"FICSMASGift"}
@@ -157,6 +157,8 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
 -- Power Monitoring / Backup
                PowerMain  = {1 ,"Building 1      ",0,0,0,0,"PowerMain"}
            StatusWaterPwr = {1 ,"Building 2      ",0,0,0,0,"StatusWaterPwr"}
+
+                  Battery = {1 ,"Battery 1       ",0,0,0,0,"Battery"}
 
                   BackUp1 = {3000,"Building 1 ",0,0,0,0,"BackUp1"}
  
@@ -191,7 +193,6 @@ function ITEMDISPLAY()
 DisBoarder(0,0,9,true,"ORE")
 DisBoarder(0,14,8,true,"TANKS")
 DisBoarder(127,0,25,true,"Materials")
-DisBoarder(127,30,10,true,"Materials2")
 SystemInfo(83,0) -- Default 83,0
 --LayoutMode(23,23)
 end
@@ -218,10 +219,12 @@ ConStatus(2,2,LimeStone,1,0,true,true)
 
 -- Power Monitoring
 PWRStatus(83,7,PowerMain)
+BatStatus(83,30,Battery)
 --PWRStatus(83,13,StatusWaterPwr)
 PWRBackUp(83,20,BackUp1)
 
 LiqStatus(2,16,Water,0,true,true)
+GasStatus(2,17,Nitrogen,1,true,true)
 
 end --## ITEM LIST ############################################
 
@@ -237,8 +240,8 @@ end --## ITEM LIST ############################################
 --############################################################################
 --TEST AREA
 --############################################################################
---server = "0A6327714236EABC4C7C879916A8C876" -- (network Card)
---netcard = component.proxy("2C3CF1544EF6734B3844E5BD84A556B2")
+server = "0A6327714236EABC4C7C879916A8C876" -- (network Card)
+netcard = component.proxy("2C3CF1544EF6734B3844E5BD84A556B2")
 
 function Send(port,receiver,message)
 netcard:open(port)
@@ -268,7 +271,7 @@ gpu = computer.getGPUs()[1]
 --local screen = computer.proxy(component.findComponent("Monitor"))[1]
 screen = computer.getScreens()[1]
 gpu:bindScreen(screen)
-w,h = gpu:setSize(200,55)
+w,h = gpu:setSize(200,45) --200 , 55
 colors = {{0,0,0,0},{0,0,0,0},{1,0,0,1},{1,0,0,1},{0,1,0,1},{0,1,0,1},{0,0,1,1},{0,0,1,1},{1,1,1,1},{1,1,1,1}}
 end
 -- System Screen System P1/3 End --
@@ -293,9 +296,9 @@ progstat = component.proxy(component.findComponent(STA)[1])
 dev = 0
 local ProgName = ("Ficsit Production Manager 3030")
 local By = ("Skyamoeba")
-local Ver = ("1.0.25")
-local UVer = {"1.0.25","2.0.0","0.0.11"} -- keep this here until you can pull pastes from Git / pastebin
-local MVer = ("0.0.11")
+local Ver = ("1.0.26")
+local UVer = {"1.0.26","4.0.0","0.2.1"} -- keep this here until you can pull pastes from Git / pastebin
+local MVer = ("0.2.1")
 local BFlag = 0
 Page = 0
 fCont = {0,0,0,0,0,0,0,0,0,0,0}
@@ -338,7 +341,7 @@ ContStore = component.proxy(component.findComponent(Container)[1])
 conInv = ContStore:getInventories()[1]
 conSum = conInv.itemCount
 itemStack = conInv:getStack(0)
-itemName = itemStack.item.type:getName()
+--itemName = itemStack.item.type:getName()
 --itemName = itemStack.item.type.name -- M update v0.1.0
 end
 
@@ -356,7 +359,7 @@ end
 
 if ConType == 1 then -- "Large / Train"
 if Contents[1] == 50 then x = 2399 y = 1199 z = 200 end
-if Contents[1] == 100 then x = 2409 y = 1600 z = 800 end
+if Contents[1] == 100 then x = 4800 y = 2400 z = 800 end
 if Contents[1] == 200 then x = 4799 y = 1600 z = 1000 end
 if Contents[1] == 500 then x = 23999 y = 11999 z = 1000 end
 end
@@ -571,7 +574,7 @@ else
 FLAG = 1 print(ERR[3]..Contents[7]) Contents[3] = 1 end
 end
 gpu:setForeground(1,1,1,1)
-gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
+gpu:setBackground(0,0,0,0)
 end -- END OF TANK FUNCTION
 
 --Gas status coming in update 4 (NOT TESTED)
@@ -587,14 +590,14 @@ prefix = {"GAS", "LIG", "PWR"}
 local setupgas = {prefixcon= prefix[1], condata=Contents[7]}
 local setuplig = {prefixlig= prefix[2], ligdata=Contents[7]}
 local setuppwr = {prefixpwr= prefix[3], pwrdata=Contents[7]}
-Tank = string.gsub("$prefixcon $condata", "%$(%w+)", setupliq)
+Tank = string.gsub("$prefixcon $condata", "%$(%w+)", setupgas)
 Light = string.gsub("$prefixlig $ligdata", "%$(%w+)", setuplig)
 Power = string.gsub("$prefixpwr $pwrdata", "%$(%w+)", setuppwr)
 
 Gas = component.proxy(component.findComponent(Tank)[1])
-Name = Fluid.getFluidType
-RawMax = Fluid.maxFluidContent
-RawLvl = Fluid.fluidContent
+Name = Gas.getFluidType
+RawMax = Gas.maxFluidContent
+RawLvl = Gas.fluidContent
 GasMax = round(RawMax)
 GasLvl = round(RawLvl)
 
@@ -611,7 +614,7 @@ if Contents[1] == 400 then x = 399 y = 199 z = 50 end
 if Contents[1] == 2400 then x = 2399 y = 1199 z = 100 end 
 
 --a = x + 1
-rawpercent = LiqLvl / Contents[1] * 100/1 
+rawpercent = GasLvl / Contents[1] * 100/1 
 percent= round(rawpercent)
 
 --if Contents[4] == 0 then
@@ -619,8 +622,8 @@ write(DisX,DisY, TankNumber)
 DisX = DisX + 16
 write(DisX,DisY,Contents[2])
 DisX = DisX + 32
-if LiqPercentages == false then
-write(DisX,DisY,LiqLvl.."    ")
+if GasPercentages == false then
+write(DisX,DisY,GasLvl.."    ")
 else
 write(DisX,DisY,percent.."%   ")
 end
@@ -798,7 +801,7 @@ end
 
 
 --- Power Conections / Monitoring ---
-PowerSys = {"Power System Ver : ","2.0.0"}
+PowerSys = {"Power System Ver : ","4.0.2"}
 function Connection(x,y,Contents)
 if FLAG == 0 then
  if TEST == 1 then
@@ -816,7 +819,7 @@ if pcall (GPwrSwitch) then
 
 GPwrSwitch()
 
-Comp:setConnected(y)
+Comp.isSwitchOn = y
 
 else 
  FLAG = 1 print(ERR[5]..Contents[7]) Contents[5] = 1 
@@ -835,7 +838,7 @@ connector = powermonpole:getPowerConnectors()[1]
 circuit = connector:getCircuit()
 end
 
-function PWRStatus(DisX,DisY,Contents)
+function PWRStatus(DisX,DisY,Contents) --########################################################################################
 if FLAG == 0 then
  if TEST == 1 then
   Contents[3] = 0
@@ -1005,9 +1008,132 @@ else FLAG = 1 print(ERR[6]..Contents[7]) Contents[3] = 1
 end
 
 gpu:setForeground(1,1,1,1)
-gpu:setBackground(colors[1],colors[2],colors[3],colors[4])
+gpu:setBackground(0,0,0,0)
 end -- PWRData()
 
+
+function BatStatus(DisX,DisY,Contents) --#######################################################################################
+if FLAG == 0 then
+ if TEST == 1 then
+  Contents[3] = 0
+ end
+end
+
+function BATData()
+
+prefix = {"BAT","LIG","SWT"}
+local setupbat = {prefixcon= prefix[1], batdata=Contents[7]}
+local setuppwr = {prefixpwr= prefix[3], pwrdata=Contents[7]}
+local setuplig = {prefixlig= prefix[2], ligdata=Contents[7]}
+
+BATMon = string.gsub("$prefixcon $batdata", "%$(%w+)", setupbat)
+Light = string.gsub("$prefixlig $ligdata", "%$(%w+)", setuplig)
+Switch = string.gsub("$prefixpwr $pwrdata", "%$(%w+)", setuppwr)
+
+battery = component.proxy(component.findComponent(BATMon)[1])
+end
+
+if Contents[3] == 1 then else
+if pcall (BATData) then
+
+BATData()
+
+x = DisX
+y = DisY
+-- Battery Functions
+Stored     = battery.powerStore -- Shows Stored Percentage
+--StoredPer  = battery.powerStorePercent -- shows something else dont know what
+TimeFull   = battery.timeUntilFull -- Time till full in Secs
+TimeEmpty  = battery.timeUntilEmpty -- Time till Empty In Secs
+Incoming   = battery.powerIn -- Shows the power coming in for charging
+Outgoing   = battery.powerOut -- Shows the power going out
+Capacity   = battery.powerCapacity -- Shows Battery Capacity
+Status     = battery.batteryStatus -- Shows the state the battery is in values 0 - 4 (see below for what the output number means)
+
+
+
+if EnableScreen == true then 
+write(x,y, "O-"..(Contents[2]).."---------------O")
+y = y + 1
+write(x,y, "|                                |")
+y = y + 1
+write(x,y,"|                                |")
+y = y + 1
+write(x,y,"|                                |")
+y = y + 1
+write(x,y,"|                                |")
+y = y + 1
+write(x,y,"O--------------------------------O")
+
+x = DisX
+y = DisY
+x = x + 2
+y = y + 1
+
+write(x,y,"Stored       : "..round(Stored).."%")
+y = y + 1
+if Status == 3 then write(x,y,"Time Till E/F: "..round(TimeFull))
+elseif Status == 4 then write(x,y,"Time Till E/F: "..round(TimeEmpty))
+else write(x,y,"Time Till E/F: N/A") end
+
+
+
+
+
+
+y = y + 1
+write(x,y,"Consumption  : "..round(Incoming))
+y = y + 1
+write(x,y,"Batt Status  : ")
+
+if Status == 0 then x = x + 15 gpu:setForeground(0,0,0,1) gpu:setBackground(1,1,0,1) write(x,y,"Idle      ") end
+if Status == 1 then x = x + 15 gpu:setForeground(0,0,0,1) gpu:setBackground(1,1,0,1) write(x,y,"Idle Empty") end
+if Status == 2 then x = x + 15 gpu:setForeground(0,0,0,1) gpu:setBackground(0,1,0,1) write(x,y,"Idle Full ") end
+if Status == 3 then x = x + 15 gpu:setForeground(0,0,0,1) gpu:setBackground(0,1,0,1) write(x,y,"Power In  ") end
+if Status == 4 then x = x + 15 gpu:setForeground(0,0,0,1) gpu:setBackground(1,0,0,1) write(x,y,"Power Out ") end
+--gpu:setForeground(1,0,0,1) - RED
+--gpu:setBackground(1,0,0,1)
+--gpu:setForeground(0,1,0,1) -Green
+--gpu:setBackground(0,1,0,1)
+
+end -- EnableScreen
+
+
+function BATExample()
+-- Example Print
+print("The below displayed is in order of the Battery functions")
+print("")
+print("Stored    : "..round(Stored).."%")
+--print(round(StoredPer)) -- Dont know what this one is thought this would be % stored but it's not
+if Status == 3 then print("Time Full : "..round(TimeFull)) elseif Status == 4 then print("Time Empty: "..round(TimeEmpty)) else end
+print("Power In  : "..round(Incoming))
+print("Power Out : "..round(Outgoing))
+print("Power Capacity : "..Capacity)
+
+print(Status) -- Below is the different states this has
+if Status == 0 then 
+  print("Idle      ")
+   elseif Status == 1 then 
+    print("Idle Empty")
+     elseif Status == 2 then 
+      print("Idle Full ")
+      elseif Status == 3 then 
+     print("Power In  ")
+    elseif Status == 4 then 
+   print("Power Out ")
+  else 
+ print("Unknown Status")
+end
+end -- End to BATExample()
+
+--BATExample()
+ end -- End to pcall (BATData)
+end -- if Contents[3] == 1
+if EnableScreen == true then
+gpu:setForeground(1,1,1,1)
+gpu:setBackground(0,0,0,0)
+end
+end --BatStatus() ####################################################################################################################
 
 --- Power Connections End ---
 
@@ -1075,7 +1201,7 @@ print("O--------------------------------O")
 print("|",ProgName,"|")
 print("| By : "..By,"                |")
 print("| Prg Ver : "..Ver,"              |")
-print("| Mod Ver : "..MVer,"              |")
+print("| Mod Ver : "..MVer,"               |")
 print("| Build   : "..Build.."|")
 print("O--------------------------------O")
 
@@ -1160,14 +1286,13 @@ function selfTest()
 end
 
 
-
 while true do
 write(0,0,"Booting System Up")
 Boot()
 --print(FLAG)
 MainLoop()
 
-ErrorBoxDis(0,49)
+--ErrorBoxDis(0,50)
   if EnableStausLight == true then
    if FLAG == 0 then progstat:setColor(0.0, 10.0, 0.0,10.0) end
     if FLAG == 1 then Blink() end
