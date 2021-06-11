@@ -1,4 +1,4 @@
-Build = "310521-2016-1026-0028"
+Build = "1027-0201DEV-0003    "
 
 
 -- Status Light #############################
@@ -13,6 +13,7 @@ EnableScreen     = true
 ConPercentages   = false
 LiqPercentages   = false
 GasPercentages   = false
+-- ServerLogger  = false
 -- ServerAddress = "" -- Work in progress
 -- NetworkCard   = "" -- Work in progress
 
@@ -160,7 +161,7 @@ ElectromagneticControlRod = {100 ,"Electromagnetic Control Rod ",0,0,0,0,"Electr
 
                   Battery = {1 ,"Battery 1       ",0,0,0,0,"Battery"}
 
-                  BackUp1 = {3000,"Building 1 ",0,0,0,0,"BackUp1"}
+                  BackUp1 = {150,"Building 1 ",0,0,0,0,"BackUp1"}
  
 
 -- add below what each container is in the format below:
@@ -206,11 +207,11 @@ function ITEMLIST()
 
 
 -- Storage Items
-ConStatus(2,2,LimeStone,1,0,true,true)
---ConStatus(2,3,IronOre,2,0,true,true)
+ConStatus(2,2,LimeStone,1,1,true,false)
+ConStatus(2,3,Coal,2,1,true,false)
 --ConStatus(2,4,CopperOre,3,0,true,true)
 --ConStatus(2,5,CateriumOre,4,0,true,true)
---ConStatus(2,6,Coal,5,0,true,true)
+--ConStatus(2,6,IronOre,5,0,true,true)
 --ConStatus(2,7,RawQuartz,6,0,true,true)
 --ConStatus(2,8,Sulfur,7,0,true,true)
 --ConStatus(2,9,Bauxite,8,0,true,true)
@@ -218,13 +219,13 @@ ConStatus(2,2,LimeStone,1,0,true,true)
 --ConStatus(129,2,NuclearWaste,1,1,true,false)
 
 -- Power Monitoring
-PWRStatus(83,7,PowerMain)
-BatStatus(83,30,Battery)
+--PWRStatus(83,7,PowerMain)
+--BatStatus(83,30,Battery)
 --PWRStatus(83,13,StatusWaterPwr)
-PWRBackUp(83,20,BackUp1)
+--PWRBackUp(83,20,BackUp1)
 
-LiqStatus(2,16,Water,0,true,true)
-GasStatus(2,17,Nitrogen,1,true,true)
+--LiqStatus(2,16,Water,0,true,true)
+--GasStatus(2,17,Nitrogen,1,true,true)
 
 end --## ITEM LIST ############################################
 
@@ -267,9 +268,10 @@ end
 -- System Screen Sys P1/3 #############################################################################--
 if EnableScreen == true then 
 SystemScreenSys = {"System Screen Sys Ver: ","1.0.1"}
-gpu = computer.getGPUs()[1]
+--gpu = computer.getGPUs()[1]
+gpu = computer.getPCIDevices(findClass("GPU_T1_C"))[1]
 --local screen = computer.proxy(component.findComponent("Monitor"))[1]
-screen = computer.getScreens()[1]
+screen = computer.getPCIDevices(findClass("FINComputerScreen"))[1]
 gpu:bindScreen(screen)
 w,h = gpu:setSize(200,45) --200 , 55
 colors = {{0,0,0,0},{0,0,0,0},{1,0,0,1},{1,0,0,1},{0,1,0,1},{0,1,0,1},{0,0,1,1},{0,0,1,1},{1,1,1,1},{1,1,1,1}}
@@ -351,7 +353,7 @@ if pcall (ConData) then
 ConData()
 
 if ConType == 0 then -- "Small"
-if Contents[1] == 50 then x = 1199 y = 450 z = 200 end
+if Contents[1] == 50 then x = 1199 y = 599 z = 200 end
 if Contents[1] == 100 then x = 2399 y = 1600 z = 800 end
 if Contents[1] == 200 then x = 4799 y = 1600 z = 1000 end
 if Contents[1] == 500 then x = 11999 y = 8000 z = 2000 end
@@ -359,7 +361,7 @@ end
 
 if ConType == 1 then -- "Large / Train"
 if Contents[1] == 50 then x = 2399 y = 1199 z = 200 end
-if Contents[1] == 100 then x = 4800 y = 2400 z = 800 end
+if Contents[1] == 100 then x = 4799 y = 2400 z = 800 end
 if Contents[1] == 200 then x = 4799 y = 1600 z = 1000 end
 if Contents[1] == 500 then x = 23999 y = 11999 z = 1000 end
 end
@@ -1075,6 +1077,12 @@ y = y + 1
 if Status == 3 then write(x,y,"Time Till E/F: "..round(TimeFull))
 elseif Status == 4 then write(x,y,"Time Till E/F: "..round(TimeEmpty))
 else write(x,y,"Time Till E/F: N/A") end
+
+
+
+
+
+
 y = y + 1
 write(x,y,"Consumption  : "..round(Incoming))
 y = y + 1
@@ -1085,6 +1093,11 @@ if Status == 1 then x = x + 15 gpu:setForeground(0,0,0,1) gpu:setBackground(1,1,
 if Status == 2 then x = x + 15 gpu:setForeground(0,0,0,1) gpu:setBackground(0,1,0,1) write(x,y,"Idle Full ") end
 if Status == 3 then x = x + 15 gpu:setForeground(0,0,0,1) gpu:setBackground(0,1,0,1) write(x,y,"Power In  ") end
 if Status == 4 then x = x + 15 gpu:setForeground(0,0,0,1) gpu:setBackground(1,0,0,1) write(x,y,"Power Out ") end
+--gpu:setForeground(1,0,0,1) - RED
+--gpu:setBackground(1,0,0,1)
+--gpu:setForeground(0,1,0,1) -Green
+--gpu:setBackground(0,1,0,1)
+
 end -- EnableScreen
 
 
